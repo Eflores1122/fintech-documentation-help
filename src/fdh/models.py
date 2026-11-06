@@ -187,12 +187,16 @@ class Rule(BaseModel):
     source_url: str
     source_name: str
     effective_date: date
+    effective_from: date | None = None
+    effective_to: date | None = None
     last_verified: date
     severity: Severity
     unverified: bool = False
     verified: bool | None = None
     unverified_detail: str | None = None
     supersedes: str | None = None
+    superseded_by: str | None = None
+    parameter_ids: list[str] = Field(default_factory=list)
     applies_if: str | None = None
     notes: str | None = None
     diff_note: str | None = None
@@ -271,9 +275,18 @@ class Rule(BaseModel):
             raise ValueError(f"{self.id}: applies_if desconocido: {self.applies_if}")
         if self.area is None:
             self.area = DOMAIN_AREA[self.domain]
+        if self.effective_from is None:
+            self.effective_from = self.effective_date
+        if self.effective_to is not None and self.effective_to < self.effective_from:
+            raise ValueError(f"{self.id}: effective_to es anterior a effective_from")
         if self.remediation_days < 1:
             raise ValueError(f"{self.id}: remediation_days debe ser positivo")
         return self
+
+    def in_force(self, on: date) -> bool:
+        start = self.effective_from or self.effective_date
+        ended = self.effective_to is not None and on > self.effective_to
+        return on >= start and not ended
 
     def applies_to_entity(self, entity: str) -> bool:
         implied = ENTITY_IMPLIES.get(entity, {entity})
@@ -373,6 +386,12 @@ class AuditReport(BaseModel):
     opinion: dict[str, object] = Field(default_factory=dict)
     comparison: list[dict[str, object]] = Field(default_factory=list)
     heatmap: dict[str, dict[str, object]] = Field(default_factory=dict)
+    as_of: str | None = None
+    business_profile: dict[str, object] = Field(default_factory=dict)
+    coherence: list[dict[str, object]] = Field(default_factory=list)
+    applicability: list[dict[str, object]] = Field(default_factory=list)
+    parameter_gaps: list[dict[str, object]] = Field(default_factory=list)
+    parameter_values: list[dict[str, object]] = Field(default_factory=list)
 
 
 class Profile(BaseModel):
@@ -390,6 +409,7 @@ class Profile(BaseModel):
     offers_yield: bool = False
     has_related_parties_abroad: bool = False
     strictness: Strictness = "max"
+    as_of: date | None = None
 
     @field_validator("entity_type")
     @classmethod

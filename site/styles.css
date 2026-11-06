@@ -1,0 +1,136 @@
+@font-face {
+  font-family: "Public Sans";
+  src: url("fonts/PublicSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Public Sans";
+  src: url("fonts/PublicSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ink: #1b1b1b;
+  --paper: #f6f5f2;
+  --surface: #fffcf7;
+  --line: #d4d1cb;
+  --accent: #8c2f2f;
+  --radius: 2px;
+  --space: 1.25rem;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Public Sans", "Segoe UI", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+body.en [data-lang="es"], body:not(.en) [data-lang="en"] { display: none; }
+a { color: var(--ink); }
+a:hover { color: var(--accent); }
+code { font-family: ui-monospace, "Source Code Pro", monospace; font-size: 0.92em; }
+
+.wrap { max-width: 72rem; margin: 0 auto; padding: 1.25rem 1.25rem 4rem; }
+header.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.wordmark { font-weight: 700; letter-spacing: 0; text-decoration: none; }
+.bar nav { display: flex; gap: 1rem; align-items: center; }
+button, .button {
+  font: inherit;
+  color: var(--surface);
+  background: var(--accent);
+  border: 0;
+  border-radius: var(--radius);
+  padding: 0.55rem 0.8rem;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
+button.quiet, .button.quiet {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2.5rem;
+  align-items: start;
+  padding: 3rem 0 2rem;
+}
+h1 {
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.12;
+  font-weight: 700;
+  margin: 0 0 0.8rem;
+  letter-spacing: 0;
+}
+.lede { font-size: 1.15rem; margin: 0 0 1.2rem; max-width: 38rem; }
+.meta { color: var(--ink); font-size: 0.95rem; }
+.finding {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.15rem;
+}
+.finding .tag { color: var(--accent); font-weight: 700; margin: 0 0 0.35rem; }
+.finding h2 { font-size: 1.25rem; margin: 0 0 0.6rem; font-weight: 700; }
+.finding blockquote {
+  margin: 0 0 0.7rem;
+  padding: 0;
+  border: 0;
+}
+.scoreline { font-size: 1.35rem; font-weight: 700; margin: 0.4rem 0; }
+ol.phases { padding-left: 1.2rem; }
+ol.phases li { margin: 0.45rem 0; max-width: 40rem; }
+ol.phases li { opacity: 1; }
+ol.phases.go li:nth-child(2) { animation-delay: 0.12s; }
+ol.phases.go li:nth-child(3) { animation-delay: 0.24s; }
+ol.phases.go li:nth-child(4) { animation-delay: 0.36s; }
+ol.phases.go li:nth-child(5) { animation-delay: 0.48s; }
+ol.phases.go li:nth-child(6) { animation-delay: 0.6s; }
+ol.phases.go li:nth-child(7) { animation-delay: 0.72s; }
+ol.phases.go li:nth-child(8) { animation-delay: 0.84s; }
+@keyframes show { to { opacity: 1; } }
+.flow { margin-top: 1rem; }
+.flow line, .flow path { stroke: var(--ink); fill: none; stroke-width: 1.5; }
+.flow .draw { stroke-dasharray: 240; stroke-dashoffset: 240; animation: draw 1.4s ease forwards 0.2s; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+section { margin-top: 2.5rem; }
+h2.section { font-size: 1.5rem; margin: 0 0 0.6rem; }
+table { width: 100%; border-collapse: collapse; background: var(--surface); }
+th, td { text-align: left; padding: 0.45rem 0.5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 700; }
+.controls { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: end; margin: 1rem 0; }
+label { display: grid; gap: 0.2rem; font-size: 0.92rem; }
+input, select { font: inherit; padding: 0.35rem 0.4rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+pre.diagram { white-space: pre-wrap; background: var(--surface); border: 1px solid var(--line); padding: 0.8rem; border-radius: var(--radius); }
+.fail { color: var(--accent); font-weight: 700; }
+footer { margin-top: 3rem; border-top: 1px solid var(--line); padding-top: 1rem; font-size: 0.95rem; }
+
+@media (max-width: 800px) {
+  .hero, .grid-2 { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  ol.phases li { opacity: 1; }
+  .flow .draw { stroke-dashoffset: 0; }
+}

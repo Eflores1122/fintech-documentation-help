@@ -18,7 +18,9 @@ Copiado desde {previous}. Revise cada punto antes de dar el año por cerrado:
 - [ ] DOF: LRITF, LFPIORPI, LFPDPPP, disposiciones CNBV, Banxico y CONDUSEF publicados desde el cierre del año anterior.
 - [ ] Criterios contables y reportes regulatorios (anexos) si la CNBV publicó resolución nueva.
 - [ ] Cada regla nueva trae `source_url` https, `effective_date`, `last_verified` y `verified: false` (`unverified: true` más `unverified_detail`) si el artículo no se leyó.
+- [ ] `rules/parameters.yaml`: si una tasa, una UMA o un umbral cambió, agregue una fila con vigencia. Si no la leyó, no invente el número.
 - [ ] `fdh rules validate` y `fdh rules diff {previous} {year}`.
+- [ ] `fdh rules diff --from {previous}-01-01 --to {year}-01-01`.
 - [ ] No hay datos de una entidad real.
 
 Quien no programa puede copiar un bloque `rules:` de un YAML vecino y cambiar los campos. El validador rechaza el archivo si falta la fuente o el disclaimer.

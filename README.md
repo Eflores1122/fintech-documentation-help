@@ -1,5 +1,7 @@
 # fintech-documentation-help
 
+Demo en el navegador, sin instalar y sin subir los archivos: [fintech-documentation-help en GitHub Pages](https://eflores1122.github.io/fintech-documentation-help/). Si el enlace aún no abre, el paso que falta está en [docs/demo.md](docs/demo.md).
+
 > **AVISO: esta herramienta no es asesoría legal ni fiscal.** Es un checklist asistido que cita fuentes públicas y la fecha en que se verificaron. Las reglas marcadas **UNVERIFIED** (`verified: false`) todavía necesitan una lectura íntegra del instrumento oficial. Cualquier decisión de cumplimiento tiene que contrastarse con un abogado o contador autorizado y con el texto vigente en el Diario Oficial de la Federación y en los portales de SAT, CNBV, Banxico, CONDUSEF, UIF y la Cámara de Diputados. No sustituye una auditoría certificada ni un dictamen de estados financieros.
 
 Auditor open source para el cumplimiento documental de fintechs mexicanas: IFPE, IFC, SOFOM ENR, transmisores de dinero, asesores en inversiones y modelos novedosos. El modo por defecto es el auditor más exigente (`--strictness max`).
@@ -42,7 +44,9 @@ fdh audit samples/nube_pago/docs --year 2026 --entity IFPE --out fdh-report
 fdh serve
 ```
 
-`fdh rules diff 2025 2026` explica el cambio de catálogo. `fdh rules validate` y `fdh rules list --year 2026` revisan las fichas.
+`fdh rules diff 2025 2026` compara snapshots. `fdh rules diff --from 2025-01-01 --to 2026-01-01` compara las reglas vigentes en dos fechas. `fdh audit ... --as-of 2031-03-15` reutiliza el último snapshot cuya vigencia cubre ese día y avisa, sin inventar el monto, si falta la UMA, el umbral de PLD o la tasa de la LIF. Si no pasa `--year` ni `--as-of`, la fecha es hoy.
+
+`fdh rules validate` y `fdh rules list --year 2026` revisan las fichas.
 
 Otras figuras: `--entity IFC`, `SOFOM_ENR`, `transmisor_dinero`, `asesor_inversion`, `modelo_novedoso`. Perfil: `--operates-virtual-assets`, `--participates-spei`, `--processes-cards`, `--offers-credit`, `--offers-yield`, `--specialized-services`, `--related-parties-abroad`, `--partial-payments`, `--transports-goods`, `--tech-platform`, `--digital-services`.
 

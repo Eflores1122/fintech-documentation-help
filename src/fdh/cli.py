@@ -49,7 +49,17 @@ def _parser() -> argparse.ArgumentParser:
 
     audit = sub.add_parser("audit", help="Auditar un archivo o carpeta de documentos")
     audit.add_argument("path", type=Path, help="Archivo o directorio (PDF, DOCX, MD, TXT, HTML)")
-    audit.add_argument("--year", type=int, default=2026, help="Año del catálogo regulatorio")
+    audit.add_argument(
+        "--year",
+        type=int,
+        default=None,
+        help="Snapshot de un año. Si se omite y no hay --as-of, la fecha es hoy.",
+    )
+    audit.add_argument(
+        "--as-of",
+        default=None,
+        help="Auditar a una fecha ISO (ejemplo 2031-03-15). Por defecto, hoy, si no hay --year.",
+    )
     audit.add_argument("--entity", default="IFPE", help="IFPE, IFC, ITF, fintech_general, …")
     audit.add_argument("--out", type=Path, default=Path("fdh-report"))
     audit.add_argument(
@@ -101,8 +111,10 @@ def _parser() -> argparse.ArgumentParser:
     rules_sub = rules.add_subparsers(dest="rules_command", required=True)
 
     diff = rules_sub.add_parser("diff", help="Explicar qué cambió entre dos años")
-    diff.add_argument("year_a", type=int)
-    diff.add_argument("year_b", type=int)
+    diff.add_argument("year_a", type=int, nargs="?")
+    diff.add_argument("year_b", type=int, nargs="?")
+    diff.add_argument("--from", dest="date_from", default=None, help="Fecha ISO inicial")
+    diff.add_argument("--to", dest="date_to", default=None, help="Fecha ISO final")
     diff.add_argument("--format", choices=["md", "json"], default="md")
     diff.add_argument("--rules-dir", type=Path, default=None)
     diff.set_defaults(handler=_cmd_diff)
@@ -181,9 +193,20 @@ def _cmd_audit(args: argparse.Namespace) -> int:
     if not args.path.exists():
         print(f"No existe la ruta: {args.path}", file=sys.stderr)
         return 2
+    from datetime import date
+
+    as_of = None
+    year = args.year
+    if args.as_of:
+        as_of = date.today() if args.as_of == "today" else date.fromisoformat(args.as_of)
+        year = as_of.year
+    elif year is None:
+        as_of = date.today()
+        year = as_of.year
     profile = Profile(
         entity_type=canonical_entity(args.entity),
-        year=args.year,
+        year=year,
+        as_of=as_of,
         operates_virtual_assets=args.operates_virtual_assets,
         has_partial_or_deferred_payments=args.partial_payments,
         transports_goods=args.transports_goods,
@@ -248,7 +271,26 @@ def _print_summary(report, written: list[Path]) -> None:
 
 
 def _cmd_diff(args: argparse.Namespace) -> int:
-    payload = diff_catalogs(args.year_a, args.year_b, args.rules_dir)
+    from datetime import date
+
+    from fdh.diff import diff_as_of
+
+    date_from = getattr(args, "date_from", None)
+    date_to = getattr(args, "date_to", None)
+    if date_from or date_to:
+        if not date_from or not date_to:
+            print("Indique --from y --to con fechas ISO.", file=sys.stderr)
+            return 2
+        payload = diff_as_of(
+            date.fromisoformat(date_from),
+            date.fromisoformat(date_to),
+            args.rules_dir,
+        )
+    elif args.year_a is None or args.year_b is None:
+        print("Indique dos años o --from y --to.", file=sys.stderr)
+        return 2
+    else:
+        payload = diff_catalogs(args.year_a, args.year_b, args.rules_dir)
     rendered = render_diff_json(payload) if args.format == "json" else render_diff_markdown(payload)
     sys.stdout.write(rendered)
     return 0
