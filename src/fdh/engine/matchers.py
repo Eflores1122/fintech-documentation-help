@@ -79,6 +79,10 @@ def _run_check(check: Check, documents: list[Document]) -> MatchOutcome:
         return _forbidden(check, documents)
     if check.type == "regex":
         return _regex(check, documents)
+    if check.type == "each_document_contains_any":
+        return _each_contains(check, documents)
+    if check.type == "each_document_forbidden":
+        return _each_forbidden(check, documents)
     return MatchOutcome(ok=False, message=f"Tipo de chequeo no soportado: {check.type}")
 
 
@@ -151,6 +155,37 @@ def _regex(check: Check, documents: list[Document]) -> MatchOutcome:
     if check.expect == "match":
         return MatchOutcome(ok=False, message=f"No coincide {label}.")
     return MatchOutcome(ok=True, message=f"No aparece {label}.")
+
+
+def _each_contains(check: Check, documents: list[Document]) -> MatchOutcome:
+    missing: list[str] = []
+    for doc in documents:
+        if not any(locate_phrase(doc.text, phrase) is not None for phrase in check.any):
+            missing.append(doc.path)
+    if missing:
+        label = check.label or "el elemento exigido en cada documento"
+        listed = ", ".join(missing)
+        return MatchOutcome(
+            ok=False,
+            message=f"No aparece {label} en: {listed}.",
+            document=missing[0],
+        )
+    return MatchOutcome(ok=True, message="Cada documento trae el elemento.")
+
+
+def _each_forbidden(check: Check, documents: list[Document]) -> MatchOutcome:
+    for doc in documents:
+        for phrase in check.any:
+            span = locate_phrase(doc.text, phrase)
+            if span is not None:
+                label = check.label or "una expresión que el modo estricto no acepta"
+                return MatchOutcome(
+                    ok=False,
+                    message=f"Se encontró {label}: «{phrase}» en {doc.path}.",
+                    evidence=snippet(doc.text, span[0], span[1]),
+                    document=doc.path,
+                )
+    return MatchOutcome(ok=True, message="Sin expresiones rechazadas por el modo estricto.")
 
 
 def _any_doc_has(phrase: str, documents: list[Document]) -> bool:

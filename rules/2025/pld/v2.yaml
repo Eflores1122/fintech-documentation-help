@@ -1,0 +1,465 @@
+catalog_year: 2025
+last_verified: '2026-11-06'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- id: pld-comite-comunicacion
+  domain: pld
+  area: pld
+  title: Comité de comunicación y control
+  requirement: El manual o el acta deben documentar un comité de comunicación y control.
+    El catálogo previo lo atribuye al art. 58 de la LRITF; ese párrafo no se releyó
+    el 2026-11-06.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Comité de comunicación y control» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LRITF art. 58 (párrafo del
+    comité no releído en esta pasada)). No deje placeholders.
+  entity_types: &id001
+  - IFPE
+  - IFC
+  documents:
+  - acta_comite_comunicacion
+  - manual_pld_ft
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: LRITF art. 58 (párrafo del comité no releído en esta pasada)
+  effective_date: '2018-09-10'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de cumplimiento
+  remediation_days: 30
+  evidence_expected:
+  - Documento acta_comite_comunicacion aprobado y vigente.
+  - Documento manual_pld_ft aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Comité de comunicación y control».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el comité
+      any:
+      - comité de comunicación y control
+      - comite de comunicacion y control
+  unverified_detail: La ficha hermana del manual ya habla del art. 58. Este número
+    no se releyó hoy.
+- id: pld-capacitacion
+  domain: pld
+  area: pld
+  title: Capacitación anual en PLD/FT
+  requirement: Debe existir un programa de capacitación en PLD/FT con constancias.
+    La periodicidad anual se toma de la reforma LFPIORPI descrita en la investigación;
+    el artículo no se releyó línea a línea.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Capacitación anual en PLD/FT» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LFPIORPI reforma DOF 16-jul-2025
+    (artículo de capacitación no aislado)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - programa_capacitacion_pld
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/ref/lfpiorpi/LFPIORPI_ref03_16jul25.pdf
+  source_name: LFPIORPI reforma DOF 16-jul-2025 (artículo de capacitación no aislado)
+  effective_date: '2025-07-17'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de cumplimiento
+  remediation_days: 45
+  evidence_expected:
+  - Documento programa_capacitacion_pld aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Capacitación anual en PLD/FT».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la capacitación
+      any:
+      - capacitación
+      - capacitacion
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: pld-pep
+  domain: pld
+  area: pld
+  title: Personas políticamente expuestas
+  requirement: El procedimiento de identificación debe tratar a las personas políticamente
+    expuestas. La reforma de julio de 2025 las define; el artículo exacto no se aisló.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Personas políticamente expuestas» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LFPIORPI reforma DOF 16-jul-2025
+    (definición de PEP no aislada)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - procedimiento_pep
+  - politica_kyc
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/ref/lfpiorpi/LFPIORPI_ref03_16jul25.pdf
+  source_name: LFPIORPI reforma DOF 16-jul-2025 (definición de PEP no aislada)
+  effective_date: '2025-07-17'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de cumplimiento
+  remediation_days: 30
+  evidence_expected:
+  - Documento procedimiento_pep aprobado y vigente.
+  - Documento politica_kyc aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Personas políticamente expuestas».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: las PEP
+      any:
+      - políticamente expuesta
+      - politicamente expuesta
+      - PEP
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: pld-listas-referencia-internacional
+  domain: pld
+  area: pld
+  title: Listas ONU y OFAC como referencia, no como ley mexicana
+  requirement: La lista vinculante en México es la de personas bloqueadas de la SHCP.
+    OFAC y las listas de la ONU pueden usarse como referencia. El documento no debe
+    llamar a OFAC obligación legal mexicana. Las 40 recomendaciones del GAFI no son
+    derecho interno.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Listas ONU y OFAC como referencia, no como ley mexicana»
+    con fecha de aprobación, versión vigente y la evidencia que pide la fuente (GAFI/FATF
+    40 recomendaciones (referencia) y lista de personas bloqueadas SHCP). No deje
+    placeholders.
+  entity_types:
+  - IFPE
+  - IFC
+  - ITF
+  - fintech_general
+  - SOFOM_ENR
+  - transmisor_dinero
+  - asesor_inversion
+  - modelo_novedoso
+  - plataforma_tecnologica
+  - servicios_digitales
+  - AV_exchange_non_ef
+  documents:
+  - procedimiento_listas_internacionales
+  source_url: https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Fatf-recommendations.html
+  source_name: GAFI/FATF 40 recomendaciones (referencia) y lista de personas bloqueadas
+    SHCP
+  effective_date: '2012-02-16'
+  last_verified: '2026-11-06'
+  severity: info
+  unverified: false
+  min_strictness: standard
+  binding: false
+  owner_role: Oficial de cumplimiento
+  remediation_days: 90
+  evidence_expected:
+  - Documento procedimiento_listas_internacionales aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Listas ONU y OFAC como referencia,
+    no como ley mexicana».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la naturaleza de referencia
+      any:
+      - buena práctica
+      - buena practica
+      - no es obligatorio
+      - no es una obligación
+    - type: forbidden_phrases
+      label: presentar a OFAC como ley mexicana
+      any:
+      - OFAC es obligatorio en México
+      - OFAC es obligatorio en Mexico
+  notes: No es obligatorio en México consultar OFAC. La obligación nacional de listas
+    está en la ficha de personas bloqueadas.
+  frameworks:
+  - FATF/GAFI 40 recomendaciones
+  - OFAC (referencia)
+- id: pld-monitoreo-automatizado
+  domain: pld
+  area: pld
+  title: Monitoreo automatizado de operaciones
+  requirement: El manual debe describir un monitoreo automatizado y la generación
+    de alertas. La reforma LFPIORPI lo menciona para actividades vulnerables; el artículo
+    de las DCG de ITF que lo imponga no se aisló.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Monitoreo automatizado de operaciones» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LFPIORPI reforma DOF 16-jul-2025
+    (monitoreo automatizado; artículo no aislado)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - procedimiento_monitoreo
+  - manual_pld_ft
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/ref/lfpiorpi/LFPIORPI_ref03_16jul25.pdf
+  source_name: LFPIORPI reforma DOF 16-jul-2025 (monitoreo automatizado; artículo
+    no aislado)
+  effective_date: '2025-07-17'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de cumplimiento
+  remediation_days: 30
+  evidence_expected:
+  - Documento procedimiento_monitoreo aprobado y vigente.
+  - Documento manual_pld_ft aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Monitoreo automatizado de operaciones».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el monitoreo
+      any:
+      - monitoreo automatizado
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: pld-beneficiario-controlador
+  domain: pld
+  area: pld
+  title: Beneficiario controlador en PLD/FT
+  requirement: El conocimiento del cliente de personas morales debe llegar al beneficiario
+    controlador. La reforma del 16 de julio de 2025 incorpora la figura; el artículo
+    exacto no se aisló.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Beneficiario controlador en PLD/FT» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LFPIORPI reforma DOF 16-jul-2025
+    (beneficiario controlador; artículo no aislado)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_beneficiario_controlador
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/ref/lfpiorpi/LFPIORPI_ref03_16jul25.pdf
+  source_name: LFPIORPI reforma DOF 16-jul-2025 (beneficiario controlador; artículo
+    no aislado)
+  effective_date: '2025-07-17'
+  last_verified: '2026-11-06'
+  severity: critical
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de cumplimiento
+  remediation_days: 15
+  evidence_expected:
+  - Documento politica_beneficiario_controlador aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Beneficiario controlador en PLD/FT».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el beneficiario controlador
+      any:
+      - beneficiario controlador
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: pld-sofom-enr
+  domain: pld
+  area: pld
+  title: Manual PLD de SOFOM ENR
+  requirement: Una SOFOM ENR ficticia de este catálogo debe tener manual PLD. Las
+    disposiciones del artículo 95 Bis de la LGOAAC no se leyeron en esta pasada.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Manual PLD de SOFOM ENR» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (CNBV, índice de normatividad (disposiciones
+    PLD de SOFOM no leídas)). No deje placeholders.
+  entity_types:
+  - SOFOM_ENR
+  documents:
+  - manual_pld_sofom
+  source_url: https://www.cnbv.gob.mx/Paginas/Normatividad.aspx
+  source_name: CNBV, índice de normatividad (disposiciones PLD de SOFOM no leídas)
+  effective_date: '2014-01-01'
+  last_verified: '2026-11-06'
+  severity: critical
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de cumplimiento
+  remediation_days: 15
+  evidence_expected:
+  - Documento manual_pld_sofom aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Manual PLD de SOFOM ENR».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el manual PLD
+      any:
+      - prevención de lavado
+      - prevencion de lavado
+      - PLD
+  unverified_detail: No se abrió el texto de las disposiciones de SOFOM ENR ni se
+    confirmó el artículo 95 Bis.
+- id: pld-transmisor-dinero
+  domain: pld
+  area: pld
+  title: Transmisor de dinero como actividad vulnerable
+  requirement: Quien transmita dinero fuera del perímetro de entidad financiera supervisada
+    en PLD debe atender la LFPIORPI. La fracción del art. 17 no se aisló.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Transmisor de dinero como actividad vulnerable» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (LFPIORPI (transmisor
+    de dinero; fracción no aislada)). No deje placeholders.
+  entity_types:
+  - transmisor_dinero
+  documents:
+  - manual_pld_transmisor
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/ref/lfpiorpi/LFPIORPI_ref03_16jul25.pdf
+  source_name: LFPIORPI (transmisor de dinero; fracción no aislada)
+  effective_date: '2025-07-17'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de cumplimiento
+  remediation_days: 30
+  evidence_expected:
+  - Documento manual_pld_transmisor aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Transmisor de dinero como actividad
+    vulnerable».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la transmisión de dinero
+      any:
+      - transmisor de dinero
+      - transmisión de dinero
+      - transmision de dinero
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: pld-asesor-inversion
+  domain: pld
+  area: pld
+  title: 'Asesor en inversiones: expediente de cumplimiento'
+  requirement: El asesor en inversiones debe documentar sus obligaciones ante la CNBV.
+    Los artículos de la LMV no se releyeron.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: 'Actualice «Asesor en inversiones: expediente de cumplimiento» con
+    fecha de aprobación, versión vigente y la evidencia que pide la fuente (LMV (asesores
+    en inversiones; artículos no releídos)). No deje placeholders.'
+  entity_types:
+  - asesor_inversion
+  documents:
+  - manual_pld_asesor
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LMV.pdf
+  source_name: LMV (asesores en inversiones; artículos no releídos)
+  effective_date: '2014-01-10'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de cumplimiento
+  remediation_days: 30
+  evidence_expected:
+  - Documento manual_pld_asesor aprobado y vigente.
+  procedure:
+  - 'Confirmar que la entidad y el perfil activan «Asesor en inversiones: expediente
+    de cumplimiento».'
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el asesor
+      any:
+      - asesor en inversiones
+      - asesoría de inversión
+      - asesoria de inversion
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: pld-gafi-referencia
+  domain: pld
+  area: pld
+  title: Cuarenta recomendaciones del GAFI (referencia)
+  requirement: El enfoque basado en riesgos puede mapearse a las 40 recomendaciones
+    del GAFI. No son derecho mexicano obligatorio por sí mismas.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Cuarenta recomendaciones del GAFI (referencia)» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (FATF/GAFI, 40
+    recomendaciones (referencia internacional)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - manual_pld_ft
+  - metodologia_riesgos_pld
+  source_url: https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Fatf-recommendations.html
+  source_name: FATF/GAFI, 40 recomendaciones (referencia internacional)
+  effective_date: '2012-02-16'
+  last_verified: '2026-11-06'
+  severity: info
+  unverified: false
+  min_strictness: standard
+  binding: false
+  owner_role: Oficial de cumplimiento
+  remediation_days: 90
+  evidence_expected:
+  - Documento manual_pld_ft aprobado y vigente.
+  - Documento metodologia_riesgos_pld aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Cuarenta recomendaciones del GAFI
+    (referencia)».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: false
+    checks:
+    - type: contains_any
+      label: la referencia GAFI
+      any:
+      - GAFI
+      - FATF
+  notes: Marco de referencia. No es una ley mexicana.
+  frameworks:
+  - FATF/GAFI 40 recomendaciones

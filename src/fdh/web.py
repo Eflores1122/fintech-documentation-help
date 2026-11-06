@@ -6,6 +6,7 @@ and the process has FDH_LLM_API_KEY. The default path is fully local.
 
 from __future__ import annotations
 
+import html
 import json
 import tempfile
 from pathlib import Path
@@ -57,6 +58,14 @@ button {{ margin-top: 1rem; background: #102033; color: #fff; border: 0; padding
 <option>IFPE</option><option>IFC</option><option>ITF</option>
 <option>fintech_general</option><option>plataforma_tecnologica</option>
 <option>servicios_digitales</option><option>AV_exchange_non_ef</option>
+<option>SOFOM_ENR</option><option>transmisor_dinero</option>
+<option>asesor_inversion</option><option>modelo_novedoso</option>
+</select>
+<label for="strictness">Estrictez</label>
+<select id="strictness" name="strictness">
+<option value="max" selected>max — auditor más exigente</option>
+<option value="high">high</option>
+<option value="standard">standard</option>
 </select>
 <label><input type="checkbox" name="operates_virtual_assets" value="true"/> Opera activos virtuales</label>
 <label><input type="checkbox" name="partial_payments" value="true"/> Pagos parciales o diferidos (REP)</label>
@@ -66,7 +75,7 @@ button {{ margin-top: 1rem; background: #102033; color: #fff; border: 0; padding
 <label><input type="checkbox" name="use_llm" value="true"/> Revisor LLM (opcional). No lo active con documentos confidenciales: el texto saldría al proveedor configurado en FDH_LLM_BASE_URL. Sin clave, la auditoría sigue siendo solo local.</label>
 <button type="submit">Auditar</button>
 </form>
-<p class="hint">También puede pedir JSON en <code>POST /audit.json</code> con los mismos campos.</p>
+<p class="hint">También puede pedir JSON en <code>POST /audit.json</code>. Diagramas en <a href="/diagrams">/diagrams</a>, calendario en <a href="/calendar.ics">/calendar.ics</a> y plantillas en <a href="/templates">/templates</a>.</p>
 </main>
 </body>
 </html>
@@ -97,6 +106,7 @@ async def _run(
     tech_platform: str | None,
     digital_services: str | None,
     use_llm: str | None,
+    strictness: str = "max",
 ):
     if not files:
         raise ValueError("Suba al menos un documento.")
@@ -108,6 +118,7 @@ async def _run(
         transports_goods=_as_bool(transports_goods),
         is_technological_platform_tax_regime=_as_bool(tech_platform),
         provides_digital_services_liva=_as_bool(digital_services),
+        strictness=strictness if strictness in {"standard", "high", "max"} else "max",  # type: ignore[arg-type]
     )
     with tempfile.TemporaryDirectory(prefix="fdh-") as tmp:
         folder = Path(tmp)
@@ -138,6 +149,7 @@ async def audit_html(
     tech_platform: str | None = Form(None),
     digital_services: str | None = Form(None),
     use_llm: str | None = Form(None),
+    strictness: str = Form("max"),
 ) -> HTMLResponse:
     try:
         report = await _run(
@@ -150,6 +162,7 @@ async def audit_html(
             tech_platform,
             digital_services,
             use_llm,
+            strictness,
         )
     except (CatalogError, ValueError) as exc:
         body = f"<h1>No se pudo auditar</h1><pre>{exc}</pre><p>{DISCLAIMER_ES}</p>"
@@ -168,6 +181,7 @@ async def audit_json(
     tech_platform: str | None = Form(None),
     digital_services: str | None = Form(None),
     use_llm: str | None = Form(None),
+    strictness: str = Form("max"),
 ) -> JSONResponse:
     try:
         report = await _run(
@@ -180,7 +194,52 @@ async def audit_json(
             tech_platform,
             digital_services,
             use_llm,
+            strictness,
         )
     except (CatalogError, ValueError) as exc:
         return JSONResponse({"error": str(exc), "disclaimer": DISCLAIMER_ES}, status_code=400)
     return JSONResponse(content=json.loads(render_json(report)))
+
+
+@app.get("/diagrams", response_class=HTMLResponse)
+def diagrams() -> str:
+    from fdh.diagrams import DIAGRAMS, render_svg
+
+    parts = [
+        f"<div class='banner'><strong>{DISCLAIMER_ES}</strong></div>",
+        "<h1>Diagramas</h1>",
+        "<p>Plantillas para documentar la propia fintech. El SVG no requiere Mermaid CLI.</p>",
+    ]
+    for key, body in DIAGRAMS.items():
+        parts.append(f"<h2>{key}</h2>")
+        parts.append(render_svg(key))
+        parts.append(f"<pre>{html.escape(body)}</pre>")
+    return "\n".join(parts)
+
+
+@app.get("/calendar.ics")
+def calendar_ics(entity: str = "IFPE", year: int = 2026):
+    from fastapi.responses import PlainTextResponse
+
+    from fdh.calendar_data import render_ics
+    from fdh.models import canonical_entity
+
+    try:
+        chosen = canonical_entity(entity)
+    except ValueError as exc:
+        return JSONResponse({"error": str(exc), "disclaimer": DISCLAIMER_ES}, status_code=400)
+    return PlainTextResponse(render_ics(chosen, year), media_type="text/calendar")
+
+
+@app.get("/templates", response_class=HTMLResponse)
+def templates() -> str:
+    from fdh.templates_lib import TEMPLATES
+
+    parts = [
+        f"<div class='banner'><strong>{DISCLAIMER_ES}</strong></div>",
+        "<h1>Plantillas</h1>",
+        "<p>Borradores. Un abogado o el área de cumplimiento debe revisarlos.</p>",
+    ]
+    for key, body in TEMPLATES.items():
+        parts.append(f"<h2>{html.escape(key)}</h2><pre>{html.escape(body)}</pre>")
+    return "\n".join(parts)

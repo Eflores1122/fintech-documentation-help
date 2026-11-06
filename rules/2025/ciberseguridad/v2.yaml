@@ -1,0 +1,824 @@
+catalog_year: 2025
+last_verified: '2026-11-06'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- id: ciber-marco-cid-ifc
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Controles de confidencialidad, integridad y disponibilidad (IFC)
+  requirement: El art. 63 de la resolución que modifica las DCG hace responsable al
+    director general o al administrador único de la IFC de implementar controles de
+    seguridad de la información que procuren confidencialidad, integridad y disponibilidad,
+    también si la infraestructura la da un tercero.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Controles de confidencialidad, integridad y disponibilidad
+    (IFC)» con fecha de aprobación, versión vigente y la evidencia que pide la fuente
+    (DCG ITF art. 63, nota DOF 5555030 (firmada 14-mar-2019)). No deje placeholders.
+  entity_types:
+  - IFC
+  documents:
+  - politica_seguridad_informacion
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF art. 63, nota DOF 5555030 (firmada 14-mar-2019)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: critical
+  unverified: false
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 15
+  evidence_expected:
+  - Documento politica_seguridad_informacion aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Controles de confidencialidad, integridad
+    y disponibilidad (IFC)».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la confidencialidad
+      any:
+      - confidencialidad
+    - type: contains_any
+      label: la integridad
+      any:
+      - integridad
+    - type: contains_any
+      label: la disponibilidad
+      any:
+      - disponibilidad
+- id: ciber-ciso-ifc
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Oficial en jefe de seguridad de la información (IFC)
+  requirement: El art. 65 exige que la IFC cuente con una persona que se desempeñe
+    como oficial en jefe de seguridad de la información (CISO).
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Oficial en jefe de seguridad de la información (IFC)»
+    con fecha de aprobación, versión vigente y la evidencia que pide la fuente (DCG
+    ITF art. 65, nota DOF 5555030). No deje placeholders.
+  entity_types:
+  - IFC
+  documents:
+  - nombramiento_ciso
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF art. 65, nota DOF 5555030
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: critical
+  unverified: false
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 15
+  evidence_expected:
+  - Documento nombramiento_ciso aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Oficial en jefe de seguridad de
+    la información (IFC)».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: al CISO
+      any:
+      - oficial en jefe de seguridad
+      - CISO
+- id: ciber-incidentes-art67-ifc
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Notificación de incidentes a la CNBV (IFC, art. 67)
+  requirement: El art. 67 ordena avisar de forma inmediata a Ciberseguridad-CNBV@cnbv.gob.mx,
+    enviar la información de los anexos 11 y 12 dentro de los cinco días hábiles,
+    un plan de trabajo a más tardar a los quince días hábiles de concluido el incidente,
+    y avisar al cliente dentro de las cuarenta y ocho horas si hay información sensible
+    comprometida. No se encontró en ese artículo un plazo de 72 horas.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Notificación de incidentes a la CNBV (IFC, art. 67)»
+    con fecha de aprobación, versión vigente y la evidencia que pide la fuente (DCG
+    ITF art. 67, nota DOF 5555030). No deje placeholders.
+  entity_types:
+  - IFC
+  documents:
+  - plan_respuesta_incidentes
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF art. 67, nota DOF 5555030
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: critical
+  unverified: false
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 15
+  evidence_expected:
+  - Documento plan_respuesta_incidentes aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Notificación de incidentes a la
+    CNBV (IFC, art. 67)».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el aviso inmediato
+      any:
+      - de forma inmediata
+      - Ciberseguridad-CNBV@cnbv.gob.mx
+    - type: contains_any
+      label: los cinco días hábiles
+      any:
+      - cinco días hábiles
+      - 5 días hábiles
+    - type: contains_any
+      label: los quince días hábiles
+      any:
+      - quince días hábiles
+      - 15 días hábiles
+    - type: contains_any
+      label: las cuarenta y ocho horas al cliente
+      any:
+      - cuarenta y ocho horas
+      - 48 horas
+    - type: forbidden_phrases
+      label: un plazo de 72 horas presentado como el de la CNBV
+      any:
+      - 72 horas para notificar a la CNBV
+  notes: El texto leído dice aviso inmediato, cinco días hábiles, quince días hábiles
+    y 48 horas al cliente. No dice 72 horas.
+- id: ciber-incidentes-ifpe
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Notificación de incidentes de la IFPE
+  requirement: La IFPE debe tener un plan de notificación de incidentes a la autoridad.
+    El art. 67 leído está dirigido a instituciones de financiamiento colectivo. No
+    se afirma que el mismo calendario aplique a la IFPE y no se adopta un plazo de
+    72 horas, porque no está en el texto consultado.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Notificación de incidentes de la IFPE» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (Disposiciones IFPE DOF 28-ene-2021
+    (plazos de incidente no leídos)). No deje placeholders.
+  entity_types:
+  - IFPE
+  documents:
+  - plan_respuesta_incidentes
+  source_url: https://dof.gob.mx/nota_detalle.php?codigo=5610487&fecha=28/01/2021
+  source_name: Disposiciones IFPE DOF 28-ene-2021 (plazos de incidente no leídos)
+  effective_date: '2021-01-28'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 30
+  evidence_expected:
+  - Documento plan_respuesta_incidentes aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Notificación de incidentes de la
+    IFPE».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el incidente
+      any:
+      - incidente de seguridad
+      - incidente de ciberseguridad
+    - type: forbidden_phrases
+      label: un plazo de 72 horas presentado como obligación de la CNBV
+      any:
+      - 72 horas para notificar a la CNBV
+  unverified_detail: No se leyó la disposición de IFPE del 28-ene-2021 para confirmar
+    el plazo. No se usa 72 horas.
+- id: ciber-mfa
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Autenticación reforzada de accesos
+  requirement: La política de accesos debe describir autenticación de más de un factor
+    para administradores. No se aisló un artículo que use la sigla MFA.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Autenticación reforzada de accesos» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (DCG ITF, capítulo de seguridad
+    y medios electrónicos (MFA no aislado)). No deje placeholders.
+  entity_types: &id001
+  - IFPE
+  - IFC
+  documents:
+  - politica_mfa
+  - politica_seguridad_informacion
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF, capítulo de seguridad y medios electrónicos (MFA no aislado)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 30
+  evidence_expected:
+  - Documento politica_mfa aprobado y vigente.
+  - Documento politica_seguridad_informacion aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Autenticación reforzada de accesos».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el segundo factor
+      any:
+      - autenticación de dos factores
+      - autenticacion de dos factores
+      - MFA
+      - multifactor
+  unverified_detail: Los arts. 69 a 84 de medios electrónicos no se leyeron. No se
+    afirma que la sigla MFA esté en la norma.
+- id: ciber-cifrado
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Cifrado en tránsito y en reposo
+  requirement: La política debe decir que la información se cifra en tránsito y en
+    reposo. No se extrajo un algoritmo obligatorio.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Cifrado en tránsito y en reposo» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (DCG ITF art. 63 (cifrado específico
+    no aislado)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_cifrado
+  - politica_seguridad_informacion
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF art. 63 (cifrado específico no aislado)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 30
+  evidence_expected:
+  - Documento politica_cifrado aprobado y vigente.
+  - Documento politica_seguridad_informacion aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Cifrado en tránsito y en reposo».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el cifrado
+      any:
+      - cifrado
+      - encript
+  unverified_detail: No se leyó un numeral que imponga un algoritmo concreto. No se
+    inventa AES ni TLS como cita legal.
+- id: ciber-vulnerabilidades
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Gestión de vulnerabilidades y parches
+  requirement: Debe existir un procedimiento de vulnerabilidades y parches. El art.
+    64 enlista obligaciones del director sobre la infraestructura; no se leyó si fija
+    un plazo de parche.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Gestión de vulnerabilidades y parches» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (DCG ITF art. 64 (plazo de parche
+    no leído)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - procedimiento_vulnerabilidades
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF art. 64 (plazo de parche no leído)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 30
+  evidence_expected:
+  - Documento procedimiento_vulnerabilidades aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Gestión de vulnerabilidades y parches».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: las vulnerabilidades
+      any:
+      - vulnerabilidad
+      - parche
+  unverified_detail: Se vio el encabezado del art. 64. No se leyó el listado ni un
+    plazo numérico.
+- id: ciber-pentest
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Pruebas de penetración
+  requirement: El programa de seguridad debe incluir pruebas de penetración con fecha.
+    No se leyó una periodicidad legal.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Pruebas de penetración» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (DCG ITF (periodicidad de pentest no
+    leída)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - informe_pentest
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF (periodicidad de pentest no leída)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 45
+  evidence_expected:
+  - Documento informe_pentest aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Pruebas de penetración».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la prueba
+      any:
+      - penetración
+      - penetracion
+      - pentest
+  unverified_detail: 'No se afirma una frecuencia anual u otra: no está leída.'
+- id: ciber-sdlc
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Ciclo de desarrollo seguro
+  requirement: El desarrollo de la plataforma debe tener controles de seguridad en
+    el ciclo de vida. No se aisló el artículo.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Ciclo de desarrollo seguro» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (DCG ITF (SDLC no aislado)).
+    No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_sdlc
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF (SDLC no aislado)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_sdlc aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Ciclo de desarrollo seguro».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el desarrollo seguro
+      any:
+      - desarrollo seguro
+      - ciclo de vida
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: ciber-logging
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Bitácoras y monitoreo
+  requirement: Deben existir bitácoras de seguridad y un responsable de su revisión.
+    No se leyó un plazo de conservación específico en la norma de ITF.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Bitácoras y monitoreo» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (DCG ITF (retención de logs no aislada)).
+    No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_logging
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF (retención de logs no aislada)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_logging aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Bitácoras y monitoreo».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: las bitácoras
+      any:
+      - bitácora
+      - bitacora
+      - SIEM
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: ciber-bcp-medido
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Continuidad con RTO, RPO y prueba
+  requirement: El plan de continuidad debe definir un RTO, un RPO y la fecha de la
+    última prueba. El art. 48 de la LRITF, según el catálogo previo, exige continuidad;
+    no se leyó un párrafo que use las siglas RTO o RPO. El modo estricto las pide
+    como evidencia de que el plan está medido.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Continuidad con RTO, RPO y prueba» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LRITF art. 48 (siglas RTO/RPO
+    no leídas en la ley)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - plan_continuidad
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: LRITF art. 48 (siglas RTO/RPO no leídas en la ley)
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 30
+  evidence_expected:
+  - Documento plan_continuidad aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Continuidad con RTO, RPO y prueba».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el RTO
+      any:
+      - RTO
+    - type: contains_any
+      label: el RPO
+      any:
+      - RPO
+    - type: contains_any
+      label: la prueba
+      any:
+      - prueba de continuidad
+      - simulacro
+  unverified_detail: La obligación de continuidad está en el catálogo previo bajo
+    el art. 48. Las siglas RTO y RPO no se encontraron en una lectura de ese artículo
+    en esta pasada.
+- id: ciber-nube
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Servicios en la nube
+  requirement: Si hay nube, el expediente debe decir el proveedor, la región y quién
+    es responsable de la seguridad. El artículo que detalle la nube no se aisló.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Servicios en la nube» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (DCG ITF, contratación con terceros
+    (nube no aislada)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_nube
+  - politica_terceros
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF, contratación con terceros (nube no aislada)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 30
+  evidence_expected:
+  - Documento politica_nube aprobado y vigente.
+  - Documento politica_terceros aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Servicios en la nube».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la nube
+      any:
+      - computación en la nube
+      - proveedor de nube
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: ciber-api-movil
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Seguridad de APIs y de la aplicación móvil
+  requirement: La política debe cubrir autenticación de APIs y de la app móvil. No
+    se leyó un control técnico obligatorio concreto.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Seguridad de APIs y de la aplicación móvil» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (DCG de APIs
+    04-jun-2020 (controles técnicos no leídos)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_seguridad_api
+  source_url: https://www.cnbv.gob.mx/SECTORES-SUPERVISADOS/Fintech/Paginas/NORMATIVIDAD-FINTECH.aspx
+  source_name: DCG de APIs 04-jun-2020 (controles técnicos no leídos)
+  effective_date: '2020-06-04'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_seguridad_api aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Seguridad de APIs y de la aplicación
+    móvil».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la API o la app
+      any:
+      - API
+      - aplicación móvil
+      - aplicacion movil
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: ciber-spei
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: Ciberseguridad del participante en el SPEI
+  requirement: Quien participa en el SPEI está sujeto a la Circular 14/2017 y a sus
+    modificaciones de ciberseguridad. Una modificación de 2023 menciona gestión de
+    vulnerabilidades en la infraestructura de cómputo. El numeral exacto no se da
+    por verificado.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Ciberseguridad del participante en el SPEI» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (Banxico, Circular
+    14/2017 y modificaciones de ciberseguridad). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_spei
+  source_url: https://www.banxico.org.mx/marco-normativo/normativa-emitida-por-el-banco-de-mexico/circular-14-2017/sistema-pagos-spei-disposicio.html
+  source_name: Banxico, Circular 14/2017 y modificaciones de ciberseguridad
+  effective_date: '2017-07-04'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 30
+  evidence_expected:
+  - Documento politica_spei aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Ciberseguridad del participante
+    en el SPEI».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el SPEI
+      any:
+      - SPEI
+    - type: contains_any
+      label: las vulnerabilidades
+      any:
+      - vulnerabilidad
+  unverified_detail: Se vio lenguaje de gestión de vulnerabilidades en la modificación.
+    No se certificó el número 58a.
+  applies_if: participates_spei
+- id: ciber-iso-27001
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: ISO/IEC 27001:2022 (referencia)
+  requirement: La política puede mapear controles a ISO/IEC 27001:2022. No es obligatoria
+    en México.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «ISO/IEC 27001:2022 (referencia)» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (ISO/IEC 27001:2022 (referencia
+    internacional)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_seguridad_informacion
+  source_url: https://www.iso.org/standard/27001
+  source_name: ISO/IEC 27001:2022 (referencia internacional)
+  effective_date: '2022-10-25'
+  last_verified: '2026-11-06'
+  severity: info
+  unverified: false
+  min_strictness: standard
+  binding: false
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 90
+  evidence_expected:
+  - Documento politica_seguridad_informacion aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «ISO/IEC 27001:2022 (referencia)».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: false
+    checks:
+    - type: contains_any
+      label: la referencia ISO
+      any:
+      - ISO 27001
+      - ISO/IEC 27001
+  notes: No es obligatoria en México.
+  frameworks:
+  - ISO/IEC 27001:2022
+- id: ciber-nist-csf
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: NIST CSF 2.0 (referencia)
+  requirement: El marco puede mapearse a las funciones del NIST Cybersecurity Framework
+    2.0. No es derecho mexicano.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «NIST CSF 2.0 (referencia)» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (NIST CSF 2.0 (referencia)). No deje
+    placeholders.
+  entity_types: *id001
+  documents:
+  - politica_seguridad_informacion
+  source_url: https://www.nist.gov/cyberframework
+  source_name: NIST CSF 2.0 (referencia)
+  effective_date: '2024-02-26'
+  last_verified: '2026-11-06'
+  severity: info
+  unverified: false
+  min_strictness: standard
+  binding: false
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 90
+  evidence_expected:
+  - Documento politica_seguridad_informacion aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «NIST CSF 2.0 (referencia)».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: false
+    checks:
+    - type: contains_any
+      label: la referencia NIST
+      any:
+      - NIST
+      - CSF 2.0
+  notes: No es obligatorio en México.
+  frameworks:
+  - NIST CSF 2.0
+- id: ciber-pci
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: PCI DSS 4.0 si se procesan tarjetas
+  requirement: Si la operación procesa, transmite o almacena datos de tarjetas, el
+    expediente debe referir PCI DSS como estándar contractual de las marcas, no como
+    ley mexicana.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «PCI DSS 4.0 si se procesan tarjetas» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (PCI DSS 4.0 (estándar de la
+    industria, no ley mexicana)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_pci
+  source_url: https://www.pcisecuritystandards.org/document_library/
+  source_name: PCI DSS 4.0 (estándar de la industria, no ley mexicana)
+  effective_date: '2022-03-31'
+  last_verified: '2026-11-06'
+  severity: info
+  unverified: false
+  min_strictness: standard
+  binding: false
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 90
+  evidence_expected:
+  - Documento politica_pci aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «PCI DSS 4.0 si se procesan tarjetas».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: PCI
+      any:
+      - PCI DSS
+      - PCI-DSS
+  applies_if: processes_cards
+  notes: Solo aplica si el perfil declara procesamiento de tarjetas. No es una ley
+    mexicana.
+  frameworks:
+  - PCI DSS 4.0
+- id: ciber-soc2
+  domain: ciberseguridad
+  area: ciberseguridad
+  title: SOC 2 (referencia)
+  requirement: Un informe SOC 2 puede servir como evidencia de controles del proveedor.
+    No sustituye la obligación ante la CNBV ni es obligatorio en México.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «SOC 2 (referencia)» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (AICPA SOC 2 (referencia)). No deje
+    placeholders.
+  entity_types: *id001
+  documents:
+  - politica_nube
+  - politica_terceros
+  source_url: https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2
+  source_name: AICPA SOC 2 (referencia)
+  effective_date: '2022-01-01'
+  last_verified: '2026-11-06'
+  severity: info
+  unverified: false
+  min_strictness: standard
+  binding: false
+  owner_role: Oficial de seguridad de la información
+  remediation_days: 90
+  evidence_expected:
+  - Documento politica_nube aprobado y vigente.
+  - Documento politica_terceros aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «SOC 2 (referencia)».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: false
+    checks:
+    - type: contains_any
+      label: SOC 2
+      any:
+      - SOC 2
+      - SOC2
+  notes: No es obligatorio en México.
+  frameworks:
+  - SOC 2

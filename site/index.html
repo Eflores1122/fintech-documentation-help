@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>fintech-documentation-help</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="wrap">
+    <header class="bar">
+      <a class="wordmark" href="index.html">fintech-documentation-help</a>
+      <nav>
+        <a href="demo.html" data-lang="es">Demo</a>
+        <a href="demo.html" data-lang="en">Demo</a>
+        <button type="button" class="quiet" id="lang">EN</button>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <div>
+        <h1>8.8 sobre 100</h1>
+        <p class="lede" data-lang="es">Calificación del sample Nube Pago, IFPE ficticia, catálogo 2026, estrictez máxima, sin modelo. 17 incumplimientos son críticos. El aviso de privacidad sigue citando al INAI.</p>
+        <p class="lede" data-lang="en">Score of the fictional Nube Pago IFPE sample, 2026 catalog, maximum strictness, no model. 17 findings are critical. The privacy notice still names INAI.</p>
+        <p>
+          <a class="button" href="demo.html#nube" data-lang="es">Auditar el sample Nube Pago</a>
+          <a class="button" href="demo.html#nube" data-lang="en">Audit the Nube Pago sample</a>
+        </p>
+        <p class="meta" data-lang="es">Medido con fdh sobre samples/nube_pago. No es asesoría legal ni fiscal. Los documentos de la demo no salen del navegador.</p>
+        <p class="meta" data-lang="en">Measured with fdh on samples/nube_pago. Not legal or tax advice. Demo documents stay in the browser.</p>
+      </div>
+      <article class="finding" aria-labelledby="finding-title">
+        <p class="tag" data-lang="es">Incumplimiento · high · privacy-no-citar-inai</p>
+        <p class="tag" data-lang="en">Fail · high · privacy-no-citar-inai</p>
+        <h2 id="finding-title" data-lang="es">No citar al INAI como autoridad vigente</h2>
+        <h2 id="finding-title-en" data-lang="en">Do not cite INAI as the current authority</h2>
+        <blockquote data-lang="es">«La autoridad competente para la protección de datos es el INAI.»</blockquote>
+        <blockquote data-lang="en">“The competent data protection authority is INAI.”</blockquote>
+        <p class="meta">LFPDPPP, DOF 20-mar-2025. <a href="https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf">diputados.gob.mx</a></p>
+        <p class="scoreline"><span id="score">8.8</span> / 100</p>
+      </article>
+    </div>
+
+    <section>
+      <h2 class="section" data-lang="es">Fases de la auditoría</h2>
+      <h2 class="section" data-lang="en">Audit phases</h2>
+      <ol class="phases" id="phases">
+        <li data-lang="es">Planeación por tipo de entidad y fecha.</li>
+        <li data-lang="en">Planning by entity type and as-of date.</li>
+        <li data-lang="es">Perfil de negocio: qué productos cubre el expediente.</li>
+        <li data-lang="en">Business profile: which products the file actually describes.</li>
+        <li data-lang="es">Inventario de documentos esperados contra presentados.</li>
+        <li data-lang="en">Inventory of expected documents against those provided.</li>
+        <li data-lang="es">Revisión determinística del catálogo vigente en esa fecha.</li>
+        <li data-lang="en">Deterministic review of the rules in force on that date.</li>
+        <li data-lang="es">Pruebas de controles con la cédula de evidencia.</li>
+        <li data-lang="en">Control tests against the evidence checklist.</li>
+        <li data-lang="es">Hallazgos con condición, criterio, causa, efecto y fuente.</li>
+        <li data-lang="en">Findings with condition, criterion, cause, effect and source.</li>
+        <li data-lang="es">Plan de remediación con responsable y plazo.</li>
+        <li data-lang="en">Remediation plan with owner and deadline.</li>
+        <li data-lang="es">Dictamen por área y global. No es un dictamen certificado.</li>
+        <li data-lang="en">Opinion by area and overall. Not a certified opinion.</li>
+      </ol>
+      <svg class="flow" viewBox="0 0 640 48" width="100%" height="48" role="img" aria-label="flujo">
+        <path class="draw" d="M8 24 H632" />
+      </svg>
+    </section>
+
+    <section>
+      <h2 class="section" data-lang="es">Catálogo 2026</h2>
+      <h2 class="section" data-lang="en">2026 catalog</h2>
+      <p data-lang="es">134 reglas en el snapshot 2026. 68 con el texto leído en la ficha y 66 marcadas UNVERIFIED. Severidad: 25 críticas, 58 altas, 39 medias, 2 bajas, 10 informativas. Fuente: <code>fdh rules list --year 2026</code>.</p>
+      <p data-lang="en">134 rules in the 2026 snapshot. 68 read for the entry and 66 flagged UNVERIFIED. Severity: 25 critical, 58 high, 39 medium, 2 low, 10 info. Source: <code>fdh rules list --year 2026</code>.</p>
+    </section>
+
+    <section>
+      <h2 class="section" data-lang="es">Qué corre aquí y qué corre en su máquina</h2>
+      <h2 class="section" data-lang="en">What runs here and what runs on your machine</h2>
+      <p data-lang="es">Esta página y la demo ejecutan el evaluador en el navegador, con el mismo catálogo YAML exportado a JSON. Subir un archivo no lo manda a un servidor. El OCR de una imagen usa Tesseract.js en el navegador. El CLI, el PDF con ReportLab y el OCR de Tesseract del sistema se instalan en local, sin API de pago.</p>
+      <p data-lang="en">This page and the demo run the evaluator in the browser, from the same YAML catalog exported to JSON. An upload is not sent to a server. Image OCR uses Tesseract.js in the browser. The CLI, the ReportLab PDF and system Tesseract run locally, with no paid API.</p>
+      <p><a class="button quiet" href="demo.html" data-lang="es">Abrir la demo</a><a class="button quiet" href="demo.html" data-lang="en">Open the demo</a></p>
+    </section>
+
+    <footer>
+      <p data-lang="es">No es asesoría legal ni fiscal. Entidades de ejemplo ficticias. Tipografía: Public Sans, hecha para interfaces públicas (USWDS, SIL OFL).</p>
+      <p data-lang="en">Not legal or tax advice. Sample entities are fictional. Typeface: Public Sans, designed for public-sector interfaces (USWDS, SIL OFL).</p>
+    </footer>
+  </div>
+  <script>
+    const body = document.body;
+    const lang = document.getElementById("lang");
+    lang.addEventListener("click", () => {
+      const en = body.classList.toggle("en");
+      lang.textContent = en ? "ES" : "EN";
+      document.documentElement.lang = en ? "en" : "es";
+    });
+    document.getElementById("phases").classList.add("go");
+  </script>
+</body>
+</html>

@@ -44,7 +44,13 @@
     "last_verified": {"type": "string", "format": "date"},
     "severity": {"enum": ["critical", "high", "medium", "low", "info"]},
     "unverified": {"type": "boolean"},
+    "verified": {"type": "boolean", "description": "false equivale a unverified true. No presente el número como cerrado."},
     "unverified_detail": {"type": "string"},
+    "area": {"type": "string"},
+    "min_strictness": {"enum": ["standard", "high", "max"]},
+    "binding": {"type": "boolean"},
+    "owner_role": {"type": "string"},
+    "remediation_days": {"type": "integer"},
     "supersedes": {"type": "string"},
     "applies_if": {
       "enum": [
@@ -52,7 +58,13 @@
         "has_partial_or_deferred_payments",
         "transports_goods",
         "is_technological_platform_tax_regime",
-        "provides_digital_services_liva"
+        "provides_digital_services_liva",
+        "processes_cards",
+        "participates_spei",
+        "uses_specialized_services",
+        "offers_credit",
+        "offers_yield",
+        "has_related_parties_abroad"
       ]
     },
     "notes": {"type": "string"},
@@ -75,7 +87,14 @@
       "required": ["type"],
       "properties": {
         "type": {
-          "enum": ["contains_all_groups", "contains_any", "forbidden_phrases", "regex"]
+          "enum": [
+            "contains_all_groups",
+            "contains_any",
+            "forbidden_phrases",
+            "regex",
+            "each_document_contains_any",
+            "each_document_forbidden"
+          ]
         },
         "label": {"type": "string"},
         "any": {"type": "array", "items": {"type": "string"}},

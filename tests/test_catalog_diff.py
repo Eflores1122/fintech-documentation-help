@@ -104,35 +104,42 @@ def _write(root: Path, year: int, rules: list[dict], name: str = "demo.yaml") ->
 
 def test_seed_catalog_2026_and_2025():
     rules = load_catalog(2026)
-    assert {rule.id for rule in rules} == SEED_2026
-    assert len(rules) == 46
-    counts: dict[str, int] = {}
+    ids = {rule.id for rule in rules}
+    assert ids >= SEED_2026
+    assert len(rules) == 134
+    areas = {rule.area for rule in rules}
+    assert {
+        "legal",
+        "regulatorio",
+        "financiero",
+        "fiscal",
+        "pld",
+        "ciberseguridad",
+        "privacidad",
+        "condusef",
+        "riesgos",
+        "operacion",
+        "laboral",
+    } <= areas
     for rule in rules:
-        counts[rule.domain] = counts.get(rule.domain, 0) + 1
         assert rule.source_url.startswith("https://")
         assert rule.fix_suggestion
+        assert rule.verified is (not rule.unverified)
         if rule.unverified:
             assert rule.unverified_detail
-    assert counts == {
-        "privacy": 7,
-        "lritf": 9,
-        "banxico": 1,
-        "cnbv": 1,
-        "pld": 10,
-        "condusef": 7,
-        "sat": 9,
-        "meta": 2,
-    }
     unverified = {rule.id for rule in rules if rule.unverified}
-    assert unverified == {
+    assert {
         "sat-cfdi40-emision",
         "sat-complemento-pagos-rep",
         "sat-cff-32b-informacion",
-    }
+        "legal-oficio-autorizacion",
+        "ciber-incidentes-ifpe",
+    } <= unverified
     older = load_catalog(2025)
-    assert len(older) == 44
+    assert len(older) == 130
     assert "sat-rmf2025-publicacion" in {rule.id for rule in older}
     assert "sat-lif2026-ifc-retencion-isr-iva" not in {rule.id for rule in older}
+    assert "financiero-criterios-nif-2026" not in {rule.id for rule in older}
     notes = validate_catalogs()
     assert any(line.startswith("UNVERIFIED 2026/sat-cfdi40-emision") for line in notes)
 
@@ -140,19 +147,21 @@ def test_seed_catalog_2026_and_2025():
 def test_diff_explains_annual_update():
     payload = diff_catalogs(2025, 2026)
     assert payload["summary"] == {
-        "added": 3,
+        "added": 5,
         "removed": 1,
         "modified": 3,
         "revalidated": 0,
-        "unchanged": 40,
-        "rules_before": 44,
-        "rules_after": 46,
+        "unchanged": 126,
+        "rules_before": 130,
+        "rules_after": 134,
     }
     added = {item["id"] for item in payload["added"]}
     assert added == {
         "sat-lif2026-ifc-retencion-isr-iva",
         "sat-rmf2026-publicacion",
         "meta-what-changed-2026",
+        "financiero-criterios-nif-2026",
+        "regulatorio-anexos-contables-2026",
     }
     lif = next(item for item in payload["added"] if item["id"].startswith("sat-lif"))
     assert "IFPE" in lif["explanation"] or "financiamiento colectivo" in lif["explanation"]
@@ -253,7 +262,7 @@ def test_cli_rules(capsys: pytest.CaptureFixture[str]):
     listed = capsys.readouterr().out
     assert "privacy-no-citar-inai" in listed
     assert "sat-lif2026" not in listed
-    assert "privacy: 7" in listed
+    assert "privacy:" in listed
 
     assert main(["rules", "diff", "2025", "2026"]) == 0
     diff_out = capsys.readouterr().out

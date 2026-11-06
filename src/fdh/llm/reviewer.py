@@ -13,11 +13,29 @@ import json
 import os
 import re
 from typing import Protocol
+from urllib.parse import urlparse
 
 import httpx
 
 from fdh.models import Document, Finding, Rule
 from fdh.textutil import quote_grounded
+
+LOCAL_HOSTS = {
+    "localhost",
+    "127.0.0.1",
+    "::1",
+    "0.0.0.0",
+    "host.docker.internal",
+    "ollama",
+}
+LOCAL_PROVIDERS = {"ollama", "llamacpp", "llama.cpp", "lmstudio", "vllm", "local"}
+SUGGESTED_MODELS = (
+    "qwen2.5:7b",
+    "qwen2.5:14b",
+    "llama3.1:8b",
+    "llama3.2:3b",
+    "mistral:7b",
+)
 
 LLM_SEVERITIES = {"critical", "high", "medium"}
 _JSON_OBJECT = re.compile(r"\{.*\}", re.DOTALL)
@@ -48,20 +66,45 @@ class OpenAICompatibleClient:
         return str(payload["choices"][0]["message"]["content"])
 
 
+def _local_host(url: str) -> bool:
+    host = (urlparse(url).hostname or "").lower()
+    return host in LOCAL_HOSTS
+
+
+def _truthy(name: str) -> bool:
+    return os.environ.get(name, "").strip().lower() in {"1", "true", "yes", "on"}
+
+
 def build_client() -> tuple[ChatClient | None, str]:
-    """Return a client when FDH_LLM_API_KEY is set, otherwise a reason it is off."""
-    api_key = os.environ.get("FDH_LLM_API_KEY", "").strip()
-    if os.environ.get("FDH_LLM_ENABLED", "1").strip() in {"0", "false", "False", "no"}:
+    """Return a local or explicitly allowed client. Documents stay on the machine by default."""
+    if os.environ.get("FDH_LLM_ENABLED", "1").strip().lower() in {"0", "false", "no", "off"}:
         return None, "LLM desactivado con FDH_LLM_ENABLED=0. Solo revisión determinística."
-    if not api_key:
+    provider = os.environ.get("FDH_LLM_PROVIDER", "").strip().lower()
+    api_key = os.environ.get("FDH_LLM_API_KEY", "").strip()
+    if provider in LOCAL_PROVIDERS:
+        default = (
+            "http://127.0.0.1:11434/v1" if provider == "ollama" else "http://127.0.0.1:8080/v1"
+        )
+        base = os.environ.get("FDH_LLM_BASE_URL", default).strip()
+        model = os.environ.get("FDH_LLM_MODEL", SUGGESTED_MODELS[0]).strip()
+        key = api_key or "local"
+    else:
+        if not api_key:
+            return (
+                None,
+                "No hay FDH_LLM_API_KEY ni FDH_LLM_PROVIDER local. La auditoría quedó solo con "
+                "reglas determinísticas y ningún documento salió de este equipo.",
+            )
+        base = os.environ.get("FDH_LLM_BASE_URL", "https://api.openai.com/v1").strip()
+        model = os.environ.get("FDH_LLM_MODEL", "gpt-4o-mini").strip()
+        key = api_key
+    if not _local_host(base) and not _truthy("FDH_LLM_ALLOW_REMOTE"):
         return (
             None,
-            "No hay FDH_LLM_API_KEY. La auditoría se completó solo con reglas determinísticas "
-            "y ningún documento salió de este equipo.",
+            "El endpoint no es local. Defina FDH_LLM_ALLOW_REMOTE=1 para enviar texto fuera de "
+            "esta máquina. Por defecto los documentos no salen.",
         )
-    base = os.environ.get("FDH_LLM_BASE_URL", "https://api.openai.com/v1").strip()
-    model = os.environ.get("FDH_LLM_MODEL", "gpt-4o-mini").strip()
-    return OpenAICompatibleClient(base, api_key, model), f"Revisor LLM activo ({model})."
+    return OpenAICompatibleClient(base, key, model), f"Revisor LLM activo ({model} @ {base})."
 
 
 _SYSTEM = (
@@ -80,13 +123,14 @@ def review_documents(
     rules: list[Rule],
     documents: list[Document],
     findings: list[Finding],
+    adversarial: bool = False,
 ) -> tuple[list[Finding], list[dict[str, str]]]:
     catalog = {rule.id: rule for rule in rules}
     by_id = {item.rule_id: item for item in findings}
     considered = [rule for rule in rules if rule.severity in LLM_SEVERITIES and rule.id in by_id]
     if not considered or not any(doc.text for doc in documents):
         return findings, []
-    raw = _safe_complete(client, considered, documents)
+    raw = _safe_complete(client, considered, documents, adversarial=adversarial)
     parsed, rejected = _parse(raw, catalog, documents)
     merged = list(findings)
     index = {item.rule_id: position for position, item in enumerate(merged)}
@@ -114,19 +158,39 @@ def review_documents(
             current.message += (
                 " El revisor LLM, citando esta regla del catálogo, marcó incumplimiento."
             )
-        if "llm" not in current.origin:
-            current.origin.append("llm")
-        if item.get("evidence_quote") and not current.evidence:
-            current.evidence = item["evidence_quote"]
+            current.cause = (
+                "Hallazgo agregado por el modelo sobre una regla del catálogo. "
+                "No sustituye el chequeo determinístico ni baja ninguna severidad."
+            )
         if item["status"] == "unclear" and current.status == "pass":
             current.status = "unclear"
             current.message += " El revisor LLM no pudo confirmar el cumplimiento."
+        if "llm" not in current.origin:
+            current.origin.append("llm")
+        current.source = "mixed"
+        if item.get("confidence"):
+            current.confidence = float(item["confidence"])
+        if item.get("evidence_quote") and not current.evidence:
+            current.evidence = item["evidence_quote"]
+        # The catalog severity stays. A model cannot lower it.
     return merged, rejected
 
 
-def _safe_complete(client: ChatClient, rules: list[Rule], documents: list[Document]) -> str:
+def _safe_complete(
+    client: ChatClient,
+    rules: list[Rule],
+    documents: list[Document],
+    adversarial: bool = False,
+) -> str:
+    system = _SYSTEM
+    if adversarial:
+        system += (
+            " Modo auditor adversarial: busca fallas adicionales. "
+            "No marques pass si hay duda. No inventes rule_id. "
+            "Incluye confidence entre 0 y 1. No pidas bajar la severidad."
+        )
     messages = [
-        {"role": "system", "content": _SYSTEM},
+        {"role": "system", "content": system},
         {"role": "user", "content": _user_prompt(rules, documents)},
     ]
     try:
@@ -204,5 +268,17 @@ def _parse(
                 }
             )
             continue
-        accepted.append({"rule_id": rule_id, "status": status, "evidence_quote": quote})
+        confidence = row.get("confidence", 0.5)
+        try:
+            confidence_value = max(0.0, min(1.0, float(confidence)))
+        except (TypeError, ValueError):
+            confidence_value = 0.5
+        accepted.append(
+            {
+                "rule_id": rule_id,
+                "status": status,
+                "evidence_quote": quote,
+                "confidence": str(confidence_value),
+            }
+        )
     return accepted, rejected

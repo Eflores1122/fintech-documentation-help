@@ -1,0 +1,250 @@
+catalog_year: 2025
+last_verified: '2026-11-06'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- id: metodo-fecha-aprobacion
+  domain: metodologia
+  area: metodologia
+  title: Fecha de aprobación en cada política presente
+  requirement: En el modo más estricto, cada política presente en el expediente debe
+    mostrar fecha de aprobación o acuerdo del consejo. Es criterio de evidencia de
+    auditoría (ISO 19011 como referencia). No es un artículo de la CNBV.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Fecha de aprobación en cada política presente» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (ISO 19011:2018
+    (referencia de auditoría; no es norma mexicana)). No deje placeholders.
+  entity_types: &id001
+  - IFPE
+  - IFC
+  - ITF
+  - fintech_general
+  - SOFOM_ENR
+  - transmisor_dinero
+  - asesor_inversion
+  - modelo_novedoso
+  - plataforma_tecnologica
+  - servicios_digitales
+  - AV_exchange_non_ef
+  documents: &id002
+  - manual_pld_ft
+  - politica_cfdi
+  - politica_conflictos_interes
+  - aviso_privacidad
+  - contrato_adhesion
+  - politica_capital
+  - politica_contable
+  - plan_continuidad
+  - politica_seguridad_informacion
+  - plan_respuesta_incidentes
+  - codigo_etica
+  - matriz_riesgos
+  source_url: https://www.iso.org/standard/70017.html
+  source_name: ISO 19011:2018 (referencia de auditoría; no es norma mexicana)
+  effective_date: '2018-07-03'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: false
+  min_strictness: max
+  binding: false
+  owner_role: Auditoría interna
+  remediation_days: 30
+  evidence_expected:
+  - Documento manual_pld_ft aprobado y vigente.
+  - Documento politica_cfdi aprobado y vigente.
+  - Documento politica_conflictos_interes aprobado y vigente.
+  - Documento aviso_privacidad aprobado y vigente.
+  - Documento contrato_adhesion aprobado y vigente.
+  - Documento politica_capital aprobado y vigente.
+  - Documento politica_contable aprobado y vigente.
+  - Documento plan_continuidad aprobado y vigente.
+  - Documento politica_seguridad_informacion aprobado y vigente.
+  - Documento plan_respuesta_incidentes aprobado y vigente.
+  - Documento codigo_etica aprobado y vigente.
+  - Documento matriz_riesgos aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Fecha de aprobación en cada política
+    presente».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: false
+    checks:
+    - type: each_document_contains_any
+      label: la fecha de aprobación
+      any:
+      - fecha de aprobación
+      - fecha de aprobacion
+      - aprobado por el consejo
+      - aprobó el consejo
+  notes: Criterio del modo estricto. No es una cita legal mexicana.
+  frameworks:
+  - ISO 19011:2018
+- id: metodo-ambiguedad
+  domain: metodologia
+  area: metodologia
+  title: Sin placeholders ni borradores
+  requirement: El modo estricto trata como hallazgo los textos «por definir», «pendiente
+    de definir», «a determinar», «TBD», «borrador», «versión preliminar» y «sin evidencia».
+    Es criterio de auditoría, no un tipo penal.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Sin placeholders ni borradores» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (ISO 19011:2018 (referencia;
+    no es norma mexicana)). No deje placeholders.
+  entity_types: *id001
+  documents: *id002
+  source_url: https://www.iso.org/standard/70017.html
+  source_name: ISO 19011:2018 (referencia; no es norma mexicana)
+  effective_date: '2018-07-03'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: false
+  min_strictness: max
+  binding: false
+  owner_role: Auditoría interna
+  remediation_days: 30
+  evidence_expected:
+  - Documento manual_pld_ft aprobado y vigente.
+  - Documento politica_cfdi aprobado y vigente.
+  - Documento politica_conflictos_interes aprobado y vigente.
+  - Documento aviso_privacidad aprobado y vigente.
+  - Documento contrato_adhesion aprobado y vigente.
+  - Documento politica_capital aprobado y vigente.
+  - Documento politica_contable aprobado y vigente.
+  - Documento plan_continuidad aprobado y vigente.
+  - Documento politica_seguridad_informacion aprobado y vigente.
+  - Documento plan_respuesta_incidentes aprobado y vigente.
+  - Documento codigo_etica aprobado y vigente.
+  - Documento matriz_riesgos aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Sin placeholders ni borradores».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: false
+    checks:
+    - type: each_document_forbidden
+      label: un placeholder o un borrador
+      any:
+      - por definir
+      - pendiente de definir
+      - a determinar
+      - TBD
+      - borrador
+      - versión preliminar
+      - version preliminar
+      - sin evidencia
+  notes: Criterio del modo estricto.
+  frameworks:
+  - ISO 19011:2018
+- id: metodo-version-vencida
+  domain: metodologia
+  area: metodologia
+  title: Versión de trabajo o ejercicio viejo marcado en el documento
+  requirement: 'El modo estricto marca versiones de trabajo («versión 0.»), la fecha
+    «enero de 2023», «ejercicio 2024» y «criterios contables 2018» cuando aparecen
+    en las políticas revisadas. No convierte cualquier mención de 2025 en un error:
+    la LFPDPPP y otras reformas de 2025 siguen vigentes.'
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Versión de trabajo o ejercicio viejo marcado en el documento»
+    con fecha de aprobación, versión vigente y la evidencia que pide la fuente (ISO
+    19011:2018 (referencia; no es norma mexicana)). No deje placeholders.
+  entity_types: *id001
+  documents: *id002
+  source_url: https://www.iso.org/standard/70017.html
+  source_name: ISO 19011:2018 (referencia; no es norma mexicana)
+  effective_date: '2018-07-03'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: false
+  min_strictness: max
+  binding: false
+  owner_role: Auditoría interna
+  remediation_days: 45
+  evidence_expected:
+  - Documento manual_pld_ft aprobado y vigente.
+  - Documento politica_cfdi aprobado y vigente.
+  - Documento politica_conflictos_interes aprobado y vigente.
+  - Documento aviso_privacidad aprobado y vigente.
+  - Documento contrato_adhesion aprobado y vigente.
+  - Documento politica_capital aprobado y vigente.
+  - Documento politica_contable aprobado y vigente.
+  - Documento plan_continuidad aprobado y vigente.
+  - Documento politica_seguridad_informacion aprobado y vigente.
+  - Documento plan_respuesta_incidentes aprobado y vigente.
+  - Documento codigo_etica aprobado y vigente.
+  - Documento matriz_riesgos aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Versión de trabajo o ejercicio viejo
+    marcado en el documento».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: false
+    checks:
+    - type: regex
+      label: una versión de trabajo o un ejercicio viejo
+      pattern: (?i)(enero de 2023|versi[oó]n\s+0\.|criterios contables 2018|ejercicio
+        2024)
+      expect: no_match
+  notes: No marca como vencida una cita a la LFPDPPP 2025.
+  frameworks:
+  - ISO 19011:2018
+- id: metodo-control-sin-evidencia
+  domain: metodologia
+  area: metodologia
+  title: Control que admite no tener evidencia
+  requirement: Si el propio documento dice que no hay evidencia o que no se conserva,
+    el modo estricto lo levanta aunque el control esté descrito.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Control que admite no tener evidencia» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (ISO 19011:2018 (referencia;
+    no es norma mexicana)). No deje placeholders.
+  entity_types: *id001
+  documents: *id002
+  source_url: https://www.iso.org/standard/70017.html
+  source_name: ISO 19011:2018 (referencia; no es norma mexicana)
+  effective_date: '2018-07-03'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: false
+  min_strictness: max
+  binding: false
+  owner_role: Auditoría interna
+  remediation_days: 30
+  evidence_expected:
+  - Documento manual_pld_ft aprobado y vigente.
+  - Documento politica_cfdi aprobado y vigente.
+  - Documento politica_conflictos_interes aprobado y vigente.
+  - Documento aviso_privacidad aprobado y vigente.
+  - Documento contrato_adhesion aprobado y vigente.
+  - Documento politica_capital aprobado y vigente.
+  - Documento politica_contable aprobado y vigente.
+  - Documento plan_continuidad aprobado y vigente.
+  - Documento politica_seguridad_informacion aprobado y vigente.
+  - Documento plan_respuesta_incidentes aprobado y vigente.
+  - Documento codigo_etica aprobado y vigente.
+  - Documento matriz_riesgos aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Control que admite no tener evidencia».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: false
+    checks:
+    - type: each_document_forbidden
+      label: la admisión de que no hay evidencia
+      any:
+      - no hay evidencia
+      - no se conserva evidencia
+      - sin evidencia de soporte
+  notes: Criterio del modo estricto.
+  frameworks:
+  - ISO 19011:2018

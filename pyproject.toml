@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fintech-documentation-help"
-version = "0.1.0"
+version = "2.0.0"
 description = "Auditor open-source de documentación regulatoria para fintechs mexicanas (ITF: IFPE, IFC y figuras afines). No es asesoría legal ni fiscal."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -21,16 +21,20 @@ classifiers = [
 dependencies = [
     "fastapi>=0.115",
     "httpx>=0.27",
+    "pillow>=10.0",
     "pydantic>=2.6",
     "pypdf>=5.0",
+    "pytesseract>=0.3.13",
     "python-docx>=1.1",
     "python-multipart>=0.0.9",
     "pyyaml>=6.0",
+    "reportlab>=4.2",
     "uvicorn>=0.32",
 ]
 
 [project.optional-dependencies]
 dev = [
+    "mypy>=1.13",
     "pytest>=8.3",
     "pytest-cov>=6.0",
     "ruff>=0.8",
@@ -52,7 +56,7 @@ fdh = ["py.typed"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
-addopts = "-q --cov=fdh --cov-report=term-missing --cov-fail-under=80"
+addopts = "-q --cov=fdh --cov-report=term-missing --cov-fail-under=90"
 
 [tool.ruff]
 target-version = "py312"
@@ -66,6 +70,15 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 "tests/*" = ["SIM117", "E501"]
 "src/fdh/web.py" = ["B008", "E501"]
 "src/fdh/report/render.py" = ["E501"]
+"src/fdh/report/exports.py" = ["E501"]
+"src/fdh/areas.py" = ["E501"]
+"src/fdh/calendar_data.py" = ["E501"]
+"src/fdh/templates_lib.py" = ["E501"]
+"src/fdh/rules_admin.py" = ["E501"]
+"src/fdh/engine/workflow.py" = ["E501"]
+"src/fdh/business.py" = ["E501"]
+"src/fdh/report/pdf_pro.py" = ["E501"]
+"scripts/build_site.py" = ["E501"]
 
 [tool.coverage.run]
 branch = true
@@ -77,3 +90,11 @@ exclude_lines = [
     "pragma: no cover",
     "if __name__ == .__main__.:",
 ]
+
+[tool.mypy]
+python_version = "3.12"
+check_untyped_defs = true
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+files = ["src/fdh"]

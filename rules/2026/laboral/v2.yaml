@@ -1,0 +1,172 @@
+catalog_year: 2026
+last_verified: '2026-11-06'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- id: laboral-repse
+  domain: laboral
+  area: laboral
+  title: REPSE en servicios especializados
+  requirement: Si se contratan servicios especializados u obras especializadas, el
+    expediente debe mostrar el registro REPSE del contratista. Los artículos de la
+    reforma de subcontratación de la LFT no se releyeron.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «REPSE en servicios especializados» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LFT, reforma de subcontratación
+    (artículos no releídos)). No deje placeholders.
+  entity_types: &id001
+  - IFPE
+  - IFC
+  documents:
+  - expediente_repse
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf
+  source_name: LFT, reforma de subcontratación (artículos no releídos)
+  effective_date: '2021-04-24'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Recursos humanos
+  remediation_days: 30
+  evidence_expected:
+  - Documento expediente_repse aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «REPSE en servicios especializados».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el REPSE
+      any:
+      - REPSE
+  unverified_detail: No se releyeron los artículos 13 y 15 de la LFT ni el acuerdo
+    del REPSE.
+  applies_if: uses_specialized_services
+- id: laboral-capacitacion
+  domain: laboral
+  area: laboral
+  title: Capacitación de personal
+  requirement: Debe existir un programa de capacitación del personal, distinto del
+    de PLD. El artículo de la LFT no se releyó.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Capacitación de personal» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (LFT (capacitación; artículo no releído)).
+    No deje placeholders.
+  entity_types: *id001
+  documents:
+  - programa_capacitacion
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf
+  source_name: LFT (capacitación; artículo no releído)
+  effective_date: '1970-04-01'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Recursos humanos
+  remediation_days: 45
+  evidence_expected:
+  - Documento programa_capacitacion aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Capacitación de personal».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la capacitación
+      any:
+      - capacitación
+      - capacitacion
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: laboral-codigo-etica
+  domain: laboral
+  area: laboral
+  title: Código de ética
+  requirement: Debe existir un código de ética aprobado. No se aisló un artículo de
+    la LRITF que lo nombre así.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Código de ética» con fecha de aprobación, versión vigente
+    y la evidencia que pide la fuente (LRITF / gobierno corporativo (código de ética;
+    artículo no aislado)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - codigo_etica
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: LRITF / gobierno corporativo (código de ética; artículo no aislado)
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Recursos humanos
+  remediation_days: 45
+  evidence_expected:
+  - Documento codigo_etica aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Código de ética».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el código de ética
+      any:
+      - código de ética
+      - codigo de etica
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: laboral-denuncias
+  domain: laboral
+  area: laboral
+  title: Canal de denuncias
+  requirement: Debe existir un canal de denuncias con protección al denunciante de
+    buena fe. No se aisló el artículo.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Canal de denuncias» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (Gobierno corporativo (canal de denuncias;
+    artículo no aislado)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - procedimiento_denuncias
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: Gobierno corporativo (canal de denuncias; artículo no aislado)
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Recursos humanos
+  remediation_days: 45
+  evidence_expected:
+  - Documento procedimiento_denuncias aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Canal de denuncias».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el canal
+      any:
+      - canal de denuncias
+      - denuncia anónima
+      - denuncia anonima
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.

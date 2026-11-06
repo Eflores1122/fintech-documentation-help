@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Demo · fintech-documentation-help</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="wrap">
+    <header class="bar">
+      <a class="wordmark" href="index.html">fintech-documentation-help</a>
+      <nav>
+        <a href="index.html" data-lang="es">Inicio</a>
+        <a href="index.html" data-lang="en">Home</a>
+        <button type="button" class="quiet" id="lang">EN</button>
+      </nav>
+    </header>
+    <h1 data-lang="es">Demo en el navegador</h1>
+    <h1 data-lang="en">In-browser demo</h1>
+    <p class="lede" data-lang="es">El motor corre aquí. Los archivos no se suben. Sin modelo, la revisión igual termina. Ollama local es opcional y exige CORS en su máquina.</p>
+    <p class="lede" data-lang="en">The engine runs here. Files are not uploaded. Without a model, the review still finishes. Local Ollama is optional and needs CORS on your machine.</p>
+
+    <div class="controls">
+      <label>Entidad
+        <select id="entity">
+          <option>IFPE</option><option>IFC</option><option>SOFOM_ENR</option>
+          <option>transmisor_dinero</option><option>asesor_inversion</option>
+          <option>modelo_novedoso</option>
+        </select>
+      </label>
+      <label>As-of
+        <input id="asof" type="date" value="2026-11-06"/>
+      </label>
+      <label>Estrictez
+        <select id="strictness">
+          <option value="max" selected>max</option>
+          <option value="high">high</option>
+          <option value="standard">standard</option>
+        </select>
+      </label>
+      <button type="button" id="nube" data-lang="es">Auditar el sample Nube Pago</button>
+      <button type="button" id="nube-en" data-lang="en">Audit the Nube Pago sample</button>
+      <button type="button" class="quiet" id="ladrillo">Ladrillo Común</button>
+      <label data-lang="es">Subir archivos
+        <input id="files" type="file" multiple accept=".md,.txt,.pdf,.png,.jpg,.jpeg,.tif,.tiff,.docx"/>
+      </label>
+      <label data-lang="en">Upload files
+        <input id="files-en" type="file" multiple accept=".md,.txt,.pdf,.png,.jpg,.jpeg,.tif,.tiff,.docx"/>
+      </label>
+      <button type="button" class="quiet" id="scan" data-lang="es">OCR del aviso escaneado</button>
+      <button type="button" class="quiet" id="scan-en" data-lang="en">OCR the scanned notice</button>
+    </div>
+    <p class="meta" id="status" data-lang="es">Elija un sample o suba archivos.</p>
+    <p class="meta" id="status-en" data-lang="en">Pick a sample or upload files.</p>
+
+    <section id="out" hidden>
+      <h2 class="section" data-lang="es">Perfil de negocio</h2>
+      <h2 class="section" data-lang="en">Business profile</h2>
+      <div id="profile"></div>
+      <h2 class="section" data-lang="es">Calificación por área</h2>
+      <h2 class="section" data-lang="en">Score by area</h2>
+      <p class="scoreline" id="overall"></p>
+      <table id="areas"><thead><tr><th>Área</th><th>Puntaje</th></tr></thead><tbody></tbody></table>
+      <h2 class="section" data-lang="es">Parámetros</h2>
+      <h2 class="section" data-lang="en">Parameters</h2>
+      <div id="params"></div>
+      <h2 class="section">Hallazgos</h2>
+      <label>Filtro
+        <select id="filter">
+          <option value="fail">fail</option>
+          <option value="all">all</option>
+          <option value="pass">pass</option>
+        </select>
+      </label>
+      <div id="findings"></div>
+      <h2 class="section" data-lang="es">Diagrama del perfil</h2>
+      <h2 class="section" data-lang="en">Profile diagram</h2>
+      <pre class="diagram" id="diagram"></pre>
+      <p>
+        <button type="button" id="html" data-lang="es">Descargar HTML</button>
+        <button type="button" id="html-en" data-lang="en">Download HTML</button>
+        <button type="button" class="quiet" id="pdf" data-lang="es">Descargar PDF</button>
+        <button type="button" class="quiet" id="pdf-en" data-lang="en">Download PDF</button>
+      </p>
+    </section>
+    <footer>
+      <p data-lang="es">No es asesoría legal ni fiscal. Ollama: <code>OLLAMA_ORIGINS=https://eflores1122.github.io</code> y luego el botón de modelo en una revisión local. Esta demo no llama a un modelo por defecto.</p>
+      <p data-lang="en">Not legal or tax advice. Ollama: set <code>OLLAMA_ORIGINS</code> to this origin if you want a local model. This demo does not call one by default.</p>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+  <script>
+    document.getElementById("lang").addEventListener("click", () => {
+      const en = document.body.classList.toggle("en");
+      document.getElementById("lang").textContent = en ? "ES" : "EN";
+      document.documentElement.lang = en ? "en" : "es";
+    });
+  </script>
+</body>
+</html>
