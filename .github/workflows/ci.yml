@@ -18,5 +18,7 @@ jobs:
         run: |
           ruff check src tests scripts
           ruff format --check src tests scripts
+      - name: Mypy
+        run: mypy src/fdh
       - name: Pytest
         run: pytest

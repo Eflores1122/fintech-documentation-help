@@ -1,0 +1,218 @@
+catalog_year: 2025
+last_verified: '2026-11-06'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- id: financiero-estados-financieros
+  domain: financiero
+  area: financiero
+  title: Estados financieros básicos
+  requirement: La ITF debe preparar estados financieros. La resolución de criterios
+    y la LRITF los exigen; el número de artículo de la ley para el dictamen no se
+    releyó.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Estados financieros básicos» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (Resolución CNBV DOF 9-sep-2025
+    y LRITF (artículo del dictamen no releído)). No deje placeholders.
+  entity_types: &id001
+  - IFPE
+  - IFC
+  documents:
+  - estados_financieros
+  source_url: https://dof.gob.mx/2025/SHCP/SHCP_090925.pdf
+  source_name: Resolución CNBV DOF 9-sep-2025 y LRITF (artículo del dictamen no releído)
+  effective_date: '2018-09-10'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de finanzas
+  remediation_days: 30
+  evidence_expected:
+  - Documento estados_financieros aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Estados financieros básicos».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: los estados financieros
+      any:
+      - estado de situación financiera
+      - estado de resultado
+  unverified_detail: Se vio que las DCG regulan estados financieros. No se releyó
+    el artículo de la LRITF que la investigación previa numera como 49.
+- id: financiero-auditor-externo
+  domain: financiero
+  area: financiero
+  title: Auditor externo independiente
+  requirement: Debe existir dictamen de auditor externo independiente. El artículo
+    de la LRITF no se releyó en esta pasada.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Auditor externo independiente» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LRITF (auditor externo; artículo
+    no releído)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - dictamen_auditor_externo
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: LRITF (auditor externo; artículo no releído)
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de finanzas
+  remediation_days: 30
+  evidence_expected:
+  - Documento dictamen_auditor_externo aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Auditor externo independiente».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el auditor externo
+      any:
+      - auditor externo independiente
+      - dictamen del auditor
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: financiero-conciliaciones
+  domain: financiero
+  area: financiero
+  title: Conciliaciones contables
+  requirement: La política debe describir conciliaciones periódicas de cuentas de
+    clientes y de bancos. No se cita un número de NIF ni de criterio CNBV porque no
+    se leyó el párrafo específico.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Conciliaciones contables» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (Criterios contables CNBV (párrafo de
+    conciliaciones no aislado)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_conciliaciones
+  source_url: https://dof.gob.mx/2025/SHCP/SHCP_090925.pdf
+  source_name: Criterios contables CNBV (párrafo de conciliaciones no aislado)
+  effective_date: '2018-09-10'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de finanzas
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_conciliaciones aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Conciliaciones contables».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la conciliación
+      any:
+      - conciliación
+      - conciliacion
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: financiero-estimaciones-ifc
+  domain: financiero
+  area: financiero
+  title: Estimaciones y reservas de la IFC
+  requirement: La IFC que intermedia financiamiento debe documentar estimaciones o
+    reservas. La metodología numérica de la resolución de 2025 no se leyó celda por
+    celda.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Estimaciones y reservas de la IFC» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (Resolución CNBV DOF 9-sep-2025
+    (metodología de estimación no leída completa)). No deje placeholders.
+  entity_types:
+  - IFC
+  documents:
+  - politica_estimaciones
+  source_url: https://dof.gob.mx/2025/SHCP/SHCP_090925.pdf
+  source_name: Resolución CNBV DOF 9-sep-2025 (metodología de estimación no leída
+    completa)
+  effective_date: '2026-01-01'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de finanzas
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_estimaciones aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Estimaciones y reservas de la IFC».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: las estimaciones
+      any:
+      - estimación
+      - estimacion
+      - reserva
+  unverified_detail: No se extrajo la fórmula de estimación del anexo.
+- id: financiero-revelacion
+  domain: financiero
+  area: financiero
+  title: Revelación en notas a los estados financieros
+  requirement: Las notas deben cubrir revelaciones exigidas por los criterios de la
+    CNBV. El índice de notas no se copió del anexo.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Revelación en notas a los estados financieros» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (Resolución CNBV
+    DOF 9-sep-2025 (notas; índice no transcrito)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_revelacion
+  source_url: https://dof.gob.mx/2025/SHCP/SHCP_090925.pdf
+  source_name: Resolución CNBV DOF 9-sep-2025 (notas; índice no transcrito)
+  effective_date: '2026-01-01'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de finanzas
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_revelacion aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Revelación en notas a los estados
+    financieros».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: las notas
+      any:
+      - notas a los estados financieros
+      - revelación
+      - revelacion
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.

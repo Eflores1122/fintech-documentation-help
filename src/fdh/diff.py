@@ -29,6 +29,15 @@ MATERIAL_FIELDS = (
     "applies_if",
     "notes",
     "diff_note",
+    "area",
+    "min_strictness",
+    "binding",
+    "owner_role",
+    "remediation_days",
+    "evidence_expected",
+    "procedure",
+    "frameworks",
+    "verified",
     "matcher",
 )
 
@@ -49,6 +58,15 @@ FIELD_LABELS = {
     "applies_if": "Condición de aplicación",
     "notes": "Notas",
     "diff_note": "Nota de cambio",
+    "area": "Área",
+    "min_strictness": "Estrictez mínima",
+    "binding": "Vinculante en México",
+    "owner_role": "Responsable sugerido",
+    "remediation_days": "Plazo sugerido (días)",
+    "evidence_expected": "Evidencia esperada",
+    "procedure": "Procedimiento",
+    "frameworks": "Marcos de referencia",
+    "verified": "Verificada",
     "matcher": "Criterio determinístico",
 }
 

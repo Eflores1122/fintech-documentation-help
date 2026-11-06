@@ -52,7 +52,26 @@ def _parser() -> argparse.ArgumentParser:
     audit.add_argument("--year", type=int, default=2026, help="Año del catálogo regulatorio")
     audit.add_argument("--entity", default="IFPE", help="IFPE, IFC, ITF, fintech_general, …")
     audit.add_argument("--out", type=Path, default=Path("fdh-report"))
-    audit.add_argument("--format", default="md,html,json", help="md,html,json separados por coma")
+    audit.add_argument(
+        "--format",
+        default="md,html,json",
+        help="md,html,json,csv,xlsx,pdf,ics,diagrams separados por coma",
+    )
+    audit.add_argument(
+        "--strictness",
+        choices=["standard", "high", "max"],
+        default="max",
+        help="max es el auditor más exigente y es el default",
+    )
+    audit.add_argument("--compare", type=Path, default=None, help="JSON de una auditoría anterior")
+    audit.add_argument(
+        "--evidence", type=Path, default=None, help="JSON rule_id -> presente|ausente|parcial"
+    )
+    audit.add_argument(
+        "--adversarial",
+        action="store_true",
+        help="Pide al LLM local más fallas, sin bajar severidad",
+    )
     audit.add_argument("--rules-dir", type=Path, default=None)
     audit.add_argument(
         "--llm",
@@ -64,6 +83,12 @@ def _parser() -> argparse.ArgumentParser:
     audit.add_argument("--transports-goods", action="store_true")
     audit.add_argument("--tech-platform", action="store_true")
     audit.add_argument("--digital-services", action="store_true")
+    audit.add_argument("--processes-cards", action="store_true")
+    audit.add_argument("--participates-spei", action="store_true")
+    audit.add_argument("--specialized-services", action="store_true")
+    audit.add_argument("--offers-credit", action="store_true")
+    audit.add_argument("--offers-yield", action="store_true")
+    audit.add_argument("--related-parties-abroad", action="store_true")
     audit.add_argument(
         "--fail-on",
         choices=["critical", "high", "medium", "low", "info"],
@@ -92,6 +117,18 @@ def _parser() -> argparse.ArgumentParser:
     validate.add_argument("--rules-dir", type=Path, default=None)
     validate.set_defaults(handler=_cmd_validate)
 
+    new_year = rules_sub.add_parser(
+        "new-year", help="Clonar un catálogo al año siguiente y abrir checklist"
+    )
+    new_year.add_argument("year", type=int)
+    new_year.add_argument("--rules-dir", type=Path, default=None)
+    new_year.set_defaults(handler=_cmd_new_year)
+
+    watch = rules_sub.add_parser("watch", help="Comparar fuentes oficiales contra el candado local")
+    watch.add_argument("--rules-dir", type=Path, default=None)
+    watch.add_argument("--lock", type=Path, default=None)
+    watch.set_defaults(handler=_cmd_watch)
+
     changed = sub.add_parser(
         "what-changed",
         help="Atajo de fdh rules diff (año-1 → año)",
@@ -100,6 +137,36 @@ def _parser() -> argparse.ArgumentParser:
     changed.add_argument("--format", choices=["md", "json"], default="md")
     changed.add_argument("--rules-dir", type=Path, default=None)
     changed.set_defaults(handler=_cmd_what_changed)
+
+    diagrams = sub.add_parser("diagrams", help="Generar diagramas Mermaid y SVG")
+    diagrams.add_argument("--out", type=Path, default=Path("fdh-diagramas"))
+    diagrams.set_defaults(handler=_cmd_diagrams)
+
+    templates = sub.add_parser(
+        "templates", help="Borradores de políticas para que los revise un abogado"
+    )
+    templates.add_argument("--out", type=Path, default=Path("fdh-plantillas"))
+    templates.add_argument("--only", default=None)
+    templates.set_defaults(handler=_cmd_templates)
+
+    calendar = sub.add_parser("calendar", help="Recordatorios .ics")
+    calendar.add_argument("--year", type=int, default=2026)
+    calendar.add_argument("--entity", default="IFPE")
+    calendar.add_argument("--out", type=Path, default=Path("obligaciones.ics"))
+    calendar.set_defaults(handler=_cmd_calendar)
+
+    ask = sub.add_parser(
+        "ask", help="Preguntar al catálogo (léxico local; embeddings solo en Ollama)"
+    )
+    ask.add_argument("question")
+    ask.add_argument("--year", type=int, default=2026)
+    ask.add_argument("--rules-dir", type=Path, default=None)
+    ask.set_defaults(handler=_cmd_ask)
+
+    doctor = sub.add_parser("llm", help="IA local")
+    doctor_sub = doctor.add_subparsers(dest="llm_command", required=True)
+    doctor_cmd = doctor_sub.add_parser("doctor", help="Ver proveedor local y modelos sugeridos")
+    doctor_cmd.set_defaults(handler=_cmd_doctor)
 
     serve = sub.add_parser("serve", help="Interfaz web local para subir documentos")
     serve.add_argument("--host", default="127.0.0.1")
@@ -122,12 +189,33 @@ def _cmd_audit(args: argparse.Namespace) -> int:
         transports_goods=args.transports_goods,
         is_technological_platform_tax_regime=args.tech_platform,
         provides_digital_services_liva=args.digital_services,
+        processes_cards=args.processes_cards,
+        participates_spei=args.participates_spei,
+        uses_specialized_services=args.specialized_services,
+        offers_credit=args.offers_credit,
+        offers_yield=args.offers_yield,
+        has_related_parties_abroad=args.related_parties_abroad,
+        strictness=args.strictness,
     )
+    previous = None
+    if args.compare is not None:
+        import json
+
+        previous = json.loads(args.compare.read_text(encoding="utf-8"))
+    evidence = None
+    if args.evidence is not None:
+        import json
+
+        raw_marks = json.loads(args.evidence.read_text(encoding="utf-8"))
+        evidence = {str(key): str(value) for key, value in raw_marks.items()}
     report = run_audit(
         [args.path],
         profile,
         rules_dir=args.rules_dir,
-        use_llm=args.llm,
+        use_llm=args.llm or args.adversarial,
+        evidence=evidence,
+        previous=previous,
+        adversarial=args.adversarial,
     )
     formats = [item.strip() for item in str(args.format).split(",")]
     written = write_reports(report, args.out, formats)
@@ -150,7 +238,8 @@ def _print_summary(report, written: list[Path]) -> None:
         f"incumplimientos {report.summary.get('fail', 0)} "
         f"(críticos {report.summary.get('fail_critical', 0)}, "
         f"altos {report.summary.get('fail_high', 0)}) · "
-        f"UNVERIFIED {report.summary.get('unverified', 0)}"
+        f"UNVERIFIED {report.summary.get('unverified', 0)} · "
+        f"dictamen {report.opinion.get('label', '')}"
     )
     if report.llm_note:
         print(report.llm_note)
@@ -214,6 +303,74 @@ def _is_info(line: str) -> bool:
         return True
     head, _, tail = line.partition(":")
     return head.isdigit() and tail.strip().endswith("reglas")
+
+
+def _cmd_new_year(args: argparse.Namespace) -> int:
+    from fdh.rules_admin import start_new_year
+
+    target = start_new_year(args.year, args.rules_dir)
+    print(f"Catálogo clonado en {target}")
+    print(f"Checklist: {target / 'CHECKLIST.md'}")
+    print("Revise las fuentes oficiales antes de tratar el año nuevo como cerrado.")
+    return 0
+
+
+def _cmd_watch(args: argparse.Namespace) -> int:
+    from fdh.watch import run_watch
+
+    code, text = run_watch(args.rules_dir, args.lock)
+    sys.stdout.write(text)
+    return code
+
+
+def _cmd_diagrams(args: argparse.Namespace) -> int:
+    from fdh.diagrams import write_diagrams
+
+    written = write_diagrams(args.out)
+    for path in written:
+        print(path)
+    return 0
+
+
+def _cmd_templates(args: argparse.Namespace) -> int:
+    from fdh.templates_lib import write_templates
+
+    for path in write_templates(args.out, args.only):
+        print(path)
+    return 0
+
+
+def _cmd_calendar(args: argparse.Namespace) -> int:
+    from fdh.calendar_data import render_ics
+    from fdh.models import canonical_entity
+
+    entity = canonical_entity(args.entity)
+    args.out.write_text(render_ics(entity, args.year), encoding="utf-8")
+    print(args.out)
+    return 0
+
+
+def _cmd_ask(args: argparse.Namespace) -> int:
+    from fdh.llm.rag import answer_question
+
+    rules = load_catalog(args.year, args.rules_dir)
+    sys.stdout.write(answer_question(args.question, rules))
+    sys.stdout.write("\n")
+    return 0
+
+
+def _cmd_doctor(_args: argparse.Namespace) -> int:
+    from fdh.llm.reviewer import SUGGESTED_MODELS, build_client
+
+    _client, note = build_client()
+    print(note)
+    print("Modelos sugeridos para Ollama o un endpoint local compatible:")
+    for model in SUGGESTED_MODELS:
+        print(f"  - {model}")
+    print("Proveedor local: FDH_LLM_PROVIDER=ollama y, si hace falta, FDH_LLM_MODEL.")
+    print("Por defecto el texto no sale de la máquina. FDH_LLM_ALLOW_REMOTE=1 lo permite.")
+    print(DISCLAIMER_ES)
+    return 0
 
 
 def _cmd_serve(args: argparse.Namespace) -> int:

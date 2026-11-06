@@ -125,6 +125,7 @@ def test_openai_compatible_client(monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setenv("FDH_LLM_API_KEY", "sk-test")
     monkeypatch.setenv("FDH_LLM_BASE_URL", "https://llm.example/v1")
     monkeypatch.setenv("FDH_LLM_MODEL", "demo-model")
+    monkeypatch.setenv("FDH_LLM_ALLOW_REMOTE", "1")
     monkeypatch.delenv("FDH_LLM_ENABLED", raising=False)
     client, note = build_client()
     assert client is not None
@@ -208,6 +209,15 @@ def test_web_upload(samples: Path):
     assert index.status_code == 200
     assert "no es asesoría legal ni fiscal" in index.text
     assert "confidenciales" in index.text
+    diagrams = client.get("/diagrams")
+    assert diagrams.status_code == 200
+    assert "flujo-pld" in diagrams.text
+    templates = client.get("/templates")
+    assert templates.status_code == 200
+    assert "BORRADOR" in templates.text
+    calendar = client.get("/calendar.ics?entity=IFPE&year=2026")
+    assert calendar.status_code == 200
+    assert "BEGIN:VCALENDAR" in calendar.text
 
     aviso = (samples / "aviso_de_privacidad.md").read_bytes()
     response = client.post(

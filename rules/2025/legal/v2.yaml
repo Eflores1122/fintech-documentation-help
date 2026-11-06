@@ -1,0 +1,435 @@
+catalog_year: 2025
+last_verified: '2026-11-06'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- id: legal-oficio-autorizacion
+  domain: legal
+  area: legal
+  title: Oficio de autorización para operar como ITF
+  requirement: La ITF debe conservar la autorización de la CNBV para organizarse y
+    operar. El número de artículo de la LRITF no se fija aquí.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Oficio de autorización para operar como ITF» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (LRITF (autorización
+    de ITF; artículo no releído)). No deje placeholders.
+  entity_types: &id001
+  - IFPE
+  - IFC
+  documents:
+  - oficio_autorizacion
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: LRITF (autorización de ITF; artículo no releído)
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: critical
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección jurídica
+  remediation_days: 15
+  evidence_expected:
+  - Documento oficio_autorizacion aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Oficio de autorización para operar
+    como ITF».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la autorización de la CNBV
+      any:
+      - autorización de la CNBV
+      - autorizacion de la CNBV
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: legal-objeto-social
+  domain: legal
+  area: legal
+  title: Objeto social alineado a la figura autorizada
+  requirement: Los estatutos deben describir un objeto social compatible con la figura
+    (IFPE, IFC u otra) y no actividades ajenas no autorizadas.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Objeto social alineado a la figura autorizada» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (LRITF y LGSM;
+    artículos de objeto social no releídos). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - estatutos_sociales
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: LRITF y LGSM; artículos de objeto social no releídos
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección jurídica
+  remediation_days: 30
+  evidence_expected:
+  - Documento estatutos_sociales aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Objeto social alineado a la figura
+    autorizada».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el objeto social
+      any:
+      - objeto social
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado. Tampoco se releó la LGSM.
+- id: legal-consejo-administracion
+  domain: legal
+  area: legal
+  title: Consejo o administrador y actas
+  requirement: Debe existir evidencia del órgano de administración (consejo o administrador
+    único) y de actas. El artículo concreto de integración no se releó.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Consejo o administrador y actas» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LGSM (órgano de administración;
+    artículo no releído) y LRITF). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_gobierno_corporativo
+  - acta_consejo
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LGSM.pdf
+  source_name: LGSM (órgano de administración; artículo no releído) y LRITF
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección jurídica
+  remediation_days: 30
+  evidence_expected:
+  - Documento politica_gobierno_corporativo aprobado y vigente.
+  - Documento acta_consejo aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Consejo o administrador y actas».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el órgano de administración
+      any:
+      - consejo de administración
+      - administrador único
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: legal-comites
+  domain: legal
+  area: legal
+  title: Comités de apoyo al consejo
+  requirement: La política de gobierno debe nombrar los comités (al menos auditoría
+    y riesgos, si el órgano los instaló) con integración y periodicidad. No se afirma
+    un artículo que imponga un catálogo cerrado de comités a toda ITF.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Comités de apoyo al consejo» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LRITF; existencia de un catálogo
+    obligatorio de comités no releída). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_gobierno_corporativo
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: LRITF; existencia de un catálogo obligatorio de comités no releída
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección jurídica
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_gobierno_corporativo aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Comités de apoyo al consejo».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: los comités
+      any:
+      - comité de auditoría
+      - comite de auditoria
+      - comité de riesgos
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: legal-poderes
+  domain: legal
+  area: legal
+  title: Poderes de representación vigentes
+  requirement: Debe existir relación de poderes y de quién puede obligar a la sociedad.
+    El artículo de la LGSM no se releó.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Poderes de representación vigentes» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LGSM (poderes; artículo no
+    releído)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_poderes
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LGSM.pdf
+  source_name: LGSM (poderes; artículo no releído)
+  effective_date: '1934-08-04'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección jurídica
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_poderes aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Poderes de representación vigentes».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: los poderes
+      any:
+      - poderes de representación
+      - poder notarial
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: legal-nom151-constancia
+  domain: legal
+  area: legal
+  title: Conservación de mensajes de datos (NOM-151-SCFI-2016)
+  requirement: Cuando la entidad conserve mensajes de datos o digitalice documentos
+    con efectos de conservación, la constancia debe emitirla un prestador de servicios
+    de certificación acreditado, en los términos de la NOM-151-SCFI-2016.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Conservación de mensajes de datos (NOM-151-SCFI-2016)»
+    con fecha de aprobación, versión vigente y la evidencia que pide la fuente (NOM-151-SCFI-2016,
+    DOF 30-mar-2017). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_firma_electronica
+  source_url: https://www.dof.gob.mx/nota_detalle.php?codigo=5478024&fecha=30%2F03%2F2017
+  source_name: NOM-151-SCFI-2016, DOF 30-mar-2017
+  effective_date: '2017-09-26'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: false
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección jurídica
+  remediation_days: 30
+  evidence_expected:
+  - Documento politica_firma_electronica aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Conservación de mensajes de datos
+    (NOM-151-SCFI-2016)».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la NOM-151
+      any:
+      - NOM-151
+      - NOM 151
+    - type: contains_any
+      label: el prestador de certificación
+      any:
+      - prestador de servicios de certificación
+      - constancia de conservación
+      - constancia de conservacion
+- id: legal-firma-electronica-avanzada
+  domain: legal
+  area: legal
+  title: Firma electrónica y efectos del mensaje de datos
+  requirement: La política debe distinguir firma electrónica y firma electrónica avanzada.
+    Los artículos 89 y 97 del Código de Comercio se citan en material oficial de la
+    Secretaría de Economía, pero no se releyó el PDF del Código en esta pasada.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Firma electrónica y efectos del mensaje de datos» con
+    fecha de aprobación, versión vigente y la evidencia que pide la fuente (Código
+    de Comercio (artículos de firma no releídos en el PDF)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_firma_electronica
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/CCom.pdf
+  source_name: Código de Comercio (artículos de firma no releídos en el PDF)
+  effective_date: '2003-05-29'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección jurídica
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_firma_electronica aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Firma electrónica y efectos del
+    mensaje de datos».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la firma electrónica
+      any:
+      - firma electrónica avanzada
+      - firma electronica avanzada
+  unverified_detail: Los arts. 89 y 97 aparecen citados en el FAQ de PSC de Economía;
+    no se abrió el PDF del Código de Comercio para confirmar el texto vigente.
+- id: legal-terceros-procesos
+  domain: legal
+  area: legal
+  title: Contratación de terceros y procesos operativos
+  requirement: La ITF debe documentar los convenios con terceros que prestan procesos
+    necesarios para operar. La investigación previa apunta al art. 54 de la LRITF;
+    ese número no se releyó en el PDF.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Contratación de terceros y procesos operativos» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (LRITF (terceros;
+    número de artículo no releído)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_terceros
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: LRITF (terceros; número de artículo no releído)
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección jurídica
+  remediation_days: 30
+  evidence_expected:
+  - Documento politica_terceros aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Contratación de terceros y procesos
+    operativos».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: los terceros
+      any:
+      - terceros
+      - proveedor
+  unverified_detail: RESEARCH.md cita el art. 54. No se releyó ese párrafo el 2026-11-06.
+- id: legal-terceros-autorizacion-ifc
+  domain: legal
+  area: legal
+  title: Autorización de la CNBV para ciertos servicios con terceros (IFC)
+  requirement: El art. 85 de la resolución que modifica las DCG de ITF abre diciendo
+    que la IFC solamente requerirá autorización de la CNBV para contratar terceros
+    cuyos servicios tengan las características que el propio artículo lista. El listado
+    completo de esas características no se transcribió en esta ficha.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Autorización de la CNBV para ciertos servicios con terceros
+    (IFC)» con fecha de aprobación, versión vigente y la evidencia que pide la fuente
+    (DCG ITF, art. 85 (resolución firmada el 14-mar-2019, nota DOF 5555030)). No deje
+    placeholders.
+  entity_types:
+  - IFC
+  documents:
+  - politica_terceros
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF, art. 85 (resolución firmada el 14-mar-2019, nota DOF 5555030)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección jurídica
+  remediation_days: 30
+  evidence_expected:
+  - Documento politica_terceros aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Autorización de la CNBV para ciertos
+    servicios con terceros (IFC)».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la autorización para terceros
+      any:
+      - autorización de la CNBV
+      - autorizacion de la CNBV
+  unverified_detail: Se leyó el inicio del art. 85. No se transcribió el catálogo
+    de servicios que exigen autorización.
+- id: legal-propiedad-intelectual
+  domain: legal
+  area: legal
+  title: Titularidad de marca y software
+  requirement: El expediente debe decir quién es titular de la marca y del software.
+    No se releó la Ley Federal del Derecho de Autor ni la Ley de la Propiedad Industrial
+    para fijar un artículo.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Titularidad de marca y software» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LFDA (artículo no releído)).
+    No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_propiedad_intelectual
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LFDA.pdf
+  source_name: LFDA (artículo no releído)
+  effective_date: '1997-12-24'
+  last_verified: '2026-11-06'
+  severity: low
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección jurídica
+  remediation_days: 60
+  evidence_expected:
+  - Documento politica_propiedad_intelectual aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Titularidad de marca y software».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la titularidad
+      any:
+      - propiedad intelectual
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.

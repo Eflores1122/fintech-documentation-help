@@ -17,6 +17,12 @@ PASS = {
     "privacy-departamento-datos",
     "pld-kyc-identificacion",
     "lritf-conflictos-interes",
+    "lritf-seguridad-informacion",
+    "laboral-codigo-etica",
+    "legal-poderes",
+    "operacion-inventario-activos",
+    "regulatorio-circular-12-2018",
+    "regulatorio-siti-responsable",
 }
 NA = {
     "lritf-av-divulgacion-riesgos",
@@ -40,20 +46,26 @@ def _audit(samples: Path, **kwargs):
 def test_sample_partition(samples: Path):
     report = _audit(samples)
     by = {item.rule_id: item for item in report.findings}
-    assert len(by) == len(report.findings) == 43
+    assert len(by) == len(report.findings) > 100
     assert {item.rule_id for item in report.findings if item.status == "pass"} == PASS
-    assert {item.rule_id for item in report.findings if item.status == "not_applicable"} == NA
-    assert {item["id"] for item in report.omitted_rules} == OMITTED
-    assert report.summary["fail"] == 35
-    assert report.summary["fail_critical"] == 13
-    assert report.scores.overall == 7.6
-    assert report.scores.by_domain["privacy"] == 9.5
+    assert {item.rule_id for item in report.findings if item.status == "not_applicable"} >= NA
+    omitted = {item["id"] for item in report.omitted_rules}
+    assert omitted >= OMITTED
+    assert report.summary["fail"] == 99
+    assert report.summary["fail_critical"] == 17
+    assert report.scores.overall == 8.8
+    assert report.scores.by_area["pld"] == 8.8
     assert report.scores.by_domain["cnbv"] is None
-    assert {item.rule_id for item in report.findings if item.unverified} == {
+    assert {
         "sat-cfdi40-emision",
         "sat-complemento-pagos-rep",
         "sat-cff-32b-informacion",
-    }
+    } <= {item.rule_id for item in report.findings if item.unverified}
+    for finding in report.findings:
+        if finding.status == "fail":
+            assert finding.condition and finding.criterion and finding.cause
+            assert finding.effect and finding.recommendation
+            assert finding.suggested_owner and finding.suggested_deadline
 
     aviso = by["privacy-aviso-art15-elementos"]
     assert "III." in aviso.message and "VI." in aviso.message

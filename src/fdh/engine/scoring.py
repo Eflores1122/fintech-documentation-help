@@ -9,14 +9,19 @@ _CREDIT = {"pass": 1.0, "unclear": 0.5, "fail": 0.0}
 
 def score_findings(findings: list[Finding]) -> ScoreCard:
     by_domain: dict[str, list[Finding]] = {}
+    by_area: dict[str, list[Finding]] = {}
     for finding in findings:
         if finding.status == "not_applicable":
             continue
         by_domain.setdefault(finding.domain, []).append(finding)
+        if finding.area:
+            by_area.setdefault(finding.area, []).append(finding)
     domain_scores = {domain: _ratio(items) for domain, items in sorted(by_domain.items())}
+    area_scores = {area: _ratio(items) for area, items in sorted(by_area.items())}
     return ScoreCard(
         overall=_ratio([item for items in by_domain.values() for item in items]),
         by_domain=domain_scores,
+        by_area=area_scores,
         weights=dict(SEVERITY_WEIGHT),
     )
 

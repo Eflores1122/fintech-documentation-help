@@ -63,7 +63,11 @@ def load_catalog(year: int, rules_dir: Path | None = None) -> list[Rule]:
         raise CatalogError(
             [f"No existe el catálogo para el año {year} en {root}. Años disponibles: {known}."]
         )
-    files = sorted(folder.glob("*.yaml")) + sorted(folder.glob("*.yml"))
+    files = sorted(
+        path
+        for path in folder.rglob("*")
+        if path.is_file() and path.suffix.lower() in {".yaml", ".yml"}
+    )
     if not files:
         raise CatalogError([f"El catálogo {year} no contiene archivos YAML."])
     errors: list[str] = []
@@ -115,23 +119,24 @@ def validate_catalogs(rules_dir: Path | None = None) -> list[str]:
 
 
 def _load_file(path: Path, year: int, errors: list[str]) -> list[Rule]:
+    label = path.name
     try:
         raw = yaml.safe_load(path.read_text(encoding="utf-8"))
     except yaml.YAMLError as exc:
-        errors.append(f"{path.name}: YAML inválido: {exc}")
+        errors.append(f"{label}: YAML inválido: {exc}")
         return []
     if not isinstance(raw, dict):
-        errors.append(f"{path.name}: se esperaba un mapa con catalog_year y rules")
+        errors.append(f"{label}: se esperaba un mapa con catalog_year y rules")
         return []
     try:
         parsed = CatalogFile.model_validate(raw)
     except ValidationError as exc:
         for item in exc.errors():
             loc = ".".join(str(part) for part in item["loc"])
-            errors.append(f"{path.name}: {loc}: {item['msg']}")
+            errors.append(f"{label}: {loc}: {item['msg']}")
         return []
     if parsed.catalog_year != year:
         errors.append(
-            f"{path.name}: catalog_year={parsed.catalog_year} no coincide con la carpeta {year}"
+            f"{label}: catalog_year={parsed.catalog_year} no coincide con la carpeta {year}"
         )
     return parsed.rules

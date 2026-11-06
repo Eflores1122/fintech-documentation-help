@@ -131,7 +131,7 @@ def _load_one(file: Path, root: Path | None, llm_complete, allowed: set[str]) ->
     text = normalize_text(text)
     if not text:
         warnings.append("El archivo no contiene texto extraíble.")
-    types = classify_heuristic(file.name, text)
+    types = classify_heuristic(file.name, text, allowed)
     if llm_complete is not None and text:
         for label in classify_with_llm(file.name, text, llm_complete, allowed):
             if label not in types:

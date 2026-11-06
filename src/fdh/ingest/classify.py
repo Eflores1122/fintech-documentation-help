@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
+from pathlib import Path
 
 from fdh.textutil import fold, normalize_text
 
@@ -236,7 +237,7 @@ def _token_in_name(token: str, folded_name: str) -> bool:
     return needle in folded_name
 
 
-def classify_heuristic(filename: str, text: str) -> list[str]:
+def classify_heuristic(filename: str, text: str, extra_types: set[str] | None = None) -> list[str]:
     folded_name = fold(filename.replace("_", " ").replace("-", " "))
     folded_text = fold(normalize_text(text))
     matched: list[str] = []
@@ -250,6 +251,12 @@ def classify_heuristic(filename: str, text: str) -> list[str]:
             name_hit = True
         if name_hit or content_hit:
             matched.append(spec.type_id)
+    stem = Path(filename).stem.casefold().replace("-", "_")
+    allowed = set(vocabulary())
+    if extra_types:
+        allowed |= extra_types
+    if stem in allowed and stem not in matched:
+        matched.append(stem)
     return matched
 
 

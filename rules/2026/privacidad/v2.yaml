@@ -1,0 +1,175 @@
+catalog_year: 2026
+last_verified: '2026-11-06'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- id: privacy-autoridad-sabg
+  domain: privacy
+  area: privacidad
+  title: Autoridad de protección de datos vigente
+  requirement: El aviso debe identificar a la Secretaría Anticorrupción y Buen Gobierno
+    como autoridad, en coherencia con la LFPDPPP publicada el 20 de marzo de 2025.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Autoridad de protección de datos vigente» con fecha de
+    aprobación, versión vigente y la evidencia que pide la fuente (LFPDPPP arts. 2-XV
+    y capítulo de la autoridad (DOF 20-mar-2025)). No deje placeholders.
+  entity_types: &id001
+  - IFPE
+  - IFC
+  documents:
+  - aviso_privacidad
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf
+  source_name: LFPDPPP arts. 2-XV y capítulo de la autoridad (DOF 20-mar-2025)
+  effective_date: '2025-03-21'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: false
+  min_strictness: standard
+  binding: true
+  owner_role: Responsable de datos personales
+  remediation_days: 30
+  evidence_expected:
+  - Documento aviso_privacidad aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Autoridad de protección de datos
+    vigente».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la secretaría
+      any:
+      - Secretaría Anticorrupción y Buen Gobierno
+      - Secretaria Anticorrupcion y Buen Gobierno
+  notes: La ficha privacy-no-citar-inai cubre la mención residual del INAI. Esta exige
+    el nombre vigente.
+- id: privacy-transferencias
+  domain: privacy
+  area: privacidad
+  title: Transferencias de datos personales
+  requirement: Si hay transferencias, el aviso o la política debe decirlo y la base.
+    El artículo del capítulo de transferencias de la LFPDPPP 2025 no se aisló. El
+    art. 15 ya no las lista como elemento mínimo.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Transferencias de datos personales» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LFPDPPP 2025, capítulo de transferencias
+    (artículo no aislado)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_transferencias
+  - aviso_privacidad
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf
+  source_name: LFPDPPP 2025, capítulo de transferencias (artículo no aislado)
+  effective_date: '2025-03-21'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Responsable de datos personales
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_transferencias aprobado y vigente.
+  - Documento aviso_privacidad aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Transferencias de datos personales».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: las transferencias
+      any:
+      - transferencia
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: privacy-encargados
+  domain: privacy
+  area: privacidad
+  title: Encargados del tratamiento
+  requirement: Los encargados deben estar identificados por contrato. El artículo
+    no se aisló.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Encargados del tratamiento» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LFPDPPP 2025 (encargados; artículo
+    no aislado)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - contrato_encargado
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf
+  source_name: LFPDPPP 2025 (encargados; artículo no aislado)
+  effective_date: '2025-03-21'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Responsable de datos personales
+  remediation_days: 45
+  evidence_expected:
+  - Documento contrato_encargado aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Encargados del tratamiento».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el encargado
+      any:
+      - encargado del tratamiento
+      - encargado
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: privacy-bitacora-arco
+  domain: privacy
+  area: privacidad
+  title: Bitácora de solicitudes ARCO
+  requirement: Debe existir una bitácora de solicitudes de derechos. No se aisló un
+    artículo que imponga el formato.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Bitácora de solicitudes ARCO» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LFPDPPP 2025 (bitácora; artículo
+    no aislado)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - bitacora_arco
+  - procedimientos_arco
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf
+  source_name: LFPDPPP 2025 (bitácora; artículo no aislado)
+  effective_date: '2025-03-21'
+  last_verified: '2026-11-06'
+  severity: low
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Responsable de datos personales
+  remediation_days: 60
+  evidence_expected:
+  - Documento bitacora_arco aprobado y vigente.
+  - Documento procedimientos_arco aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Bitácora de solicitudes ARCO».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la bitácora
+      any:
+      - bitácora
+      - bitacora
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.

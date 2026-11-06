@@ -1,0 +1,462 @@
+catalog_year: 2025
+last_verified: '2026-11-06'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- id: regulatorio-capital-minimo-udi
+  domain: regulatorio
+  area: regulatorio
+  title: Capital mínimo en UDI
+  requirement: El capital mínimo es el equivalente a 500,000 UDI si la ITF está en
+    el supuesto del art. 6 de las DCG (una sola operación en moneda nacional, con
+    el matiz del propio artículo para IFPE) y de 700,000 UDI en los supuestos del
+    art. 7. El documento debe citar uno de esos montos y no un capital inferior presentado
+    como suficiente.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Capital mínimo en UDI» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (DCG ITF arts. 6 y 7, DOF nota 5537450
+    (10-sep-2018)). No deje placeholders.
+  entity_types: &id001
+  - IFPE
+  - IFC
+  documents:
+  - politica_capital
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5537450
+  source_name: DCG ITF arts. 6 y 7, DOF nota 5537450 (10-sep-2018)
+  effective_date: '2018-09-10'
+  last_verified: '2026-11-06'
+  severity: critical
+  unverified: false
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de cumplimiento regulatorio
+  remediation_days: 15
+  evidence_expected:
+  - Documento politica_capital aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Capital mínimo en UDI».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el monto en UDI
+      any:
+      - 500,000 UDI
+      - 500000 UDI
+      - 700,000 UDI
+      - 700000 UDI
+    - type: forbidden_phrases
+      label: un capital inferior presentado como mínimo
+      any:
+      - 100,000 UDI
+      - 100000 UDI
+      - por definir
+- id: regulatorio-capital-suscrito-pagado
+  domain: regulatorio
+  area: regulatorio
+  title: Capital suscrito y pagado al cierre del año
+  requirement: El art. 8 de las DCG exige que el capital mínimo esté suscrito y pagado
+    a más tardar el último día hábil del año, con la UDI del 31 de diciembre del año
+    anterior.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Capital suscrito y pagado al cierre del año» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (DCG ITF art.
+    8, DOF nota 5537450). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_capital
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5537450
+  source_name: DCG ITF art. 8, DOF nota 5537450
+  effective_date: '2018-09-10'
+  last_verified: '2026-11-06'
+  severity: critical
+  unverified: false
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de cumplimiento regulatorio
+  remediation_days: 15
+  evidence_expected:
+  - Documento politica_capital aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Capital suscrito y pagado al cierre
+    del año».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la suscripción y pago
+      any:
+      - suscrito y pagado
+- id: regulatorio-reportes-ifpe
+  domain: regulatorio
+  area: regulatorio
+  title: Reportes regulatorios mensuales de la IFPE
+  requirement: El art. 100 identifica la serie R01 catálogo mínimo A-0111, y el art.
+    101 fracción I pide esa serie, junto con otras, dentro del mes inmediato siguiente
+    al cierre. El calendario debe nombrar el reporte y el medio SITI.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Reportes regulatorios mensuales de la IFPE» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (DCG ITF arts.
+    100 y 101, nota DOF 5555030). No deje placeholders.
+  entity_types:
+  - IFPE
+  documents:
+  - calendario_reportes_regulatorios
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF arts. 100 y 101, nota DOF 5555030
+  effective_date: '2020-01-01'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: false
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de cumplimiento regulatorio
+  remediation_days: 30
+  evidence_expected:
+  - Documento calendario_reportes_regulatorios aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Reportes regulatorios mensuales
+    de la IFPE».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el catálogo mínimo de IFPE
+      any:
+      - A-0111
+      - serie R01
+      - R01
+    - type: contains_any
+      label: el SITI
+      any:
+      - SITI
+  notes: El plazo legal es «dentro del mes inmediato siguiente», no un día fijo del
+    mes.
+- id: regulatorio-reportes-ifc
+  domain: regulatorio
+  area: regulatorio
+  title: Reportes regulatorios mensuales de la IFC
+  requirement: El art. 98 identifica la serie R01 catálogo mínimo A-0112, y el art.
+    99 fracción I pide esa serie dentro del mes inmediato siguiente al cierre.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Reportes regulatorios mensuales de la IFC» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (DCG ITF arts.
+    98 y 99, nota DOF 5555030). No deje placeholders.
+  entity_types:
+  - IFC
+  documents:
+  - calendario_reportes_regulatorios
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF arts. 98 y 99, nota DOF 5555030
+  effective_date: '2020-01-01'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: false
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de cumplimiento regulatorio
+  remediation_days: 30
+  evidence_expected:
+  - Documento calendario_reportes_regulatorios aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Reportes regulatorios mensuales
+    de la IFC».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el catálogo mínimo de IFC
+      any:
+      - A-0112
+      - serie R01
+      - R01
+    - type: contains_any
+      label: el SITI
+      any:
+      - SITI
+- id: regulatorio-siti-responsable
+  domain: regulatorio
+  area: regulatorio
+  title: Responsable de calidad y envío en el SITI
+  requirement: El art. 103 ordena transmitir los reportes por el SITI y designar,
+    por correo a cesiti@cnbv.gob.mx, a un responsable de la calidad dentro de las
+    dos jerarquías inferiores al director general o administrador único.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Responsable de calidad y envío en el SITI» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (DCG ITF art.
+    103, nota DOF 5555030). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - procedimiento_siti
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF art. 103, nota DOF 5555030
+  effective_date: '2020-01-01'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: false
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de cumplimiento regulatorio
+  remediation_days: 30
+  evidence_expected:
+  - Documento procedimiento_siti aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Responsable de calidad y envío en
+    el SITI».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el SITI
+      any:
+      - SITI
+    - type: contains_any
+      label: al responsable de calidad
+      any:
+      - cesiti@cnbv.gob.mx
+      - responsable de la calidad
+      - responsable de calidad
+- id: regulatorio-efectivo-ifpe
+  domain: regulatorio
+  area: regulatorio
+  title: Límites de efectivo de la IFPE
+  requirement: El art. 9 de las DCG sujeta la recepción de efectivo a autorización
+    y a montos que no excedan de 10,000 UDI mensuales por cliente, y la entrega de
+    efectivo a 1,500 UDI diarias por cliente, además de los niveles de cuenta de Banxico.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Límites de efectivo de la IFPE» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (DCG ITF art. 9, DOF nota 5537450).
+    No deje placeholders.
+  entity_types:
+  - IFPE
+  documents:
+  - politica_limites_operativos
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5537450
+  source_name: DCG ITF art. 9, DOF nota 5537450
+  effective_date: '2018-09-10'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: false
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de cumplimiento regulatorio
+  remediation_days: 30
+  evidence_expected:
+  - Documento politica_limites_operativos aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Límites de efectivo de la IFPE».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el tope mensual de recepción
+      any:
+      - 10,000 UDI
+      - 10000 UDI
+    - type: contains_any
+      label: el tope diario de entrega
+      any:
+      - 1,500 UDI
+      - 1500 UDI
+- id: regulatorio-apis
+  domain: regulatorio
+  area: regulatorio
+  title: Interfaces de programación (APIs) estandarizadas
+  requirement: La CNBV publicó el 4 de junio de 2020 disposiciones sobre APIs estandarizadas
+    de la LRITF. Esta ficha solo comprueba que exista una política de APIs; no se
+    leyeron los artículos de esas disposiciones.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Interfaces de programación (APIs) estandarizadas» con
+    fecha de aprobación, versión vigente y la evidencia que pide la fuente (Índice
+    CNBV Normatividad Fintech (DCG de APIs, 04-jun-2020)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_apis
+  source_url: https://www.cnbv.gob.mx/SECTORES-SUPERVISADOS/Fintech/Paginas/NORMATIVIDAD-FINTECH.aspx
+  source_name: Índice CNBV Normatividad Fintech (DCG de APIs, 04-jun-2020)
+  effective_date: '2020-06-04'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de cumplimiento regulatorio
+  remediation_days: 30
+  evidence_expected:
+  - Documento politica_apis aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Interfaces de programación (APIs)
+    estandarizadas».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: las APIs
+      any:
+      - API
+      - interfaces de programación
+  unverified_detail: Se verificó la existencia de la disposición en el índice de la
+    CNBV. No se leyó su articulado.
+- id: regulatorio-modelos-novedosos
+  domain: regulatorio
+  area: regulatorio
+  title: Expediente de Modelo Novedoso
+  requirement: Quien opere al amparo de un modelo novedoso debe conservar la autorización
+    temporal y el alcance. Los artículos del título de modelos novedosos de la LRITF
+    no se releyeron.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Expediente de Modelo Novedoso» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LRITF, modelos novedosos (artículos
+    no releídos)). No deje placeholders.
+  entity_types:
+  - modelo_novedoso
+  documents:
+  - expediente_modelo_novedoso
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: LRITF, modelos novedosos (artículos no releídos)
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de cumplimiento regulatorio
+  remediation_days: 30
+  evidence_expected:
+  - Documento expediente_modelo_novedoso aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Expediente de Modelo Novedoso».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el modelo novedoso
+      any:
+      - modelo novedoso
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: regulatorio-circular-12-2018
+  domain: regulatorio
+  area: regulatorio
+  title: Operaciones de IFPE (Circular 12/2018 de Banxico)
+  requirement: La Circular 12/2018 de Banxico, publicada en el DOF el 10 de septiembre
+    de 2018, rige operaciones de las IFPE. El manual debe citarla. Los numerales no
+    se leyeron uno por uno.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Operaciones de IFPE (Circular 12/2018 de Banxico)» con
+    fecha de aprobación, versión vigente y la evidencia que pide la fuente (Banxico,
+    Circular 12/2018). No deje placeholders.
+  entity_types:
+  - IFPE
+  documents:
+  - manual_circular_12_2018
+  source_url: https://www.banxico.org.mx/marco-normativo/normativa-emitida-por-el-banco-de-mexico/circular-12-2018/operaciones-fondos-pago-banco.html
+  source_name: Banxico, Circular 12/2018
+  effective_date: '2018-09-10'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de cumplimiento regulatorio
+  remediation_days: 30
+  evidence_expected:
+  - Documento manual_circular_12_2018 aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Operaciones de IFPE (Circular 12/2018
+    de Banxico)».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la Circular 12/2018
+      any:
+      - Circular 12/2018
+      - circular 12/2018
+  unverified_detail: Se confirmó la ficha oficial de la circular. No se leyó cada
+    numeral.
+- id: regulatorio-circular-4-2019
+  domain: regulatorio
+  area: regulatorio
+  title: 'Activos virtuales: solo operaciones internas autorizadas'
+  requirement: La disposición 3.a de la Circular 4/2019 de Banxico limita a las instituciones
+    a operaciones internas con activos virtuales, con autorización previa, y les prohíbe
+    transmitir el riesgo de esas operaciones a los clientes. No se leyó el resto de
+    la circular.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: 'Actualice «Activos virtuales: solo operaciones internas autorizadas»
+    con fecha de aprobación, versión vigente y la evidencia que pide la fuente (Banxico,
+    Circular 4/2019, disposición 3.a). No deje placeholders.'
+  entity_types: *id001
+  documents:
+  - politica_activos_virtuales
+  source_url: https://www.banxico.org.mx/ConsultaRegulacionWeb/downloadFile?fileId=%7BFA9AB39E-C67F-6D53-5733-1EBE768AEDEA%7D
+  source_name: Banxico, Circular 4/2019, disposición 3.a
+  effective_date: '2019-03-08'
+  last_verified: '2026-11-06'
+  severity: critical
+  unverified: false
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de cumplimiento regulatorio
+  remediation_days: 15
+  evidence_expected:
+  - Documento politica_activos_virtuales aprobado y vigente.
+  procedure:
+  - 'Confirmar que la entidad y el perfil activan «Activos virtuales: solo operaciones
+    internas autorizadas».'
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la operación interna
+      any:
+      - operación interna
+      - operacion interna
+    - type: contains_any
+      label: la no transmisión del riesgo al cliente
+      any:
+      - no transmitir el riesgo
+      - no se transmite el riesgo
+  applies_if: operates_virtual_assets
+  notes: Se leyó la disposición 3.a en el PDF oficial. El resto de la circular no
+    se lineó.

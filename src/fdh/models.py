@@ -10,10 +10,19 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 
 Severity = Literal["critical", "high", "medium", "low", "info"]
 Status = Literal["pass", "fail", "not_applicable", "unclear"]
-CheckType = Literal["contains_all_groups", "contains_any", "forbidden_phrases", "regex"]
+CheckType = Literal[
+    "contains_all_groups",
+    "contains_any",
+    "forbidden_phrases",
+    "regex",
+    "each_document_contains_any",
+    "each_document_forbidden",
+]
+Strictness = Literal["standard", "high", "max"]
 
 SEVERITY_RANK = {"critical": 0, "high": 1, "medium": 2, "low": 3, "info": 4}
 SEVERITY_WEIGHT = {"critical": 5, "high": 3, "medium": 2, "low": 1, "info": 0}
+STRICTNESS_RANK = {"standard": 0, "high": 1, "max": 2}
 
 PROFILE_FLAGS = (
     "operates_virtual_assets",
@@ -21,7 +30,50 @@ PROFILE_FLAGS = (
     "transports_goods",
     "is_technological_platform_tax_regime",
     "provides_digital_services_liva",
+    "processes_cards",
+    "participates_spei",
+    "uses_specialized_services",
+    "offers_credit",
+    "offers_yield",
+    "has_related_parties_abroad",
 )
+
+AREAS = (
+    "legal",
+    "regulatorio",
+    "financiero",
+    "fiscal",
+    "pld",
+    "ciberseguridad",
+    "privacidad",
+    "condusef",
+    "riesgos",
+    "operacion",
+    "laboral",
+    "metodologia",
+    "meta",
+)
+
+DOMAIN_AREA = {
+    "privacy": "privacidad",
+    "lritf": "regulatorio",
+    "banxico": "regulatorio",
+    "cnbv": "regulatorio",
+    "pld": "pld",
+    "condusef": "condusef",
+    "sat": "fiscal",
+    "meta": "meta",
+    "legal": "legal",
+    "regulatorio": "regulatorio",
+    "financiero": "financiero",
+    "fiscal": "fiscal",
+    "ciberseguridad": "ciberseguridad",
+    "privacidad": "privacidad",
+    "riesgos": "riesgos",
+    "operacion": "operacion",
+    "laboral": "laboral",
+    "metodologia": "metodologia",
+}
 
 # Entity implications: auditing an IFPE also runs rules aimed at ITF and
 # fintech_general. IFC-only rules (LIF 2026 retenciones) stay out of an IFPE run.
@@ -33,6 +85,10 @@ ENTITY_IMPLIES: dict[str, set[str]] = {
     "AV_exchange_non_ef": {"AV_exchange_non_ef", "fintech_general"},
     "plataforma_tecnologica": {"plataforma_tecnologica", "fintech_general"},
     "servicios_digitales": {"servicios_digitales", "fintech_general"},
+    "SOFOM_ENR": {"SOFOM_ENR", "fintech_general"},
+    "transmisor_dinero": {"transmisor_dinero", "fintech_general"},
+    "asesor_inversion": {"asesor_inversion", "fintech_general"},
+    "modelo_novedoso": {"modelo_novedoso", "fintech_general"},
     "tool": {"tool"},
 }
 
@@ -47,6 +103,14 @@ ENTITY_ALIASES = {
     "plataforma_tecnologica": "plataforma_tecnologica",
     "plataforma": "plataforma_tecnologica",
     "servicios_digitales": "servicios_digitales",
+    "sofom_enr": "SOFOM_ENR",
+    "sofom": "SOFOM_ENR",
+    "transmisor_dinero": "transmisor_dinero",
+    "transmisor": "transmisor_dinero",
+    "asesor_inversion": "asesor_inversion",
+    "asesor": "asesor_inversion",
+    "modelo_novedoso": "modelo_novedoso",
+    "modelo": "modelo_novedoso",
     "tool": "tool",
 }
 
@@ -86,7 +150,13 @@ class Check(BaseModel):
     def shape(self) -> Check:
         if self.type == "contains_all_groups" and not self.groups:
             raise ValueError("contains_all_groups requiere groups")
-        if self.type in {"contains_any", "forbidden_phrases"} and not self.any:
+        needs_any = {
+            "contains_any",
+            "forbidden_phrases",
+            "each_document_contains_any",
+            "each_document_forbidden",
+        }
+        if self.type in needs_any and not self.any:
             raise ValueError(f"{self.type} requiere any")
         if self.type == "regex":
             if not self.pattern:
@@ -120,11 +190,20 @@ class Rule(BaseModel):
     last_verified: date
     severity: Severity
     unverified: bool = False
+    verified: bool | None = None
     unverified_detail: str | None = None
     supersedes: str | None = None
     applies_if: str | None = None
     notes: str | None = None
     diff_note: str | None = None
+    area: str | None = None
+    min_strictness: Strictness = "standard"
+    binding: bool = True
+    owner_role: str = "Responsable de cumplimiento"
+    remediation_days: int = 30
+    evidence_expected: list[str] = Field(default_factory=list)
+    procedure: list[str] = Field(default_factory=list)
+    frameworks: list[str] = Field(default_factory=list)
     matcher: Matcher
 
     @field_validator("id")
@@ -165,17 +244,43 @@ class Rule(BaseModel):
             raise ValueError("fix_suggestion debe ser concreto")
         return value.strip()
 
+    @field_validator("area")
+    @classmethod
+    def known_area(cls, value: str | None) -> str | None:
+        if value is not None and value not in AREAS:
+            raise ValueError(f"area desconocida: {value}")
+        return value
+
+    @field_validator("domain")
+    @classmethod
+    def known_domain(cls, value: str) -> str:
+        if value not in DOMAIN_AREA:
+            raise ValueError(f"domain desconocido: {value}")
+        return value
+
     @model_validator(mode="after")
     def flags(self) -> Rule:
+        if self.verified is False:
+            self.unverified = True
+        elif self.verified is True:
+            self.unverified = False
+        self.verified = not self.unverified
         if self.unverified and not (self.unverified_detail and self.unverified_detail.strip()):
             raise ValueError(f"{self.id}: unverified requiere unverified_detail")
         if self.applies_if and self.applies_if not in PROFILE_FLAGS:
             raise ValueError(f"{self.id}: applies_if desconocido: {self.applies_if}")
+        if self.area is None:
+            self.area = DOMAIN_AREA[self.domain]
+        if self.remediation_days < 1:
+            raise ValueError(f"{self.id}: remediation_days debe ser positivo")
         return self
 
     def applies_to_entity(self, entity: str) -> bool:
         implied = ENTITY_IMPLIES.get(entity, {entity})
         return bool(set(self.entity_types) & implied)
+
+    def enabled_at(self, strictness: str) -> bool:
+        return STRICTNESS_RANK[strictness] >= STRICTNESS_RANK[self.min_strictness]
 
 
 class CatalogFile(BaseModel):
@@ -222,11 +327,25 @@ class Finding(BaseModel):
     unverified_detail: str | None = None
     notes: str | None = None
     origin: list[str] = Field(default_factory=lambda: ["deterministic"])
+    area: str = ""
+    binding: bool = True
+    verified: bool = True
+    condition: str = ""
+    criterion: str = ""
+    cause: str = ""
+    effect: str = ""
+    recommendation: str = ""
+    evidence_required: list[str] = Field(default_factory=list)
+    suggested_owner: str = ""
+    suggested_deadline: str = ""
+    confidence: float | None = None
+    source: Literal["deterministic", "llm", "mixed"] = "deterministic"
 
 
 class ScoreCard(BaseModel):
     overall: float | None
     by_domain: dict[str, float | None]
+    by_area: dict[str, float | None] = Field(default_factory=dict)
     weights: dict[str, int]
 
 
@@ -247,6 +366,13 @@ class AuditReport(BaseModel):
     findings: list[Finding]
     rejected_llm_findings: list[dict[str, str]] = Field(default_factory=list)
     omitted_rules: list[dict[str, str]] = Field(default_factory=list)
+    strictness: Strictness = "max"
+    phases: list[dict[str, str]] = Field(default_factory=list)
+    inventory: list[dict[str, object]] = Field(default_factory=list)
+    remediation: list[dict[str, object]] = Field(default_factory=list)
+    opinion: dict[str, object] = Field(default_factory=dict)
+    comparison: list[dict[str, object]] = Field(default_factory=list)
+    heatmap: dict[str, dict[str, object]] = Field(default_factory=dict)
 
 
 class Profile(BaseModel):
@@ -257,6 +383,13 @@ class Profile(BaseModel):
     transports_goods: bool = False
     is_technological_platform_tax_regime: bool = False
     provides_digital_services_liva: bool = False
+    processes_cards: bool = False
+    participates_spei: bool = False
+    uses_specialized_services: bool = False
+    offers_credit: bool = False
+    offers_yield: bool = False
+    has_related_parties_abroad: bool = False
+    strictness: Strictness = "max"
 
     @field_validator("entity_type")
     @classmethod

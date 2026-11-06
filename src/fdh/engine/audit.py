@@ -10,6 +10,17 @@ from fdh.catalog import load_catalog
 from fdh.disclaimer import DISCLAIMER_EN, DISCLAIMER_ES
 from fdh.engine.matchers import evaluate_rule
 from fdh.engine.scoring import score_findings
+from fdh.engine.workflow import (
+    apply_evidence,
+    build_heatmap,
+    build_inventory,
+    build_opinion,
+    build_phases,
+    build_remediation,
+    compare_with,
+    decorate,
+    summary_extras,
+)
 from fdh.ingest.loaders import load_documents
 from fdh.models import (
     SEVERITY_RANK,
@@ -27,6 +38,9 @@ def run_audit(
     rules_dir: Path | None = None,
     use_llm: bool = False,
     generated_at: datetime | None = None,
+    evidence: dict[str, str] | None = None,
+    previous: dict | None = None,
+    adversarial: bool = False,
 ) -> AuditReport:
     rules = load_catalog(profile.year, rules_dir)
     llm_client = None
@@ -45,15 +59,26 @@ def run_audit(
         extra_types=extra,
     )
     findings, omitted = _deterministic(rules, documents, profile)
+    if evidence:
+        apply_evidence(findings, evidence)
     if llm_client is not None:
         from fdh.llm.reviewer import review_documents
 
-        findings, rejected = review_documents(llm_client, rules, documents, findings)
+        findings, rejected = review_documents(
+            llm_client, rules, documents, findings, adversarial=adversarial
+        )
     findings.sort(key=lambda item: (SEVERITY_RANK[item.severity], item.domain, item.rule_id))
-    summary = _summary(findings)
+    summary = summary_extras(findings, _summary(findings))
     summary["omitted"] = len(omitted)
     summary["unverified"] = sum(1 for item in findings if item.unverified)
     summary["documents"] = len(documents)
+    scores = score_findings(findings)
+    inventory = build_inventory(rules, documents, profile)
+    remediation = build_remediation(findings)
+    opinion = build_opinion(summary, scores.overall)
+    phases = build_phases(profile, inventory, summary)
+    heatmap = build_heatmap(findings, scores.by_area)
+    comparison = compare_with(previous, findings) if previous else []
     return AuditReport(
         tool="fintech-documentation-help",
         version=__version__,
@@ -66,11 +91,18 @@ def run_audit(
         llm_note=llm_note,
         profile=profile.model_dump(mode="json"),
         documents=documents,
-        scores=score_findings(findings),
+        scores=scores,
         summary=summary,
         findings=findings,
         rejected_llm_findings=rejected,
         omitted_rules=omitted,
+        strictness=profile.strictness,
+        phases=phases,
+        inventory=inventory,
+        remediation=remediation,
+        opinion=opinion,
+        comparison=comparison,
+        heatmap=heatmap,
     )
 
 
@@ -100,6 +132,17 @@ def _deterministic(
                 }
             )
             continue
+        if not rule.enabled_at(profile.strictness):
+            omitted.append(
+                {
+                    "id": rule.id,
+                    "reason": (
+                        f"La regla pide estrictez {rule.min_strictness} y el perfil está en "
+                        f"{profile.strictness}."
+                    ),
+                }
+            )
+            continue
         if rule.applies_if and not profile.flag(rule.applies_if):
             findings.append(_finding(rule, "not_applicable", _na_message(rule), None, None))
             continue
@@ -123,7 +166,7 @@ def _finding(
     evidence: str | None,
     document: str | None,
 ) -> Finding:
-    return Finding(
+    finding = Finding(
         rule_id=rule.id,
         status=status,  # type: ignore[arg-type]
         severity=rule.severity,
@@ -141,7 +184,12 @@ def _finding(
         unverified=rule.unverified,
         unverified_detail=rule.unverified_detail,
         notes=rule.notes,
+        area=rule.area or "",
+        binding=rule.binding,
+        verified=not rule.unverified,
     )
+    decorate(rule, finding)
+    return finding
 
 
 def _summary(findings: list[Finding]) -> dict[str, int]:
