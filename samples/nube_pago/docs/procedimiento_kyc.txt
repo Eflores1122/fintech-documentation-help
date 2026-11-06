@@ -1,0 +1,9 @@
+DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada.
+
+PROCEDIMIENTO DE IDENTIFICACIÓN Y CONOCIMIENTO DEL CLIENTE (KYC)
+
+Tipos de cliente: persona física nacional, persona física extranjera y persona moral.
+Documentos: identificación oficial vigente, CURP, RFC y comprobante de domicilio.
+La actividad económica y la geografía (zona) se registran en el expediente.
+La documentación de identidad se resguarda con acceso restringido.
+Este procedimiento de identificación aplica solo a la entidad ficticia Nube Pago.

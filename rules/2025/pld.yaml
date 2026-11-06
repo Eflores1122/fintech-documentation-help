@@ -1,0 +1,345 @@
+catalog_year: 2025
+last_verified: '2026-11-05'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- last_verified: '2026-11-05'
+  id: pld-manual-art58
+  domain: pld
+  title: Manual de medidas y procedimientos PLD/FT (art. 58)
+  requirement: Las medidas y procedimientos para prevenir y detectar actos de los arts. 139 Quáter o 400 Bis del Código Penal Federal deben constar en un documento presentado a la CNBV conforme a las DCG del art. 58.
+  check_hint: "El manual PLD/FT debe tener fecha, versión, alcance y el fundamento del art. 58, y no permanecer como borrador no presentado."
+  fix_suggestion: "Cierre una versión del manual PLD/FT con fundamento en el art. 58 de la LRITF y regístrela como presentada a la CNBV, con fecha y alcance de productos."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - manual_pld_ft
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 58-I; DCG SIDOF 5537449
+  effective_date: '2018-09-10'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el alcance PLD/FT
+      any:
+      - PLD
+      - lavado de dinero
+      - financiamiento al terrorismo
+    - type: contains_any
+      label: el fundamento del artículo 58
+      any:
+      - artículo 58
+      - articulo 58
+      - art. 58
+    - type: forbidden_phrases
+      label: un manual no presentado a la autoridad
+      any:
+      - no ha sido presentado
+      - pendiente de presentar
+- last_verified: '2026-11-05'
+  id: pld-metodologia-riesgos
+  domain: pld
+  title: Metodología de evaluación de riesgos PLD/FT
+  requirement: "Diseñar e implementar una metodología de evaluación de riesgos por productos, servicios, prácticas o tecnologías, con resultados a disposición de la Secretaría y de la CNBV."
+  check_hint: Puede ser un documento propio o una sección del manual. Debe describir la metodología o el enfoque basado en riesgos.
+  fix_suggestion: "Documente la metodología de evaluación de riesgos (enfoque basado en riesgos) por producto, cliente, zona y canal, y conserve los resultados."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - metodologia_riesgos_pld
+  - matriz_riesgos_pld
+  - manual_pld_ft
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 58-I
+  effective_date: '2018-09-10'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la metodología de riesgos PLD/FT
+      any:
+      - enfoque basado en riesgos
+      - enfoque basado en riesgo
+      - metodología de riesgos
+      - metodologia de riesgos
+      - evaluación de riesgos
+      - evaluacion de riesgos
+      - metodología de evaluación
+- last_verified: '2026-11-05'
+  id: pld-reportes-roi-ror-rop
+  domain: pld
+  title: "Reportes de operaciones relevantes, inusuales e internas preocupantes"
+  requirement: "Presentar a la Secretaría, por conducto de la CNBV, reportes que cubran al menos operaciones relevantes, internas preocupantes e inusuales, además de transferencias internacionales y efectivo en moneda extranjera, conforme a las DCG."
+  check_hint: El procedimiento debe nombrar las tres categorías.
+  fix_suggestion: "Describa la dictaminación y el envío, vía CNBV, de operaciones relevantes, inusuales e internas preocupantes, con los plazos de cada una."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - manual_pld_ft
+  - procedimiento_reportes_uif
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 58-II
+  effective_date: '2018-09-10'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Operaciones relevantes
+        any:
+        - operaciones relevantes
+        - reportes relevantes
+        - reporte relevante
+      - name: Operaciones inusuales
+        any:
+        - operaciones inusuales
+        - reporte inusual
+        - operación inusual
+        - operacion inusual
+      - name: Operaciones internas preocupantes
+        any:
+        - preocupantes
+        - internas preocupantes
+- last_verified: '2026-11-05'
+  id: pld-kyc-identificacion
+  domain: pld
+  title: Conocimiento e identificación de clientes
+  requirement: "Definir criterios de conocimiento del cliente (antecedentes, actividad, zonas) y la información y documentación que acredite la identidad, con resguardo seguro."
+  check_hint: El manual de KYC o de alta debe traer tipología de clientes y documentos requeridos.
+  fix_suggestion: "Documente, por tipo de cliente, la identificación exigida, la actividad y la zona, y el resguardo del expediente."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - manual_pld_ft
+  - politica_kyc
+  - procedimiento_onboarding
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 58 (lineamientos de conocimiento del cliente)
+  effective_date: '2018-09-10'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Conocimiento del cliente
+        any:
+        - conocimiento del cliente
+        - KYC
+        - identificación del cliente
+        - identificacion del cliente
+      - name: Identidad
+        any:
+        - identificación oficial
+        - identificacion oficial
+        - identidad
+      - name: Actividad o zona
+        any:
+        - actividad
+        - zona
+        - geografía
+        - geografia
+      - name: Resguardo
+        any:
+        - resguardo
+        - expediente
+        - acceso restringido
+- last_verified: '2026-11-05'
+  id: pld-oficial-cumplimiento-certificado
+  domain: pld
+  title: Oficial de cumplimiento y comité de comunicación y control
+  requirement: Debe existir un comité de comunicación y control y un oficial de cumplimiento. El oficial y quien haga la revisión anual deben obtener la certificación del art. 4 fr. X de la Ley de la CNBV.
+  check_hint: Nombramiento y evidencia de certificación CNBV. Un puesto vacante o sin certificación no cumple.
+  fix_suggestion: "Designe al oficial de cumplimiento y al comité, y conserve la constancia de certificación CNBV del oficial y del revisor anual. Un puesto vacante no sustituye el nombramiento."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - manual_pld_ft
+  - nombramiento_oficial_cumplimiento
+  - organigrama
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 58
+  effective_date: '2018-09-10'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Oficial de cumplimiento
+        any:
+        - oficial de cumplimiento
+      - name: Comité de comunicación y control
+        any:
+        - comité de comunicación y control
+        - comite de comunicacion y control
+      - name: Certificación
+        any:
+        - certificación CNBV
+        - certificacion CNBV
+        - certificado por la CNBV
+        - certificación prevista
+    - type: forbidden_phrases
+      label: un oficial vacante o sin certificación
+      any:
+      - vacante
+      - no cuenta con certificación
+      - no cuenta con certificacion
+      - sin certificación
+      - sin certificacion
+      - no certificado
+      - no certificada
+- last_verified: '2026-11-05'
+  id: pld-auditoria-anual
+  domain: pld
+  title: Revisión anual de la efectividad PLD/FT
+  requirement: "Revisión anual, por auditoría interna o por un tercero independiente, de la efectividad del cumplimiento de las DCG del art. 58."
+  check_hint: Debe existir el informe de auditoría PLD del año en curso o del inmediato anterior. Una mención dentro del manual no sustituye el informe.
+  fix_suggestion: "Encargue y archive el informe anual de efectividad PLD/FT, emitido por auditoría interna o por un tercero independiente certificado."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - informe_auditoria_pld
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 58; lineamientos CNBV 18-oct-2021 (índice Normatividad Fintech)
+  effective_date: '2018-09-10'
+  severity: high
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el informe de auditoría
+      any:
+      - informe de auditoría
+      - informe de auditoria
+      - revisión anual
+      - revision anual
+- last_verified: '2026-11-05'
+  id: pld-lista-bloqueados
+  domain: pld
+  title: Suspensión inmediata por lista de personas bloqueadas
+  requirement: "Suspender de forma inmediata los actos, operaciones o servicios con clientes que figuren en la lista de personas bloqueadas que informe la Secretaría."
+  check_hint: El procedimiento de screening y de suspensión debe estar documentado.
+  fix_suggestion: Documente la consulta de la lista de personas bloqueadas y la suspensión inmediata de operaciones cuando haya coincidencia.
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - manual_pld_ft
+  - procedimiento_lista_bloqueados
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 58
+  effective_date: '2018-09-10'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la lista de personas bloqueadas
+      any:
+      - personas bloqueadas
+      - lista de personas bloqueadas
+      - lista de bloqueados
+- last_verified: '2026-11-05'
+  id: pld-retencion-10-anos
+  domain: pld
+  title: Conservación de expedientes KYC y reportes PLD por al menos 10 años
+  requirement: Conservar al menos diez años la información y documentación de identificación de clientes y de los actos u operaciones reportados.
+  check_hint: La política de retención PLD debe decir al menos 10 años.
+  fix_suggestion: Corrija el plazo de conservación de expedientes de identificación y de reportes PLD a un mínimo de diez años.
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - manual_pld_ft
+  - politica_retencion_documental
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 58
+  effective_date: '2018-09-10'
+  severity: high
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la conservación de diez años
+      any:
+      - diez años
+      - 10 años
+      - 10 (diez) años
+- last_verified: '2026-11-05'
+  id: pld-dcg-art58-fuente
+  domain: pld
+  title: Anclar los controles a las DCG del art. 58
+  requirement: "El manual debe alinearse a las Disposiciones de carácter general del artículo 58 de la LRITF, publicadas el 10 de septiembre de 2018, y a sus modificaciones."
+  check_hint: Las citas del manual deben incluir las DCG del art. 58 o el identificador SIDOF 5537449.
+  fix_suggestion: "Cite en el manual las DCG del art. 58 de la LRITF (SIDOF 5537449, 10 de septiembre de 2018) y las modificaciones que les apliquen."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - manual_pld_ft
+  source_url: "https://sidof.segob.gob.mx/notas/5537449"
+  source_name: DCG art. 58 LRITF (10-sep-2018)
+  effective_date: '2018-09-10'
+  severity: medium
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Artículo 58
+        any:
+        - artículo 58
+        - articulo 58
+        - art. 58
+      - name: Disposiciones de carácter general
+        any:
+        - '5537449'
+        - disposiciones de carácter general
+        - disposiciones de caracter general
+        - DCG
+- last_verified: '2026-11-05'
+  id: lfpiorpi-2025-manual-rba-av
+  domain: pld
+  title: "Reforma LFPIORPI 2025 — beneficiario controlador, UMA y manual"
+  requirement: "La reforma publicada el 16 de julio de 2025 redefine al beneficiario controlador, sustituye umbrales por UMA, exige identificación directa, manual de políticas, enfoque basado en riesgos, monitoreo automatizado, capacitación y auditoría, y conserva la información diez años. Es relevante para quien intercambie activos virtuales fuera de una entidad financiera y como contexto de las entidades del art. 58 de la LRITF."
+  check_hint: "Verificar beneficiario controlador, UMA y el manual actualizado después de la reforma. Las fracciones VII a XI del art. 18 entran según reglas secundarias."
+  fix_suggestion: "Actualice el manual con la reforma del 16 de julio de 2025: beneficiario controlador, umbrales en UMA, monitoreo automatizado y el régimen de actividades vulnerables si la entidad o una filial entra en ese supuesto."
+  entity_types:
+  - IFPE
+  - IFC
+  - AV_exchange_non_ef
+  documents:
+  - manual_pld_ft
+  - politica_beneficiario_controlador
+  - matriz_riesgos_pld
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/ref/lfpiorpi/LFPIORPI_ref03_16jul25.pdf"
+  source_name: LFPIORPI reforma DOF 16-jul-2025
+  effective_date: '2025-07-17'
+  severity: high
+  notes: Las fracciones VII a XI del art. 18 entran según las reglas secundarias (transitorio tercero). No se adelantan aquí plazos que el decreto condiciona.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Beneficiario controlador
+        any:
+        - beneficiario controlador
+      - name: Reforma o actividades vulnerables
+        any:
+        - LFPIORPI
+        - actividades vulnerables
+      - name: UMA o monitoreo automatizado
+        any:
+        - UMA
+        - monitoreo automatizado

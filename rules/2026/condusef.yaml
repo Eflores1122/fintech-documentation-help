@@ -1,0 +1,241 @@
+catalog_year: 2026
+last_verified: '2026-11-05'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- last_verified: '2026-11-05'
+  id: condusef-reca-inscripcion-previa
+  domain: condusef
+  title: Inscripción RECA previa al uso de contratos de adhesión
+  requirement: "Inscribir en el RECA, antes de usarlos, todos los modelos de contratos de adhesión y sus anexos. El contrato y la carátula deben señalar el número de inscripción vigente y completo."
+  check_hint: Buscar RECA más un número. Fallar si falta o si dice que la inscripción está pendiente.
+  fix_suggestion: Inscriba el contrato en el RECA antes de usarlo e imprima el número completo y vigente en el contrato y en la carátula. Quite la leyenda de inscripción pendiente.
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - contrato_adhesion
+  - caratula
+  source_url: "https://sidof.segob.gob.mx/notas/docFuente/5565233"
+  source_name: Disposiciones CONDUSEF ITF arts. 31–32
+  effective_date: '2019-06-28'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: regex
+      label: un número de inscripción RECA
+      pattern: "(?i)RECA[^\\n]{0,80}\\d{3,}\\s*-\\s*\\d{2,}"
+      expect: match
+    - type: regex
+      label: una inscripción RECA pendiente
+      pattern: "(?i)(inscripci[oó]n\\s+pendiente|RECA[^\\n]{0,40}pendiente)"
+      expect: no_match
+- last_verified: '2026-11-05'
+  id: condusef-consentimiento-expreso
+  domain: condusef
+  title: Consentimiento expreso — prohibido el tácito en contratos
+  requirement: "La formalización usa firma electrónica avanzada, firma autógrafa digitalizada u otra autenticación del art. 56 de la LRITF. El consentimiento tácito está prohibido."
+  check_hint: Fallar si el contrato se tiene por aceptado al continuar navegando o por consentimiento tácito.
+  fix_suggestion: "Elimine la aceptación por seguir navegando o por consentimiento tácito, y describa la firma electrónica, la firma autógrafa digitalizada o la autenticación del art. 56 de la LRITF."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - contrato_adhesion
+  - terminos_plataforma
+  - flujo_onboarding
+  source_url: "https://sidof.segob.gob.mx/notas/docFuente/5565233"
+  source_name: Disposiciones CONDUSEF ITF art. 8
+  effective_date: '2019-06-28'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: regex
+      label: la forma de consentimiento expreso
+      pattern: "(?i)(firma electr[oó]nica|\\bFEA\\b|firma aut[oó]grafa|autenticaci[oó]n)"
+      expect: match
+    - type: regex
+      label: un consentimiento tácito o la aceptación al continuar navegando
+      pattern: "(?i)(continuar navegando|consentimiento t[aá]cito)"
+      expect: no_match
+- last_verified: '2026-11-05'
+  id: condusef-caratula-leyendas
+  domain: condusef
+  title: Carátula con leyendas de advertencia
+  requirement: "Cada producto lleva carátula con el formato de los anexos y las leyendas aplicables: recursos no garantizados, rendimientos estimados cuando existan, y, para IFPE, la aclaración sobre rendimientos."
+  check_hint: Verificar las leyendas del art. 7 fracción IV según el producto.
+  fix_suggestion: Arme la carátula con la leyenda de recursos no garantizados por el Gobierno Federal y la aclaración de rendimientos que corresponda al producto.
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - caratula
+  source_url: "https://sidof.segob.gob.mx/notas/docFuente/5565233"
+  source_name: Disposiciones CONDUSEF ITF art. 7
+  effective_date: '2019-06-28'
+  severity: high
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Leyenda de no garantía
+        any:
+        - gobierno federal no
+        - no se encuentran garantizados
+        - ni las entidades paraestatales
+        - no garantiza los recursos
+        - no podrán responsabilizarse
+        - no podran responsabilizarse
+        - no están garantizados por el gobierno
+        - no estan garantizados por el gobierno
+        - no garantiza ni se responsabiliza
+      - name: Aclaración de rendimientos
+        any:
+        - rendimiento
+        - rendimientos
+        - no genera rendimientos
+        - sin rendimientos
+- last_verified: '2026-11-05'
+  id: condusef-une
+  domain: condusef
+  title: UNE — datos de contacto en el contrato y en la plataforma
+  requirement: "El contrato debe incluir los datos de la Unidad Especializada (correo y, en su caso, teléfono) para consultas, reclamaciones y aclaraciones. La plataforma también."
+  check_hint: "Buscar Unidad Especializada o UNE, con un medio de contacto."
+  fix_suggestion: "Agregue en el contrato y en la plataforma el nombre de la Unidad Especializada, su correo y, si existe, el teléfono."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - contrato_adhesion
+  - caratula
+  - website
+  - terminos_plataforma
+  source_url: "https://sidof.segob.gob.mx/notas/docFuente/5565233"
+  source_name: Disposiciones CONDUSEF ITF art. 6-VII
+  effective_date: '2019-06-28'
+  severity: high
+  matcher:
+    require_document: true
+    checks:
+    - type: regex
+      label: la Unidad Especializada de atención a usuarios
+      pattern: "(?i)(unidad especializada|\\bUNE\\b)"
+      expect: match
+- last_verified: '2026-11-05'
+  id: condusef-reus-publicidad
+  domain: condusef
+  title: REUS y consentimiento independiente para publicidad
+  requirement: La publicidad requiere autorización expresa e independiente del contrato. No se usa información de usuarios inscritos en el REUS salvo autorización posterior a esa inscripción.
+  check_hint: Debe existir la consulta al REUS y un consentimiento de publicidad separado del contrato.
+  fix_suggestion: Documente la consulta al REUS antes de enviar publicidad y separe el consentimiento publicitario de la aceptación del contrato.
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - politica_publicidad
+  - procedimiento_reus
+  - contrato_adhesion
+  source_url: "https://sidof.segob.gob.mx/notas/docFuente/5565233"
+  source_name: Disposiciones CONDUSEF ITF art. 11
+  effective_date: '2019-06-28'
+  severity: high
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el REUS
+      any:
+      - REUS
+    - type: contains_any
+      label: el consentimiento de publicidad separado del contrato
+      any:
+      - consentimiento independiente
+      - autorización expresa para publicidad
+      - autorizacion expresa para publicidad
+      - consentimiento para publicidad
+      - consentimiento de publicidad
+- last_verified: '2026-11-05'
+  id: condusef-terminos-plataforma
+  domain: condusef
+  title: Términos y condiciones de uso de la plataforma
+  requirement: "Los términos explican usos y restricciones, la responsabilidad sobre claves y el procedimiento por robo, extravío u olvido, los horarios, los medios de continuidad ante fallas y el aviso a CONDUSEF cuando una falla dure 24 horas o más."
+  check_hint: "Deben constar las claves, los horarios, la continuidad y el aviso a suptech@condusef.gob.mx."
+  fix_suggestion: "Complete los términos con el uso de claves y el procedimiento por robo o extravío, los horarios, la continuidad ante fallas y el aviso a CONDUSEF (suptech@condusef.gob.mx) si la falla dura 24 horas o más."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - terminos_plataforma
+  - plan_continuidad
+  source_url: "https://sidof.segob.gob.mx/notas/docFuente/5565233"
+  source_name: Disposiciones CONDUSEF ITF art. 3
+  effective_date: '2019-06-28'
+  severity: medium
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Usos de la plataforma
+        any:
+        - uso de la plataforma
+        - restricción
+        - restriccion
+        - restricciones
+      - name: "Claves, robo o extravío"
+        any:
+        - contraseña
+        - contrasena
+        - extravío
+        - extravio
+        - claves de acceso
+        - olvido de la clave
+        - robo de la clave
+      - name: Horarios
+        any:
+        - horario
+      - name: Fallas o continuidad
+        any:
+        - falla
+        - continuidad
+      - name: Aviso a CONDUSEF por fallas prolongadas
+        any:
+        - "suptech@condusef.gob.mx"
+        - notificar a la condusef
+        - notificar a condusef
+        - avisar a la condusef
+- last_verified: '2026-11-05'
+  id: condusef-comisiones-plataforma
+  domain: condusef
+  title: Comisiones publicadas antes de operar
+  requirement: "Los conceptos, montos y la periodicidad de las comisiones deben estar disponibles antes de operar, con consentimiento previo al cobro."
+  check_hint: La sección de comisiones debe ser congruente con el contrato.
+  fix_suggestion: "Publique concepto, monto y periodicidad de cada comisión, y recabe el consentimiento del cliente antes de cobrarla."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - listado_comisiones
+  - website
+  - contrato_adhesion
+  source_url: "https://sidof.segob.gob.mx/notas/docFuente/5565233"
+  source_name: Disposiciones CONDUSEF ITF arts. 33–34
+  effective_date: '2019-06-28'
+  severity: medium
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Comisiones
+        any:
+        - comisión
+        - comision
+        - comisiones
+      - name: Monto o periodicidad
+        any:
+        - monto
+        - periodicidad
+        - pesos

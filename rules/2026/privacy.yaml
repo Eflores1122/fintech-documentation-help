@@ -1,0 +1,264 @@
+catalog_year: 2026
+last_verified: '2026-11-05'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- last_verified: '2026-11-05'
+  id: privacy-aviso-art15-elementos
+  domain: privacy
+  title: Aviso de privacidad — elementos mínimos art. 15 LFPDPPP 2025
+  requirement: "El aviso debe contener al menos: (I) identidad y domicilio del responsable; (II) datos personales tratados, identificando sensibles; (III) finalidades, distinguiendo las que requieren consentimiento; (IV) opciones/medios para limitar uso o divulgación; (V) mecanismos ARCO; (VI) procedimiento y medio para comunicar cambios al aviso."
+  check_hint: Fallar si falta cualquiera de los elementos I–VI. Las finalidades deben distinguir las que requieren consentimiento.
+  fix_suggestion: "Reescriba el aviso con seis apartados explícitos. En finalidades separe las que requieren consentimiento de las que no, y agregue cómo se comunicarán los cambios al aviso."
+  entity_types:
+  - IFPE
+  - IFC
+  - ITF
+  - fintech_general
+  documents:
+  - aviso_privacidad
+  - aviso_privacidad_integral
+  - aviso_privacidad_simplificado
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf"
+  source_name: LFPDPPP art. 15 (DOF 20-mar-2025)
+  effective_date: '2025-03-21'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: I. Identidad y domicilio del responsable
+        all:
+        - domicilio
+        any:
+        - responsable
+        - razón social
+        - razon social
+      - name: "II. Datos personales tratados, identificando sensibles"
+        all:
+        - datos personales
+        any:
+        - sensible
+        - sensibles
+      - name: III. Finalidades que distinguen las que requieren consentimiento
+        all:
+        - finalidad
+        any:
+        - requieren consentimiento
+        - requiere consentimiento
+        - no requieren consentimiento
+        - que requieren consentimiento
+      - name: IV. Opciones para limitar el uso o divulgación
+        any:
+        - limitar el uso
+        - limitar el tratamiento
+        - dejar de recibir
+        - revocar el consentimiento
+      - name: V. Mecanismos para ejercer derechos ARCO
+        any:
+        - ARCO
+        - "acceso, rectificación"
+        - "acceso, rectificacion"
+      - name: VI. Medio para comunicar cambios al aviso
+        any:
+        - cambios al aviso
+        - cambios a este aviso
+        - modificaciones al aviso
+        - actualizaciones al aviso
+        - comunicar los cambios
+        - se comunicarán los cambios
+        - se comunicaran los cambios
+- last_verified: '2026-11-05'
+  id: privacy-no-citar-inai
+  domain: privacy
+  title: No citar al INAI como autoridad vigente
+  requirement: "Tras la LFPDPPP 2025, la autoridad es la Secretaría Anticorrupción y Buen Gobierno. Documentos que indiquen al INAI como autoridad garante vigente están desactualizados."
+  check_hint: "must_not_contain como autoridad: INAI, Instituto Nacional de Transparencia. Sugerir Secretaría Anticorrupción y Buen Gobierno."
+  fix_suggestion: Sustituya toda referencia al INAI como autoridad vigente por la Secretaría Anticorrupción y Buen Gobierno y cite la LFPDPPP publicada el 20 de marzo de 2025.
+  entity_types:
+  - IFPE
+  - IFC
+  - ITF
+  - fintech_general
+  documents:
+  - aviso_privacidad
+  - politicas_datos
+  - procedimientos_arco
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf"
+  source_name: "LFPDPPP arts. 2-XV, 38–39; Transitorios DOF 20-mar-2025"
+  effective_date: '2025-03-21'
+  severity: high
+  matcher:
+    require_document: true
+    checks:
+    - type: forbidden_phrases
+      label: al INAI o al Instituto Nacional de Transparencia como autoridad vigente
+      any:
+      - INAI
+      - Instituto Nacional de Transparencia
+- last_verified: '2026-11-05'
+  id: privacy-consentimiento-datos-financieros
+  domain: privacy
+  title: Consentimiento expreso para datos financieros o patrimoniales
+  requirement: "Los datos financieros o patrimoniales requieren consentimiento expreso del titular, salvo excepciones de los arts. 9 y 36."
+  check_hint: "El aviso o la política debe decir consentimiento expreso para datos financieros o patrimoniales, y no describir un consentimiento tácito."
+  fix_suggestion: Redacte que los datos financieros o patrimoniales se tratan con consentimiento expreso del titular y elimine cualquier fórmula de consentimiento tácito.
+  entity_types:
+  - IFPE
+  - IFC
+  - ITF
+  documents:
+  - aviso_privacidad
+  - politicas_datos
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf"
+  source_name: LFPDPPP art. 7
+  effective_date: '2025-03-21'
+  severity: high
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Consentimiento expreso de datos financieros o patrimoniales
+        all:
+        - consentimiento expreso
+        any:
+        - financier
+        - patrimonial
+    - type: forbidden_phrases
+      label: un consentimiento tácito para datos personales
+      any:
+      - consentimiento tácito
+      - consentimiento tacito
+      - de forma tácita
+      - de forma tacita
+- last_verified: '2026-11-05'
+  id: privacy-arco-plazos
+  domain: privacy
+  title: Procedimiento ARCO — plazos de respuesta
+  requirement: "El responsable debe comunicar la determinación en máximo 20 días desde la solicitud y, si procede, hacerla efectiva en los 15 días siguientes, ampliables una vez por igual periodo."
+  check_hint: El procedimiento ARCO debe citar los plazos de 20 y 15 días.
+  fix_suggestion: "Escriba los plazos del art. 31: respuesta en un máximo de 20 días y, de ser procedente, hacerla efectiva dentro de los 15 días siguientes."
+  entity_types:
+  - IFPE
+  - IFC
+  - ITF
+  - fintech_general
+  documents:
+  - procedimientos_arco
+  - aviso_privacidad
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf"
+  source_name: LFPDPPP art. 31
+  effective_date: '2025-03-21'
+  severity: medium
+  matcher:
+    require_document: true
+    checks:
+    - type: regex
+      label: el plazo máximo de 20 días
+      pattern: "(?i)\\b20\\s*d[ií]as"
+      expect: match
+    - type: regex
+      label: el plazo de 15 días para hacer efectivo el derecho
+      pattern: "(?i)\\b15\\s*d[ií]as"
+      expect: match
+- last_verified: '2026-11-05'
+  id: privacy-departamento-datos
+  domain: privacy
+  title: Designación de persona o departamento de datos personales
+  requirement: Todo responsable debe designar una persona o departamento que tramite las solicitudes ARCO.
+  check_hint: "Buscar designación, correo de privacidad o departamento de datos personales."
+  fix_suggestion: Nombre el departamento o la persona que atiende ARCO y publique un correo de contacto en el aviso.
+  entity_types:
+  - IFPE
+  - IFC
+  - ITF
+  - fintech_general
+  documents:
+  - aviso_privacidad
+  - politicas_datos
+  - organigrama
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf"
+  source_name: LFPDPPP art. 29
+  effective_date: '2025-03-21'
+  severity: medium
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la persona o el departamento de datos personales
+      any:
+      - departamento de datos
+      - "privacidad@"
+      - encargado de datos personales
+      - oficial de privacidad
+- last_verified: '2026-11-05'
+  id: privacy-medidas-seguridad
+  domain: privacy
+  title: "Medidas de seguridad administrativas, técnicas y físicas"
+  requirement: "Deben establecerse y mantenerse medidas que protejan los datos contra daño, pérdida, alteración, destrucción o uso y acceso no autorizados."
+  check_hint: "La política de seguridad de datos debe cubrir medidas administrativas, técnicas y físicas."
+  fix_suggestion: "Documente medidas administrativas, técnicas y físicas de seguridad de los datos personales, alineadas al art. 18 de la LFPDPPP."
+  entity_types:
+  - IFPE
+  - IFC
+  - ITF
+  documents:
+  - politica_seguridad_datos
+  - politica_seguridad_informacion
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf"
+  source_name: LFPDPPP art. 18
+  effective_date: '2025-03-21'
+  severity: high
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Medidas administrativas
+        any:
+        - administrativas
+        - administrativa
+      - name: Medidas técnicas
+        any:
+        - técnicas
+        - tecnicas
+      - name: Medidas físicas
+        any:
+        - físicas
+        - fisicas
+- last_verified: '2026-11-05'
+  id: privacy-aviso-vulneraciones
+  domain: privacy
+  title: Aviso inmediato de vulneraciones significativas a titulares
+  requirement: Las vulneraciones que afecten de forma significativa derechos patrimoniales o morales deben informarse de forma inmediata a los titulares.
+  check_hint: "El playbook de incidentes debe incluir notificación a titulares, no solo a una autoridad."
+  fix_suggestion: Agregue al plan de incidentes el aviso inmediato a los titulares cuando la vulneración afecte de forma significativa sus derechos.
+  entity_types:
+  - IFPE
+  - IFC
+  - ITF
+  documents:
+  - plan_respuesta_incidentes
+  - politica_seguridad_datos
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf"
+  source_name: LFPDPPP art. 19
+  effective_date: '2025-03-21'
+  severity: high
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Vulneración o incidente
+        any:
+        - vulneración
+        - vulneracion
+        - incidente
+      - name: Aviso a titulares
+        any:
+        - titulares
+      - name: Carácter inmediato
+        any:
+        - inmediato
+        - sin demora

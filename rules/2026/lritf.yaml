@@ -1,0 +1,337 @@
+catalog_year: 2026
+last_verified: '2026-11-05'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- last_verified: '2026-11-05'
+  id: lritf-no-garantia-gobierno
+  domain: lritf
+  title: "Divulgación: el Gobierno Federal no garantiza los recursos de los clientes"
+  requirement: "Las ITF deben señalar expresamente que el Gobierno Federal y las entidades paraestatales no pueden responsabilizarse ni garantizar los recursos de los clientes, en páginas, aplicaciones, publicidad y contratos."
+  check_hint: Buscar una leyenda equivalente a que los recursos no están garantizados por autoridad alguna.
+  fix_suggestion: "Inserte en el contrato, la carátula, la publicidad y los términos la leyenda de que el Gobierno Federal y las entidades paraestatales no garantizan ni se responsabilizan de los recursos de los clientes."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - contrato_adhesion
+  - caratula
+  - publicidad
+  - terminos_plataforma
+  - website
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 11
+  effective_date: '2018-03-09'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la leyenda de no garantía del Gobierno Federal
+      any:
+      - gobierno federal no
+      - no se encuentran garantizados
+      - ni las entidades paraestatales
+      - no garantiza los recursos
+      - no podrán responsabilizarse
+      - no podran responsabilizarse
+      - no están garantizados por el gobierno
+      - no estan garantizados por el gobierno
+      - no garantiza ni se responsabiliza
+- last_verified: '2026-11-05'
+  id: lritf-politicas-segregacion
+  domain: lritf
+  title: Políticas de separación o segregación de cuentas de clientes
+  requirement: "La operación exige políticas de separación de cuentas: los recursos de clientes se segregan de los propios y se depositan conforme al art. 46."
+  check_hint: El documento de segregación debe describir cuentas distintas y el depósito de los recursos de clientes.
+  fix_suggestion: "Documente la segregación: cuentas distintas de las propias, depósito de los recursos de clientes y el momento en que se realiza."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - politica_segregacion
+  - manual_operaciones
+  - politica_tesoreria
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: "LRITF arts. 39-IV, 46"
+  effective_date: '2018-03-09'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Segregación o separación de cuentas
+        any:
+        - segregación
+        - segregacion
+        - separación de cuentas
+        - separacion de cuentas
+      - name: Recursos de clientes
+        any:
+        - clientes
+      - name: Cuentas
+        any:
+        - cuenta
+- last_verified: '2026-11-05'
+  id: lritf-divulgacion-riesgos-comisiones
+  domain: lritf
+  title: "Políticas de divulgación de riesgos, responsabilidades y comisiones"
+  requirement: "Políticas en lenguaje sencillo sobre riesgos, responsabilidades, conceptos y montos de comisiones, y advertencias en la interfaz."
+  check_hint: Debe existir divulgación de riesgos y un listado de comisiones.
+  fix_suggestion: "Publique, en lenguaje sencillo, los riesgos del producto y el concepto, monto y periodicidad de cada comisión antes de que el cliente opere."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - politica_divulgacion_riesgos
+  - listado_comisiones
+  - terminos_plataforma
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 39-V
+  effective_date: '2018-03-09'
+  severity: high
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Riesgos del producto
+        any:
+        - riesgo
+        - riesgos
+      - name: Comisiones
+        any:
+        - comisión
+        - comision
+        - comisiones
+- last_verified: '2026-11-05'
+  id: lritf-seguridad-informacion
+  domain: lritf
+  title: Políticas de control de riesgos operativos y seguridad de la información
+  requirement: "Medidas y políticas de riesgos operativos y seguridad de la información, incluida la confidencialidad, con soporte tecnológico y estándares de confidencialidad, disponibilidad e integridad."
+  check_hint: Deben existir el manual de seguridad de la información y la política de riesgos operativos.
+  fix_suggestion: "Apruebe una política de seguridad de la información que cubra confidencialidad, disponibilidad e integridad, y el control de riesgos operativos."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - politica_seguridad_informacion
+  - manual_riesgos_operativos
+  - politica_confidencialidad
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 39-VI
+  effective_date: '2018-03-09'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Seguridad de la información
+        any:
+        - seguridad de la información
+        - seguridad de la informacion
+      - name: Confidencialidad
+        any:
+        - confidencialidad
+- last_verified: '2026-11-05'
+  id: lritf-conflictos-interes
+  domain: lritf
+  title: Políticas de solución de conflictos de interés
+  requirement: Políticas documentadas para los posibles conflictos de interés en la realización de las actividades.
+  check_hint: Debe existir una política de conflictos de interés.
+  fix_suggestion: "Documente cómo se revelan, registran y resuelven los conflictos de interés, incluida la abstención de quien los tenga."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - politica_conflictos_interes
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 39-VIII
+  effective_date: '2018-03-09'
+  severity: high
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la política de conflictos de interés
+      any:
+      - conflicto de interés
+      - conflictos de interés
+      - conflicto de interes
+      - conflictos de interes
+- last_verified: '2026-11-05'
+  id: lritf-prevencion-fraude
+  domain: lritf
+  title: Políticas de prevención de fraudes
+  requirement: "Políticas de prevención de fraudes, además de las de PLD/FT."
+  check_hint: Debe existir un documento o una sección específica de prevención de fraude.
+  fix_suggestion: "Separe una política de prevención de fraudes, con señales de alerta, responsables y el escalamiento operativo."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - politica_prevencion_fraude
+  - manual_operaciones
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 39-IX
+  effective_date: '2018-03-09'
+  severity: high
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la prevención de fraudes
+      any:
+      - prevención de fraude
+      - prevencion de fraude
+      - prevención de fraudes
+      - prevencion de fraudes
+- last_verified: '2026-11-05'
+  id: lritf-continuidad-controles
+  domain: lritf
+  title: "Controles internos, continuidad operativa y seguridad"
+  requirement: "Las ITF se sujetan a disposiciones de carácter general en controles internos, administración de riesgos, segregación de funciones, continuidad operativa y seguridad de la información. Para IFPE, las disposiciones son conjuntas de CNBV y Banxico."
+  check_hint: Deben existir el plan de continuidad y el manual de control interno.
+  fix_suggestion: "Documente el plan de continuidad operativa y el manual de control interno, con la aprobación del órgano de administración."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - plan_continuidad
+  - manual_control_interno
+  - politica_seguridad_informacion
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 48
+  effective_date: '2018-03-09'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Continuidad operativa
+        any:
+        - continuidad operativa
+        - plan de continuidad
+        - continuidad del negocio
+      - name: Control interno o seguridad
+        any:
+        - control interno
+        - seguridad de la información
+        - seguridad de la informacion
+- last_verified: '2026-11-05'
+  id: lritf-conservacion-10-anos
+  domain: lritf
+  title: Conservación de comprobantes de operaciones por al menos 10 años
+  requirement: "Conservar los comprobantes originales de las operaciones por un plazo mínimo de diez años, en impreso o en medios electrónicos conforme a la NOM de digitalización."
+  check_hint: La política de retención documental debe decir al menos 10 años para comprobantes de operaciones.
+  fix_suggestion: Fije en la política de archivo un plazo mínimo de diez años para los comprobantes de las operaciones.
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - politica_retencion_documental
+  - manual_archivo
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 48
+  effective_date: '2018-03-09'
+  severity: medium
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: un plazo de conservación de al menos diez años
+      any:
+      - diez años
+      - 10 años
+      - diez (10) años
+- last_verified: '2026-11-05'
+  id: lritf-av-divulgacion-riesgos
+  domain: lritf
+  title: Divulgación de riesgos de activos virtuales
+  requirement: "Quien opere con activos virtuales debe divulgar que no son moneda de curso legal ni están respaldados por el Gobierno o Banxico, y advertir irreversibilidad, volatilidad y riesgos tecnológicos, cibernéticos y de fraude."
+  check_hint: Solo aplica si la entidad opera activos virtuales. La carátula o la plataforma deben incluir las leyendas del art. 34.
+  fix_suggestion: "Si opera activos virtuales, agregue en carátula y plataforma que no son moneda de curso legal ni están respaldados por el Gobierno Federal o Banxico, y advierta volatilidad e irreversibilidad."
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - caratula
+  - terminos_plataforma
+  - publicidad
+  - contrato_adhesion
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: LRITF art. 34
+  effective_date: '2018-03-09'
+  severity: high
+  applies_if: operates_virtual_assets
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: las leyendas de activos virtuales
+      any:
+      - no es moneda de curso legal
+      - no son moneda de curso legal
+      - volatilidad
+      - no respaldada por el banco de méxico
+      - no respaldados por el banco de mexico
+      - no respaldados por el banco de méxico
+- last_verified: '2026-11-05'
+  id: banxico-ifpe-continuidad-seguridad
+  domain: banxico
+  title: IFPE — política estratégica de continuidad y seguridad
+  requirement: "Las IFPE se sujetan a las disposiciones conjuntas Banxico-CNBV del 28 de enero de 2021 en seguridad de la información, registro de cuentas, medios electrónicos y continuidad operativa. La política y los planes los aprueba el órgano de administración."
+  check_hint: "Buscar política estratégica, plan director de seguridad o plan de continuidad alineado a las disposiciones IFPE."
+  fix_suggestion: Apruebe por el órgano de administración la política de continuidad y el plan de seguridad exigidos por las disposiciones conjuntas Banxico-CNBV del 28 de enero de 2021.
+  entity_types:
+  - IFPE
+  documents:
+  - politica_continuidad
+  - plan_director_seguridad
+  - politica_seguridad_informacion
+  - plan_continuidad
+  source_url: "https://dof.gob.mx/nota_detalle.php?codigo=5610487&fecha=28/01/2021"
+  source_name: Disposiciones IFPE Banxico-CNBV DOF 28-ene-2021
+  effective_date: '2021-01-28'
+  severity: critical
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Continuidad
+        any:
+        - continuidad
+      - name: Seguridad de la información
+        any:
+        - seguridad de la información
+        - seguridad de la informacion
+        - plan director de seguridad
+- last_verified: '2026-11-05'
+  id: cnbv-normatividad-index
+  domain: cnbv
+  title: Mantener el mapeo a la Normatividad Fintech de la CNBV
+  requirement: El programa de cumplimiento debe referenciar el índice oficial de normatividad ITF de la CNBV.
+  check_hint: La matriz de cumplimiento debe enlazar el índice de Normatividad Fintech de la CNBV.
+  fix_suggestion: Agregue a la matriz de cumplimiento la liga al índice de Normatividad Fintech de la CNBV y la fecha en que se revisó.
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - matriz_cumplimiento
+  - manual_cumplimiento
+  source_url: "https://www.cnbv.gob.mx/SECTORES-SUPERVISADOS/Fintech/Paginas/NORMATIVIDAD-FINTECH.aspx"
+  source_name: CNBV Normatividad Fintech
+  effective_date: '2018-09-10'
+  severity: info
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el índice de Normatividad Fintech
+      any:
+      - normatividad fintech
+      - NORMATIVIDAD-FINTECH
+      - cnbv.gob.mx/SECTORES-SUPERVISADOS/Fintech

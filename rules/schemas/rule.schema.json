@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Eflores1122/fintech-documentation-help/rules/schemas/rule.schema.json",
+  "title": "Regla del catálogo fintech-documentation-help",
+  "description": "El validador en ejecución es el modelo Pydantic de fdh.models.Rule. Este esquema documenta el contrato para quien edita YAML. No es asesoría legal ni fiscal.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "domain",
+    "title",
+    "requirement",
+    "check_hint",
+    "fix_suggestion",
+    "entity_types",
+    "documents",
+    "source_url",
+    "source_name",
+    "effective_date",
+    "last_verified",
+    "severity",
+    "matcher"
+  ],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "domain": {"type": "string"},
+    "title": {"type": "string"},
+    "requirement": {"type": "string"},
+    "check_hint": {"type": "string"},
+    "fix_suggestion": {"type": "string", "minLength": 15},
+    "entity_types": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    },
+    "documents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    },
+    "source_url": {"type": "string", "pattern": "^https://"},
+    "source_name": {"type": "string"},
+    "effective_date": {"type": "string", "format": "date"},
+    "last_verified": {"type": "string", "format": "date"},
+    "severity": {"enum": ["critical", "high", "medium", "low", "info"]},
+    "unverified": {"type": "boolean"},
+    "unverified_detail": {"type": "string"},
+    "supersedes": {"type": "string"},
+    "applies_if": {
+      "enum": [
+        "operates_virtual_assets",
+        "has_partial_or_deferred_payments",
+        "transports_goods",
+        "is_technological_platform_tax_regime",
+        "provides_digital_services_liva"
+      ]
+    },
+    "notes": {"type": "string"},
+    "diff_note": {"type": "string"},
+    "matcher": {"$ref": "#/$defs/matcher"}
+  },
+  "$defs": {
+    "matcher": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["require_document", "checks"],
+      "properties": {
+        "require_document": {"type": "boolean"},
+        "checks": {"type": "array", "items": {"$ref": "#/$defs/check"}}
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "enum": ["contains_all_groups", "contains_any", "forbidden_phrases", "regex"]
+        },
+        "label": {"type": "string"},
+        "any": {"type": "array", "items": {"type": "string"}},
+        "pattern": {"type": "string"},
+        "expect": {"enum": ["match", "no_match"]},
+        "groups": {"type": "array", "items": {"$ref": "#/$defs/group"}}
+      }
+    },
+    "group": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": {"type": "string"},
+        "all": {"type": "array", "items": {"type": "string"}},
+        "any": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

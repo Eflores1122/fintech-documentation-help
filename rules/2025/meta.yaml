@@ -1,0 +1,28 @@
+catalog_year: 2025
+last_verified: '2026-11-05'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- last_verified: '2026-11-05'
+  id: meta-disclaimer-no-legal-advice
+  domain: meta
+  title: Todo reporte del auditor debe incluir el aviso de que no es asesoría
+  requirement: Las salidas de la herramienta deben declarar que no son asesoría legal ni fiscal y que las reglas citan fuentes públicas con fecha de verificación.
+  check_hint: La plantilla del reporte incluye el aviso fijo. No se audita como documento del cliente.
+  fix_suggestion: "No retire el aviso de los reportes Markdown, HTML y JSON ni del README."
+  entity_types:
+  - tool
+  documents:
+  - report_template
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: Práctica del producto; la URL ancla el dominio ITF y no es una norma que imponga este aviso
+  effective_date: '2026-11-05'
+  severity: info
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el aviso de que no es asesoría
+      any:
+      - no es asesoría
+      - no es asesoria
+      - no constituyen asesoría

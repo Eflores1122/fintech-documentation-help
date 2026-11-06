@@ -1,0 +1,52 @@
+catalog_year: 2026
+last_verified: '2026-11-05'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- last_verified: '2026-11-05'
+  id: meta-disclaimer-no-legal-advice
+  domain: meta
+  title: Todo reporte del auditor debe incluir el aviso de que no es asesoría
+  requirement: Las salidas de la herramienta deben declarar que no son asesoría legal ni fiscal y que las reglas citan fuentes públicas con fecha de verificación.
+  check_hint: La plantilla del reporte incluye el aviso fijo. No se audita como documento del cliente.
+  fix_suggestion: "No retire el aviso de los reportes Markdown, HTML y JSON ni del README."
+  entity_types:
+  - tool
+  documents:
+  - report_template
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: Práctica del producto; la URL ancla el dominio ITF y no es una norma que imponga este aviso
+  effective_date: '2026-11-05'
+  severity: info
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el aviso de que no es asesoría
+      any:
+      - no es asesoría
+      - no es asesoria
+      - no constituyen asesoría
+- last_verified: '2026-11-05'
+  id: meta-what-changed-2026
+  domain: meta
+  title: El diff anual 2025 a 2026 debe explicar los cambios materiales
+  requirement: "El catálogo debe poder listar los cambios materiales: LFPDPPP 2025 en ambos años, la reforma LFPIORPI de julio de 2025, las retenciones de la LIF 2026 para IFC y el relevo de la RMF 2025 por la RMF 2026."
+  check_hint: fdh rules diff 2025 2026 genera esa explicación. No se audita como documento del cliente.
+  fix_suggestion: "Al preparar el catálogo del año siguiente, agregue la nota diff_note y una URL oficial en cada regla nueva o modificada."
+  entity_types:
+  - tool
+  documents:
+  - rules_catalog
+  source_url: "https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/normatividad_rmf_rgce2026.html"
+  source_name: "Índice de la RMF 2026; el diff también cita LIF, LFPDPPP y LFPIORPI"
+  effective_date: '2026-01-01'
+  severity: info
+  diff_note: El comando de diff existe para que la actualización anual no sea un archivo nuevo sin explicación.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el diff de catálogos
+      any:
+      - rules diff
+      - what-changed

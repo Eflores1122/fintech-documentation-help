@@ -1,0 +1,247 @@
+catalog_year: 2025
+last_verified: '2026-11-05'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- last_verified: '2026-11-05'
+  id: sat-rmf-calendario-anual
+  domain: sat
+  title: Calendario de actualización ante la RMF anual
+  requirement: "La Resolución Miscelánea Fiscal se publica cada año. En el ejercicio 2025 los procesos fiscales debían tener una persona responsable y una lista de verificación después de la RMF 2025, publicada en el DOF el 30 de diciembre de 2024."
+  check_hint: El procedimiento fiscal de 2025 debe mencionar la RMF 2025 y a quien da seguimiento.
+  fix_suggestion: "Nombre a la persona responsable y arme la lista de verificación de la RMF 2025. Al cerrar 2025, migre el calendario al catálogo 2026."
+  entity_types:
+  - IFPE
+  - IFC
+  - fintech_general
+  documents:
+  - calendario_cumplimiento_fiscal
+  - politica_cfdi
+  - manual_fiscal
+  source_url: "https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/normatividad_rmf_rgce2025.html"
+  source_name: SAT Normatividad RMF 2025; RMF publicada el 30-dic-2024
+  effective_date: '2025-01-01'
+  severity: high
+  diff_note: Versión 2025 del calendario. En 2026 la fuente y la vigencia pasan a la RMF 2026.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Mención de la RMF
+        any:
+        - RMF
+        - resolución miscelánea
+        - resolucion miscelanea
+      - name: Calendario o lista de verificación
+        any:
+        - calendario
+        - checklist
+        - lista de verificación
+        - lista de verificacion
+      - name: Persona responsable
+        any:
+        - responsable
+        - encargado
+        - titular del área
+        - owner
+- last_verified: '2026-11-05'
+  unverified: true
+  id: sat-cfdi40-emision
+  domain: sat
+  title: Proceso documentado de emisión de CFDI 4.0
+  requirement: "Contar con un procedimiento de facturación electrónica CFDI 4.0 alineado al CFF, a la RMF 2025 y al Anexo 29, incluidas las cancelaciones y las validaciones."
+  check_hint: El manual debe decir versión 4.0 y el rol del proveedor de certificación. Los números de regla de la RMF 2026 no se afirman aquí.
+  fix_suggestion: "Documente CFDI 4.0 con timbrado, cancelación y validaciones, citado a la RMF 2025. No invente números de regla que no se hayan leído en el PDF."
+  entity_types:
+  - IFPE
+  - IFC
+  - fintech_general
+  documents:
+  - politica_cfdi
+  - manual_fiscal
+  source_url: "https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/normatividad_rmf_rgce2025.html"
+  source_name: SAT RMF 2025 / Anexo 29 (hub)
+  effective_date: '2022-01-01'
+  severity: high
+  unverified_detail: "Los números de regla de la RMF 2025 que detallan el CFDI no se transcribieron: el PDF completo no se leyó línea por línea. La versión 4.0 sí es el estándar que el procedimiento debe nombrar."
+  diff_note: En 2025 la cita del CFDI 4.0 se ancla al hub de la RMF 2025. El detalle numérico ya era UNVERIFIED.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: CFDI versión 4.0
+      any:
+      - CFDI 4.0
+      - versión 4.0
+      - version 4.0
+      - cfdi version 4.0
+- last_verified: '2026-11-05'
+  unverified: true
+  id: sat-complemento-pagos-rep
+  domain: sat
+  title: Complemento de recepción de pagos
+  requirement: "Si se reciben pagos en parcialidades o diferidos, debe documentarse la emisión del complemento de recepción de pagos conforme a las reglas vigentes."
+  check_hint: Aplique solo si el modelo tiene pagos parciales o diferidos. El plazo exacto de la RMF 2026 no se afirma aquí.
+  fix_suggestion: "Si hay pagos parciales o diferidos, documente quién emite el complemento de recepción de pagos y en qué momento. Confirme el plazo en la regla vigente de la RMF 2026."
+  entity_types:
+  - IFPE
+  - IFC
+  - fintech_general
+  documents:
+  - politica_cfdi
+  - manual_fiscal
+  source_url: "https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/normatividad_rmf_rgce2025.html"
+  source_name: "SAT RMF 2025 (hub), complemento de pagos"
+  effective_date: '2022-01-01'
+  severity: medium
+  applies_if: has_partial_or_deferred_payments
+  unverified_detail: El plazo coloquialmente citado como quinto día del mes siguiente debe confirmarse en la regla vigente de la RMF 2025; no se copia un número de regla no leído.
+  diff_note: En 2025 la fuente del complemento de pagos es el hub de la RMF 2025. El plazo concreto ya era UNVERIFIED.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el complemento de recepción de pagos
+      any:
+      - complemento de pago
+      - complemento de recepción de pagos
+      - complemento de recepcion de pagos
+      - recepción de pagos
+      - recepcion de pagos
+- last_verified: '2026-11-05'
+  id: sat-carta-porte
+  domain: sat
+  title: Complemento Carta Porte si hay transporte de mercancías
+  requirement: "Solo si la fintech, o un tercero cubierto por su CFDI, mueve mercancías en territorio nacional, debe emitirse el complemento Carta Porte."
+  check_hint: Marcar como no aplicable si no hay logística de mercancías.
+  fix_suggestion: "Si transporta mercancías, documente el complemento Carta Porte. Si no transporta, deje constancia de que el supuesto no aplica y no active esta bandera."
+  entity_types:
+  - fintech_general
+  documents:
+  - politica_cfdi
+  - procedimiento_carta_porte
+  source_url: "https://wwwmat.sat.gob.mx/consultas/68823/complemento-carta-porte-"
+  source_name: SAT Complemento Carta Porte
+  effective_date: '2021-12-01'
+  severity: medium
+  applies_if: transports_goods
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el complemento Carta Porte
+      any:
+      - carta porte
+- last_verified: '2026-11-05'
+  id: sat-plataformas-tecnologicas
+  domain: sat
+  title: Retenciones y complemento de plataformas tecnológicas
+  requirement: "Si la entidad es plataforma tecnológica en los supuestos de la LISR o de la LIVA, debe documentar el CFDI de retenciones con el complemento de servicios de plataformas tecnológicas y los enteros."
+  check_hint: Solo si el modelo tributa como plataforma tecnológica.
+  fix_suggestion: "Si está en el régimen de plataformas tecnológicas, documente el complemento y el entero de las retenciones. Si no lo está, no active la bandera."
+  entity_types:
+  - fintech_general
+  - plataforma_tecnologica
+  documents:
+  - manual_fiscal
+  - politica_retenciones
+  source_url: "https://wwwmat.sat.gob.mx/consulta/52846/complemento-servicios-de-plataformas-tecnologicas"
+  source_name: SAT Complemento Servicios de Plataformas Tecnológicas
+  effective_date: '2019-06-01'
+  severity: high
+  applies_if: is_technological_platform_tax_regime
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el complemento de plataformas tecnológicas
+      any:
+      - plataformas tecnológicas
+      - plataformas tecnologicas
+      - complemento de servicios de plataformas
+- last_verified: '2026-11-05'
+  unverified: true
+  id: sat-cff-32b-informacion
+  domain: sat
+  title: CFF art. 32-B — información de entidades financieras
+  requirement: "Si la entidad queda en los supuestos del art. 32-B del CFF, debe poder atender requerimientos del SAT sobre cuentas y operaciones e identificar cuentahabientes."
+  check_hint: Procedimiento de atención a requerimientos del SAT. El encuadre exacto de cada ITF en el 32-B no está cerrado en esta ficha.
+  fix_suggestion: Documente quién atiende un requerimiento del SAT y qué datos de identificación se pueden entregar. Confirme contra el CFF vigente si la entidad está en el supuesto del art. 32-B.
+  entity_types:
+  - IFPE
+  - IFC
+  documents:
+  - procedimiento_requerimientos_autoridad
+  - manual_fiscal
+  source_url: "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf"
+  source_name: CFF art. 32-B (cruzar con el CFF vigente en Diputados); la ficha de investigación citó la LRITF solo como ancla
+  effective_date: '2014-01-01'
+  severity: medium
+  unverified_detail: El encuadre exacto de cada ITF en el art. 32-B del CFF no se cerró contra el texto vigente del CFF. La URL de esta ficha es la que traía la semilla de investigación (compilación de la LRITF) y debe cruzarse con el PDF del CFF.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el artículo 32-B del CFF
+      any:
+      - 32-B
+      - 32-b
+      - artículo 32-B
+      - articulo 32-B
+- last_verified: '2026-11-05'
+  id: sat-iva-servicios-digitales
+  domain: sat
+  title: IVA de servicios digitales — comprobantes
+  requirement: "Quien preste servicios digitales en los supuestos de la LIVA debe documentar el traslado del IVA, el RFC del receptor y los datos del emisor en los comprobantes."
+  check_hint: Solo si la entidad presta servicios digitales en esos supuestos.
+  fix_suggestion: "Si presta servicios digitales gravados, documente el IVA y los datos del comprobante según la guía del SAT. Si no, no active la bandera."
+  entity_types:
+  - fintech_general
+  - servicios_digitales
+  documents:
+  - manual_fiscal
+  - politica_iva
+  source_url: "https://www.sat.gob.mx/minisitio/PlataformasTecnologicas/PlataformasTecnologicas_ServiciosDigitales/pt_sd_comprobantes.html"
+  source_name: SAT Plataformas Tecnológicas / Servicios Digitales — comprobantes
+  effective_date: '2020-06-01'
+  severity: medium
+  applies_if: provides_digital_services_liva
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_all_groups
+      groups:
+      - name: Servicios digitales
+        any:
+        - servicios digitales
+      - name: IVA
+        any:
+        - IVA
+- last_verified: '2026-11-05'
+  id: sat-rmf2025-publicacion
+  domain: sat
+  title: Referenciar la RMF 2025 vigente en ese ejercicio
+  requirement: "Durante 2025 las políticas y los manuales fiscales debían citar la Resolución Miscelánea Fiscal 2025, publicada en el DOF el 30 de diciembre de 2024, y no permanecer en la del ejercicio anterior."
+  check_hint: El manual del ejercicio 2025 debe mencionar la RMF 2025.
+  fix_suggestion: "Para un expediente del ejercicio 2025, cite la RMF 2025. Para el ejercicio 2026 use el catálogo 2026, que sustituye esta regla."
+  entity_types:
+  - IFPE
+  - IFC
+  - fintech_general
+  documents:
+  - manual_fiscal
+  - politica_cfdi
+  source_url: "https://www.dof.gob.mx/nota_detalle.php?codigo=5746354&fecha=30%2F12%2F2024"
+  source_name: RMF 2025 DOF 30-dic-2024
+  effective_date: '2025-01-01'
+  severity: high
+  diff_note: Regla del ejercicio 2025. El catálogo 2026 la retira y la sustituye con sat-rmf2026-publicacion.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la RMF 2025
+      any:
+      - RMF 2025
+      - miscelánea fiscal 2025
+      - miscelanea fiscal 2025

@@ -1,0 +1,1119 @@
+{
+  "tool": "fintech-documentation-help",
+  "version": "0.1.0",
+  "disclaimer": "AVISO: Este reporte no es asesoría legal ni fiscal. Es un checklist asistido que cita fuentes públicas con fecha de verificación. Las reglas marcadas UNVERIFIED requieren lectura íntegra del instrumento oficial antes de tratarlas como definitivas. Toda decisión de cumplimiento debe validarse con un abogado o contador autorizado y contra el texto vigente en el Diario Oficial de la Federación y los portales oficiales (SAT, CNBV, Banxico, CONDUSEF, UIF, Cámara de Diputados).",
+  "disclaimer_en": "This output is not legal or tax advice. It is an assisted checklist citing public sources and a verification date. Rules flagged UNVERIFIED still need a full read of the official instrument. Compliance decisions must be confirmed by a qualified lawyer or accountant against the current official text.",
+  "generated_at": "2026-11-05T18:00:00Z",
+  "entity_type": "IFPE",
+  "catalog_year": 2026,
+  "llm_used": false,
+  "llm_note": null,
+  "profile": {
+    "entity_type": "IFPE",
+    "year": 2026,
+    "operates_virtual_assets": false,
+    "has_partial_or_deferred_payments": false,
+    "transports_goods": false,
+    "is_technological_platform_tax_regime": false,
+    "provides_digital_services_liva": false
+  },
+  "documents": [
+    {
+      "path": "aviso_de_privacidad.md",
+      "filename": "aviso_de_privacidad.md",
+      "media_type": "md",
+      "text": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Aviso de privacidad Responsable del tratamiento: Nube Pago, S.A. de C.V. (entidad ficticia, no autorizada). Domicilio: Av. Imaginaria 123, Col. Ejemplo, 01000 Ciudad de México. Datos personales que se recaban: nombre, CURP, RFC, correo, geolocalización del dispositivo y datos financieros de la cuenta. Datos sensibles: no recabamos datos de salud ni biométricos. Este apartado declara que no tratamos datos sensibles de origen étnico. Finalidades: prestar el servicio de dinero electrónico, prevenir fraudes operativos y enviar publicidad de productos propios de la entidad ficticia. Puede limitar el uso de sus datos para publicidad escribiendo a privacidad@nubepago.example. Derechos ARCO: acceso, rectificación, cancelación y oposición. Responderemos las solicitudes en un plazo de 30 días naturales. Departamento de datos personales: privacidad@nubepago.example. La autoridad competente para la protección de datos es el INAI (Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales). El tratamiento de datos financieros se entiende consentido de forma tácita al abrir la cuenta.",
+      "types": [
+        "aviso_privacidad"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "caratula_cuenta.md",
+      "filename": "caratula_cuenta.md",
+      "media_type": "md",
+      "text": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Carátula del producto Producto: cuenta de pago. Precio de apertura: cero pesos. Vigencia: indefinida. Entidad: Nube Pago, S.A. de C.V., IFPE imaginaria. No se reproducen en esta carátula las leyendas del anexo de transparencia.",
+      "types": [
+        "caratula"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "contrato_adhesion.md",
+      "filename": "contrato_adhesion.md",
+      "media_type": "md",
+      "text": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Contrato de adhesión Producto: cuenta de dinero electrónico de Nube Pago, S.A. de C.V., IFPE imaginaria. El usuario acepta este contrato al continuar navegando en la plataforma o al mantener la cuenta abierta. Se considera suficiente el consentimiento tácito. Inscripción RECA: inscripción pendiente. No se imprime un número de registro. No se publican aquí los datos del área que atiende consultas de la clientela. Los cargos al usuario, si llegaran a existir, se darán a conocer más adelante. Este producto es innovador.",
+      "types": [
+        "contrato_adhesion"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "manual_pld_ft.md",
+      "filename": "manual_pld_ft.md",
+      "media_type": "md",
+      "text": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Manual PLD/FT — borrador interno Versión 0.2. Fecha de redacción: enero de 2023. Entidad ficticia Nube Pago, S.A. de C.V. Este borrador no ha sido presentado a la CNBV. Alcance: cuenta de dinero electrónico de la entidad ficticia. El documento no cita el precepto de la ley fintech que ordena estas medidas. Conservamos expedientes 24 meses y después se borran. No existe un órgano colegiado de comunicación.",
+      "types": [
+        "manual_pld_ft"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "nombramiento_oficial_cumplimiento.docx",
+      "filename": "nombramiento_oficial_cumplimiento.docx",
+      "media_type": "docx",
+      "text": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. Nombramiento del oficial de cumplimiento El puesto de oficial de cumplimiento está vacante. La entidad ficticia no cuenta con certificación CNBV para ese puesto. Puesto | Estado Oficial de cumplimiento | Vacante, sin certificación",
+      "types": [
+        "nombramiento_oficial_cumplimiento"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "politica_cfdi.md",
+      "filename": "politica_cfdi.md",
+      "media_type": "md",
+      "text": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Política de facturación Nos regimos únicamente por la Resolución Miscelánea Fiscal 2025 (RMF 2025). Emitimos CFDI versión 3.3 a través de un proveedor de certificación. No se nombra a una persona a cargo de la revisión anual.",
+      "types": [
+        "politica_cfdi"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "politica_conflictos_interes.md",
+      "filename": "politica_conflictos_interes.md",
+      "media_type": "md",
+      "text": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Política de conflictos de interés Nube Pago, S.A. de C.V. (entidad ficticia). Los colaboradores revelan cualquier conflicto de interés al consejo de la entidad ficticia. El procedimiento es abstención, registro en bitácora y escalamiento al área de cumplimiento.",
+      "types": [
+        "politica_conflictos_interes"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "procedimiento_kyc.txt",
+      "filename": "procedimiento_kyc.txt",
+      "media_type": "txt",
+      "text": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. PROCEDIMIENTO DE IDENTIFICACIÓN Y CONOCIMIENTO DEL CLIENTE (KYC) Tipos de cliente: persona física nacional, persona física extranjera y persona moral. Documentos: identificación oficial vigente, CURP, RFC y comprobante de domicilio. La actividad económica y la geografía (zona) se registran en el expediente. La documentación de identidad se resguarda con acceso restringido. Este procedimiento de identificación aplica solo a la entidad ficticia Nube Pago.",
+      "types": [
+        "politica_kyc",
+        "procedimiento_onboarding"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "publicidad_campana.pdf",
+      "filename": "publicidad_campana.pdf",
+      "media_type": "pdf",
+      "text": "DOCUMENTO FICTICIO DE DEMOSTRACION - Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. MATERIAL PUBLICITARIO Abre tu cuenta de dinero electronico con Nube Pago. Tus recursos estan seguros con nosotros. Campana ficticia, sin leyendas legales.",
+      "types": [
+        "publicidad"
+      ],
+      "warnings": []
+    },
+    {
+      "path": "terminos_plataforma.md",
+      "filename": "terminos_plataforma.md",
+      "media_type": "md",
+      "text": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Términos y condiciones de la plataforma El uso de la plataforma está restringido a personas mayores de edad en México. El horario de operación es continuo, salvo ventanas de mantenimiento. Ante una falla técnica el usuario debe esperar y reintentar más tarde.",
+      "types": [
+        "terminos_plataforma"
+      ],
+      "warnings": []
+    }
+  ],
+  "scores": {
+    "overall": 7.6,
+    "by_domain": {
+      "banxico": 0.0,
+      "cnbv": null,
+      "condusef": 0.0,
+      "lritf": 9.7,
+      "pld": 12.2,
+      "privacy": 9.5,
+      "sat": 0.0
+    },
+    "weights": {
+      "critical": 5,
+      "high": 3,
+      "medium": 2,
+      "low": 1,
+      "info": 0
+    }
+  },
+  "summary": {
+    "pass": 3,
+    "fail": 35,
+    "not_applicable": 5,
+    "unclear": 0,
+    "fail_critical": 13,
+    "fail_high": 15,
+    "fail_medium": 6,
+    "fail_low": 0,
+    "fail_info": 1,
+    "omitted": 3,
+    "unverified": 3,
+    "documents": 10
+  },
+  "findings": [
+    {
+      "rule_id": "banxico-ifpe-continuidad-seguridad",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "banxico",
+      "title": "IFPE — política estratégica de continuidad y seguridad",
+      "requirement": "Las IFPE se sujetan a las disposiciones conjuntas Banxico-CNBV del 28 de enero de 2021 en seguridad de la información, registro de cuentas, medios electrónicos y continuidad operativa. La política y los planes los aprueba el órgano de administración.",
+      "message": "No se encontró ningún documento clasificado como: politica_continuidad, plan_director_seguridad, politica_seguridad_informacion, plan_continuidad. La obligación queda sin soporte documental.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Apruebe por el órgano de administración la política de continuidad y el plan de seguridad exigidos por las disposiciones conjuntas Banxico-CNBV del 28 de enero de 2021.",
+      "source_name": "Disposiciones IFPE Banxico-CNBV DOF 28-ene-2021",
+      "source_url": "https://dof.gob.mx/nota_detalle.php?codigo=5610487&fecha=28/01/2021",
+      "effective_date": "2021-01-28",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "condusef-consentimiento-expreso",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "condusef",
+      "title": "Consentimiento expreso — prohibido el tácito en contratos",
+      "requirement": "La formalización usa firma electrónica avanzada, firma autógrafa digitalizada u otra autenticación del art. 56 de la LRITF. El consentimiento tácito está prohibido.",
+      "message": "Se revisó contrato_adhesion.md, terminos_plataforma.md. No coincide la forma de consentimiento expreso. Se encontró un consentimiento tácito o la aceptación al continuar navegando.",
+      "evidence": "…ectrónico de Nube Pago, S.A. de C.V., IFPE imaginaria. El usuario acepta este contrato al continuar navegando en la plataforma o al mantener la cuenta abierta. Se considera suficiente el consentimien…",
+      "document": "contrato_adhesion.md",
+      "fix_suggestion": "Elimine la aceptación por seguir navegando o por consentimiento tácito, y describa la firma electrónica, la firma autógrafa digitalizada o la autenticación del art. 56 de la LRITF.",
+      "source_name": "Disposiciones CONDUSEF ITF art. 8",
+      "source_url": "https://sidof.segob.gob.mx/notas/docFuente/5565233",
+      "effective_date": "2019-06-28",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "condusef-reca-inscripcion-previa",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "condusef",
+      "title": "Inscripción RECA previa al uso de contratos de adhesión",
+      "requirement": "Inscribir en el RECA, antes de usarlos, todos los modelos de contratos de adhesión y sus anexos. El contrato y la carátula deben señalar el número de inscripción vigente y completo.",
+      "message": "Se revisó caratula_cuenta.md, contrato_adhesion.md. No coincide un número de inscripción RECA. Se encontró una inscripción RECA pendiente.",
+      "evidence": "…mantener la cuenta abierta. Se considera suficiente el consentimiento tácito. Inscripción RECA: inscripción pendiente. No se imprime un número de registro. No se publican aquí los datos del área que atiende…",
+      "document": "contrato_adhesion.md",
+      "fix_suggestion": "Inscriba el contrato en el RECA antes de usarlo e imprima el número completo y vigente en el contrato y en la carátula. Quite la leyenda de inscripción pendiente.",
+      "source_name": "Disposiciones CONDUSEF ITF arts. 31–32",
+      "source_url": "https://sidof.segob.gob.mx/notas/docFuente/5565233",
+      "effective_date": "2019-06-28",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "lritf-continuidad-controles",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "lritf",
+      "title": "Controles internos, continuidad operativa y seguridad",
+      "requirement": "Las ITF se sujetan a disposiciones de carácter general en controles internos, administración de riesgos, segregación de funciones, continuidad operativa y seguridad de la información. Para IFPE, las disposiciones son conjuntas de CNBV y Banxico.",
+      "message": "No se encontró ningún documento clasificado como: plan_continuidad, manual_control_interno, politica_seguridad_informacion. La obligación queda sin soporte documental.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Documente el plan de continuidad operativa y el manual de control interno, con la aprobación del órgano de administración.",
+      "source_name": "LRITF art. 48",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-03-09",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "lritf-no-garantia-gobierno",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "lritf",
+      "title": "Divulgación: el Gobierno Federal no garantiza los recursos de los clientes",
+      "requirement": "Las ITF deben señalar expresamente que el Gobierno Federal y las entidades paraestatales no pueden responsabilizarse ni garantizar los recursos de los clientes, en páginas, aplicaciones, publicidad y contratos.",
+      "message": "Se revisó caratula_cuenta.md, contrato_adhesion.md, publicidad_campana.pdf, terminos_plataforma.md. No aparece la leyenda de no garantía del Gobierno Federal. Se buscó alguna de: «gobierno federal no», «no se encuentran garantizados», «ni las entidades paraestatales», «no garantiza los recursos», «no podrán responsabilizarse», «no podran responsabilizarse», «no están garantizados por el gobierno», «no estan garantizados por el gobierno», «no garantiza ni se responsabiliza».",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Carátula del producto Producto: cuenta de pago. Precio…",
+      "document": "caratula_cuenta.md",
+      "fix_suggestion": "Inserte en el contrato, la carátula, la publicidad y los términos la leyenda de que el Gobierno Federal y las entidades paraestatales no garantizan ni se responsabilizan de los recursos de los clientes.",
+      "source_name": "LRITF art. 11",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-03-09",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "lritf-politicas-segregacion",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "lritf",
+      "title": "Políticas de separación o segregación de cuentas de clientes",
+      "requirement": "La operación exige políticas de separación de cuentas: los recursos de clientes se segregan de los propios y se depositan conforme al art. 46.",
+      "message": "No se encontró ningún documento clasificado como: politica_segregacion, manual_operaciones, politica_tesoreria. La obligación queda sin soporte documental.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Documente la segregación: cuentas distintas de las propias, depósito de los recursos de clientes y el momento en que se realiza.",
+      "source_name": "LRITF arts. 39-IV, 46",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-03-09",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "lritf-seguridad-informacion",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "lritf",
+      "title": "Políticas de control de riesgos operativos y seguridad de la información",
+      "requirement": "Medidas y políticas de riesgos operativos y seguridad de la información, incluida la confidencialidad, con soporte tecnológico y estándares de confidencialidad, disponibilidad e integridad.",
+      "message": "No se encontró ningún documento clasificado como: politica_seguridad_informacion, manual_riesgos_operativos, politica_confidencialidad. La obligación queda sin soporte documental.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Apruebe una política de seguridad de la información que cubra confidencialidad, disponibilidad e integridad, y el control de riesgos operativos.",
+      "source_name": "LRITF art. 39-VI",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-03-09",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "pld-kyc-identificacion",
+      "status": "pass",
+      "severity": "critical",
+      "domain": "pld",
+      "title": "Conocimiento e identificación de clientes",
+      "requirement": "Definir criterios de conocimiento del cliente (antecedentes, actividad, zonas) y la información y documentación que acredite la identidad, con resguardo seguro.",
+      "message": "Los documentos revisados cubren el criterio: manual_pld_ft.md, procedimiento_kyc.txt.",
+      "evidence": null,
+      "document": "manual_pld_ft.md",
+      "fix_suggestion": "Documente, por tipo de cliente, la identificación exigida, la actividad y la zona, y el resguardo del expediente.",
+      "source_name": "LRITF art. 58 (lineamientos de conocimiento del cliente)",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-09-10",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "pld-lista-bloqueados",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "pld",
+      "title": "Suspensión inmediata por lista de personas bloqueadas",
+      "requirement": "Suspender de forma inmediata los actos, operaciones o servicios con clientes que figuren en la lista de personas bloqueadas que informe la Secretaría.",
+      "message": "Se revisó manual_pld_ft.md. No aparece la lista de personas bloqueadas. Se buscó alguna de: «personas bloqueadas», «lista de personas bloqueadas», «lista de bloqueados».",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Manual PLD/FT — borrador interno Versión 0.2. Fecha de…",
+      "document": "manual_pld_ft.md",
+      "fix_suggestion": "Documente la consulta de la lista de personas bloqueadas y la suspensión inmediata de operaciones cuando haya coincidencia.",
+      "source_name": "LRITF art. 58",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-09-10",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "pld-manual-art58",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "pld",
+      "title": "Manual de medidas y procedimientos PLD/FT (art. 58)",
+      "requirement": "Las medidas y procedimientos para prevenir y detectar actos de los arts. 139 Quáter o 400 Bis del Código Penal Federal deben constar en un documento presentado a la CNBV conforme a las DCG del art. 58.",
+      "message": "Se revisó manual_pld_ft.md. No aparece el fundamento del artículo 58. Se buscó alguna de: «artículo 58», «articulo 58», «art. 58». Se encontró un manual no presentado a la autoridad: «no ha sido presentado».",
+      "evidence": "…Fecha de redacción: enero de 2023. Entidad ficticia Nube Pago, S.A. de C.V. Este borrador no ha sido presentado a la CNBV. Alcance: cuenta de dinero electrónico de la entidad ficticia. El documento no…",
+      "document": "manual_pld_ft.md",
+      "fix_suggestion": "Cierre una versión del manual PLD/FT con fundamento en el art. 58 de la LRITF y regístrela como presentada a la CNBV, con fecha y alcance de productos.",
+      "source_name": "LRITF art. 58-I; DCG SIDOF 5537449",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-09-10",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "pld-metodologia-riesgos",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "pld",
+      "title": "Metodología de evaluación de riesgos PLD/FT",
+      "requirement": "Diseñar e implementar una metodología de evaluación de riesgos por productos, servicios, prácticas o tecnologías, con resultados a disposición de la Secretaría y de la CNBV.",
+      "message": "Se revisó manual_pld_ft.md. No aparece la metodología de riesgos PLD/FT. Se buscó alguna de: «enfoque basado en riesgos», «enfoque basado en riesgo», «metodología de riesgos», «metodologia de riesgos», «evaluación de riesgos», «evaluacion de riesgos», «metodología de evaluación».",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Manual PLD/FT — borrador interno Versión 0.2. Fecha de…",
+      "document": "manual_pld_ft.md",
+      "fix_suggestion": "Documente la metodología de evaluación de riesgos (enfoque basado en riesgos) por producto, cliente, zona y canal, y conserve los resultados.",
+      "source_name": "LRITF art. 58-I",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-09-10",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "pld-oficial-cumplimiento-certificado",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "pld",
+      "title": "Oficial de cumplimiento y comité de comunicación y control",
+      "requirement": "Debe existir un comité de comunicación y control y un oficial de cumplimiento. El oficial y quien haga la revisión anual deben obtener la certificación del art. 4 fr. X de la Ley de la CNBV.",
+      "message": "Se revisó manual_pld_ft.md, nombramiento_oficial_cumplimiento.docx. Faltan elementos: Comité de comunicación y control. Se encontró un oficial vacante o sin certificación: «vacante».",
+      "evidence": "…izada. Nombramiento del oficial de cumplimiento El puesto de oficial de cumplimiento está vacante. La entidad ficticia no cuenta con certificación CNBV para ese puesto. Puesto | Estado Of…",
+      "document": "nombramiento_oficial_cumplimiento.docx",
+      "fix_suggestion": "Designe al oficial de cumplimiento y al comité, y conserve la constancia de certificación CNBV del oficial y del revisor anual. Un puesto vacante no sustituye el nombramiento.",
+      "source_name": "LRITF art. 58",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-09-10",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "pld-reportes-roi-ror-rop",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "pld",
+      "title": "Reportes de operaciones relevantes, inusuales e internas preocupantes",
+      "requirement": "Presentar a la Secretaría, por conducto de la CNBV, reportes que cubran al menos operaciones relevantes, internas preocupantes e inusuales, además de transferencias internacionales y efectivo en moneda extranjera, conforme a las DCG.",
+      "message": "Se revisó manual_pld_ft.md. Faltan elementos: Operaciones relevantes; Operaciones inusuales; Operaciones internas preocupantes.",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Manual PLD/FT — borrador interno Versión 0.2. Fecha de…",
+      "document": "manual_pld_ft.md",
+      "fix_suggestion": "Describa la dictaminación y el envío, vía CNBV, de operaciones relevantes, inusuales e internas preocupantes, con los plazos de cada una.",
+      "source_name": "LRITF art. 58-II",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-09-10",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "privacy-aviso-art15-elementos",
+      "status": "fail",
+      "severity": "critical",
+      "domain": "privacy",
+      "title": "Aviso de privacidad — elementos mínimos art. 15 LFPDPPP 2025",
+      "requirement": "El aviso debe contener al menos: (I) identidad y domicilio del responsable; (II) datos personales tratados, identificando sensibles; (III) finalidades, distinguiendo las que requieren consentimiento; (IV) opciones/medios para limitar uso o divulgación; (V) mecanismos ARCO; (VI) procedimiento y medio para comunicar cambios al aviso.",
+      "message": "Se revisó aviso_de_privacidad.md. Faltan elementos: III. Finalidades que distinguen las que requieren consentimiento; VI. Medio para comunicar cambios al aviso.",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Aviso de privacidad Responsable del tratamiento: Nube …",
+      "document": "aviso_de_privacidad.md",
+      "fix_suggestion": "Reescriba el aviso con seis apartados explícitos. En finalidades separe las que requieren consentimiento de las que no, y agregue cómo se comunicarán los cambios al aviso.",
+      "source_name": "LFPDPPP art. 15 (DOF 20-mar-2025)",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf",
+      "effective_date": "2025-03-21",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "condusef-caratula-leyendas",
+      "status": "fail",
+      "severity": "high",
+      "domain": "condusef",
+      "title": "Carátula con leyendas de advertencia",
+      "requirement": "Cada producto lleva carátula con el formato de los anexos y las leyendas aplicables: recursos no garantizados, rendimientos estimados cuando existan, y, para IFPE, la aclaración sobre rendimientos.",
+      "message": "Se revisó caratula_cuenta.md. Faltan elementos: Leyenda de no garantía; Aclaración de rendimientos.",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Carátula del producto Producto: cuenta de pago. Precio…",
+      "document": "caratula_cuenta.md",
+      "fix_suggestion": "Arme la carátula con la leyenda de recursos no garantizados por el Gobierno Federal y la aclaración de rendimientos que corresponda al producto.",
+      "source_name": "Disposiciones CONDUSEF ITF art. 7",
+      "source_url": "https://sidof.segob.gob.mx/notas/docFuente/5565233",
+      "effective_date": "2019-06-28",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "condusef-reus-publicidad",
+      "status": "fail",
+      "severity": "high",
+      "domain": "condusef",
+      "title": "REUS y consentimiento independiente para publicidad",
+      "requirement": "La publicidad requiere autorización expresa e independiente del contrato. No se usa información de usuarios inscritos en el REUS salvo autorización posterior a esa inscripción.",
+      "message": "Se revisó contrato_adhesion.md. No aparece el REUS. Se buscó alguna de: «REUS». No aparece el consentimiento de publicidad separado del contrato. Se buscó alguna de: «consentimiento independiente», «autorización expresa para publicidad», «autorizacion expresa para publicidad», «consentimiento para publicidad», «consentimiento de publicidad».",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Contrato de adhesión Producto: cuenta de dinero electr…",
+      "document": "contrato_adhesion.md",
+      "fix_suggestion": "Documente la consulta al REUS antes de enviar publicidad y separe el consentimiento publicitario de la aceptación del contrato.",
+      "source_name": "Disposiciones CONDUSEF ITF art. 11",
+      "source_url": "https://sidof.segob.gob.mx/notas/docFuente/5565233",
+      "effective_date": "2019-06-28",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "condusef-une",
+      "status": "fail",
+      "severity": "high",
+      "domain": "condusef",
+      "title": "UNE — datos de contacto en el contrato y en la plataforma",
+      "requirement": "El contrato debe incluir los datos de la Unidad Especializada (correo y, en su caso, teléfono) para consultas, reclamaciones y aclaraciones. La plataforma también.",
+      "message": "Se revisó caratula_cuenta.md, contrato_adhesion.md, terminos_plataforma.md. No coincide la Unidad Especializada de atención a usuarios.",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Carátula del producto Producto: cuenta de pago. Precio…",
+      "document": "caratula_cuenta.md",
+      "fix_suggestion": "Agregue en el contrato y en la plataforma el nombre de la Unidad Especializada, su correo y, si existe, el teléfono.",
+      "source_name": "Disposiciones CONDUSEF ITF art. 6-VII",
+      "source_url": "https://sidof.segob.gob.mx/notas/docFuente/5565233",
+      "effective_date": "2019-06-28",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "lritf-av-divulgacion-riesgos",
+      "status": "not_applicable",
+      "severity": "high",
+      "domain": "lritf",
+      "title": "Divulgación de riesgos de activos virtuales",
+      "requirement": "Quien opere con activos virtuales debe divulgar que no son moneda de curso legal ni están respaldados por el Gobierno o Banxico, y advertir irreversibilidad, volatilidad y riesgos tecnológicos, cibernéticos y de fraude.",
+      "message": "No aplica con el perfil actual: no se declaró `operates_virtual_assets`. Actívelo en la CLI o en la interfaz si el modelo de negocio entra en el supuesto.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Si opera activos virtuales, agregue en carátula y plataforma que no son moneda de curso legal ni están respaldados por el Gobierno Federal o Banxico, y advierta volatilidad e irreversibilidad.",
+      "source_name": "LRITF art. 34",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-03-09",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "lritf-conflictos-interes",
+      "status": "pass",
+      "severity": "high",
+      "domain": "lritf",
+      "title": "Políticas de solución de conflictos de interés",
+      "requirement": "Políticas documentadas para los posibles conflictos de interés en la realización de las actividades.",
+      "message": "Los documentos revisados cubren el criterio: politica_conflictos_interes.md.",
+      "evidence": null,
+      "document": "politica_conflictos_interes.md",
+      "fix_suggestion": "Documente cómo se revelan, registran y resuelven los conflictos de interés, incluida la abstención de quien los tenga.",
+      "source_name": "LRITF art. 39-VIII",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-03-09",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "lritf-divulgacion-riesgos-comisiones",
+      "status": "fail",
+      "severity": "high",
+      "domain": "lritf",
+      "title": "Políticas de divulgación de riesgos, responsabilidades y comisiones",
+      "requirement": "Políticas en lenguaje sencillo sobre riesgos, responsabilidades, conceptos y montos de comisiones, y advertencias en la interfaz.",
+      "message": "Se revisó terminos_plataforma.md. Faltan elementos: Riesgos del producto; Comisiones.",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Términos y condiciones de la plataforma El uso de la p…",
+      "document": "terminos_plataforma.md",
+      "fix_suggestion": "Publique, en lenguaje sencillo, los riesgos del producto y el concepto, monto y periodicidad de cada comisión antes de que el cliente opere.",
+      "source_name": "LRITF art. 39-V",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-03-09",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "lritf-prevencion-fraude",
+      "status": "fail",
+      "severity": "high",
+      "domain": "lritf",
+      "title": "Políticas de prevención de fraudes",
+      "requirement": "Políticas de prevención de fraudes, además de las de PLD/FT.",
+      "message": "No se encontró ningún documento clasificado como: politica_prevencion_fraude, manual_operaciones. La obligación queda sin soporte documental.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Separe una política de prevención de fraudes, con señales de alerta, responsables y el escalamiento operativo.",
+      "source_name": "LRITF art. 39-IX",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-03-09",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "lfpiorpi-2025-manual-rba-av",
+      "status": "fail",
+      "severity": "high",
+      "domain": "pld",
+      "title": "Reforma LFPIORPI 2025 — beneficiario controlador, UMA y manual",
+      "requirement": "La reforma publicada el 16 de julio de 2025 redefine al beneficiario controlador, sustituye umbrales por UMA, exige identificación directa, manual de políticas, enfoque basado en riesgos, monitoreo automatizado, capacitación y auditoría, y conserva la información diez años. Es relevante para quien intercambie activos virtuales fuera de una entidad financiera y como contexto de las entidades del art. 58 de la LRITF.",
+      "message": "Se revisó manual_pld_ft.md. Faltan elementos: Beneficiario controlador; Reforma o actividades vulnerables; UMA o monitoreo automatizado.",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Manual PLD/FT — borrador interno Versión 0.2. Fecha de…",
+      "document": "manual_pld_ft.md",
+      "fix_suggestion": "Actualice el manual con la reforma del 16 de julio de 2025: beneficiario controlador, umbrales en UMA, monitoreo automatizado y el régimen de actividades vulnerables si la entidad o una filial entra en ese supuesto.",
+      "source_name": "LFPIORPI reforma DOF 16-jul-2025",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/ref/lfpiorpi/LFPIORPI_ref03_16jul25.pdf",
+      "effective_date": "2025-07-17",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": "Las fracciones VII a XI del art. 18 entran según las reglas secundarias (transitorio tercero). No se adelantan aquí plazos que el decreto condiciona.",
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "pld-auditoria-anual",
+      "status": "fail",
+      "severity": "high",
+      "domain": "pld",
+      "title": "Revisión anual de la efectividad PLD/FT",
+      "requirement": "Revisión anual, por auditoría interna o por un tercero independiente, de la efectividad del cumplimiento de las DCG del art. 58.",
+      "message": "No se encontró ningún documento clasificado como: informe_auditoria_pld. La obligación queda sin soporte documental.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Encargue y archive el informe anual de efectividad PLD/FT, emitido por auditoría interna o por un tercero independiente certificado.",
+      "source_name": "LRITF art. 58; lineamientos CNBV 18-oct-2021 (índice Normatividad Fintech)",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-09-10",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "pld-retencion-10-anos",
+      "status": "fail",
+      "severity": "high",
+      "domain": "pld",
+      "title": "Conservación de expedientes KYC y reportes PLD por al menos 10 años",
+      "requirement": "Conservar al menos diez años la información y documentación de identificación de clientes y de los actos u operaciones reportados.",
+      "message": "Se revisó manual_pld_ft.md. No aparece la conservación de diez años. Se buscó alguna de: «diez años», «10 años», «10 (diez) años».",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Manual PLD/FT — borrador interno Versión 0.2. Fecha de…",
+      "document": "manual_pld_ft.md",
+      "fix_suggestion": "Corrija el plazo de conservación de expedientes de identificación y de reportes PLD a un mínimo de diez años.",
+      "source_name": "LRITF art. 58",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-09-10",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "privacy-aviso-vulneraciones",
+      "status": "fail",
+      "severity": "high",
+      "domain": "privacy",
+      "title": "Aviso inmediato de vulneraciones significativas a titulares",
+      "requirement": "Las vulneraciones que afecten de forma significativa derechos patrimoniales o morales deben informarse de forma inmediata a los titulares.",
+      "message": "No se encontró ningún documento clasificado como: plan_respuesta_incidentes, politica_seguridad_datos. La obligación queda sin soporte documental.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Agregue al plan de incidentes el aviso inmediato a los titulares cuando la vulneración afecte de forma significativa sus derechos.",
+      "source_name": "LFPDPPP art. 19",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf",
+      "effective_date": "2025-03-21",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "privacy-consentimiento-datos-financieros",
+      "status": "fail",
+      "severity": "high",
+      "domain": "privacy",
+      "title": "Consentimiento expreso para datos financieros o patrimoniales",
+      "requirement": "Los datos financieros o patrimoniales requieren consentimiento expreso del titular, salvo excepciones de los arts. 9 y 36.",
+      "message": "Se revisó aviso_de_privacidad.md. Faltan elementos: Consentimiento expreso de datos financieros o patrimoniales. Se encontró un consentimiento tácito para datos personales: «de forma tácita».",
+      "evidence": "…otección de Datos Personales). El tratamiento de datos financieros se entiende consentido de forma tácita al abrir la cuenta.",
+      "document": "aviso_de_privacidad.md",
+      "fix_suggestion": "Redacte que los datos financieros o patrimoniales se tratan con consentimiento expreso del titular y elimine cualquier fórmula de consentimiento tácito.",
+      "source_name": "LFPDPPP art. 7",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf",
+      "effective_date": "2025-03-21",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "privacy-medidas-seguridad",
+      "status": "fail",
+      "severity": "high",
+      "domain": "privacy",
+      "title": "Medidas de seguridad administrativas, técnicas y físicas",
+      "requirement": "Deben establecerse y mantenerse medidas que protejan los datos contra daño, pérdida, alteración, destrucción o uso y acceso no autorizados.",
+      "message": "No se encontró ningún documento clasificado como: politica_seguridad_datos, politica_seguridad_informacion. La obligación queda sin soporte documental.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Documente medidas administrativas, técnicas y físicas de seguridad de los datos personales, alineadas al art. 18 de la LFPDPPP.",
+      "source_name": "LFPDPPP art. 18",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf",
+      "effective_date": "2025-03-21",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "privacy-no-citar-inai",
+      "status": "fail",
+      "severity": "high",
+      "domain": "privacy",
+      "title": "No citar al INAI como autoridad vigente",
+      "requirement": "Tras la LFPDPPP 2025, la autoridad es la Secretaría Anticorrupción y Buen Gobierno. Documentos que indiquen al INAI como autoridad garante vigente están desactualizados.",
+      "message": "Se revisó aviso_de_privacidad.md. Se encontró al INAI o al Instituto Nacional de Transparencia como autoridad vigente: «INAI».",
+      "evidence": "…s: privacidad@nubepago.example. La autoridad competente para la protección de datos es el INAI (Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Perso…",
+      "document": "aviso_de_privacidad.md",
+      "fix_suggestion": "Sustituya toda referencia al INAI como autoridad vigente por la Secretaría Anticorrupción y Buen Gobierno y cite la LFPDPPP publicada el 20 de marzo de 2025.",
+      "source_name": "LFPDPPP arts. 2-XV, 38–39; Transitorios DOF 20-mar-2025",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf",
+      "effective_date": "2025-03-21",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "sat-cfdi40-emision",
+      "status": "fail",
+      "severity": "high",
+      "domain": "sat",
+      "title": "Proceso documentado de emisión de CFDI 4.0",
+      "requirement": "Contar con un procedimiento de facturación electrónica CFDI 4.0 alineado al CFF, a la RMF 2026 y al Anexo 29, incluidas las cancelaciones y las validaciones.",
+      "message": "Se revisó politica_cfdi.md. No aparece CFDI versión 4.0. Se buscó alguna de: «CFDI 4.0», «versión 4.0», «version 4.0», «cfdi version 4.0».",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Política de facturación Nos regimos únicamente por la …",
+      "document": "politica_cfdi.md",
+      "fix_suggestion": "Migre el procedimiento de CFDI 3.3 a CFDI 4.0 y documente timbrado, cancelación y validaciones. Confirme los números de regla contra el PDF de la RMF 2026 antes de citarlos.",
+      "source_name": "SAT RMF 2026 / Anexo 29 (hub)",
+      "source_url": "https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/normatividad_rmf_rgce2026.html",
+      "effective_date": "2022-01-01",
+      "last_verified": "2026-11-05",
+      "unverified": true,
+      "unverified_detail": "Los números de regla de la RMF 2026 que detallan el CFDI no se transcribieron: el PDF completo no se leyó línea por línea. La versión 4.0 sí es el estándar vigente que el procedimiento debe nombrar.",
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "sat-plataformas-tecnologicas",
+      "status": "not_applicable",
+      "severity": "high",
+      "domain": "sat",
+      "title": "Retenciones y complemento de plataformas tecnológicas",
+      "requirement": "Si la entidad es plataforma tecnológica en los supuestos de la LISR o de la LIVA, debe documentar el CFDI de retenciones con el complemento de servicios de plataformas tecnológicas y los enteros.",
+      "message": "No aplica con el perfil actual: no se declaró `is_technological_platform_tax_regime`. Actívelo en la CLI o en la interfaz si el modelo de negocio entra en el supuesto.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Si está en el régimen de plataformas tecnológicas, documente el complemento y el entero de las retenciones. Si no lo está, no active la bandera.",
+      "source_name": "SAT Complemento Servicios de Plataformas Tecnológicas",
+      "source_url": "https://wwwmat.sat.gob.mx/consulta/52846/complemento-servicios-de-plataformas-tecnologicas",
+      "effective_date": "2019-06-01",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "sat-rmf-calendario-anual",
+      "status": "fail",
+      "severity": "high",
+      "domain": "sat",
+      "title": "Calendario de actualización ante la RMF anual",
+      "requirement": "La Resolución Miscelánea Fiscal se publica cada año. Los procesos fiscales deben tener una persona responsable y una lista de verificación después de la publicación en el DOF, más el seguimiento de las resoluciones de modificaciones.",
+      "message": "Se revisó politica_cfdi.md. Faltan elementos: Calendario o lista de verificación; Persona responsable.",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Política de facturación Nos regimos únicamente por la …",
+      "document": "politica_cfdi.md",
+      "fix_suggestion": "Nombre a la persona responsable y arme la lista de verificación que se corre al publicarse la RMF 2026 y cada resolución de modificaciones.",
+      "source_name": "SAT Normatividad RMF 2026; RMF publicada el 28-dic-2025",
+      "source_url": "https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/normatividad_rmf_rgce2026.html",
+      "effective_date": "2026-01-01",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "sat-rmf2026-publicacion",
+      "status": "fail",
+      "severity": "high",
+      "domain": "sat",
+      "title": "Referenciar la RMF 2026 vigente",
+      "requirement": "Las políticas y los manuales fiscales no deben quedar anclados solo a la RMF 2025. Deben citar o incorporar la RMF 2026 y las modificaciones publicadas.",
+      "message": "Se revisó politica_cfdi.md. No aparece la RMF 2026. Se buscó alguna de: «RMF 2026», «miscelánea fiscal 2026», «miscelanea fiscal 2026», «resolución miscelánea fiscal para 2026», «resolucion miscelanea fiscal para 2026».",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Política de facturación Nos regimos únicamente por la …",
+      "document": "politica_cfdi.md",
+      "fix_suggestion": "Actualice la cita normativa a la Resolución Miscelánea Fiscal 2026 y deje constancia de la revisión de sus modificaciones.",
+      "source_name": "RMF 2026 DOF 28-dic-2025",
+      "source_url": "https://dof.gob.mx/2025/SHCP/SHCP_281225_01.pdf",
+      "effective_date": "2026-01-01",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "condusef-comisiones-plataforma",
+      "status": "fail",
+      "severity": "medium",
+      "domain": "condusef",
+      "title": "Comisiones publicadas antes de operar",
+      "requirement": "Los conceptos, montos y la periodicidad de las comisiones deben estar disponibles antes de operar, con consentimiento previo al cobro.",
+      "message": "Se revisó contrato_adhesion.md. Faltan elementos: Comisiones; Monto o periodicidad.",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Contrato de adhesión Producto: cuenta de dinero electr…",
+      "document": "contrato_adhesion.md",
+      "fix_suggestion": "Publique concepto, monto y periodicidad de cada comisión, y recabe el consentimiento del cliente antes de cobrarla.",
+      "source_name": "Disposiciones CONDUSEF ITF arts. 33–34",
+      "source_url": "https://sidof.segob.gob.mx/notas/docFuente/5565233",
+      "effective_date": "2019-06-28",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "condusef-terminos-plataforma",
+      "status": "fail",
+      "severity": "medium",
+      "domain": "condusef",
+      "title": "Términos y condiciones de uso de la plataforma",
+      "requirement": "Los términos explican usos y restricciones, la responsabilidad sobre claves y el procedimiento por robo, extravío u olvido, los horarios, los medios de continuidad ante fallas y el aviso a CONDUSEF cuando una falla dure 24 horas o más.",
+      "message": "Se revisó terminos_plataforma.md. Faltan elementos: Claves, robo o extravío; Aviso a CONDUSEF por fallas prolongadas.",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Términos y condiciones de la plataforma El uso de la p…",
+      "document": "terminos_plataforma.md",
+      "fix_suggestion": "Complete los términos con el uso de claves y el procedimiento por robo o extravío, los horarios, la continuidad ante fallas y el aviso a CONDUSEF (suptech@condusef.gob.mx) si la falla dura 24 horas o más.",
+      "source_name": "Disposiciones CONDUSEF ITF art. 3",
+      "source_url": "https://sidof.segob.gob.mx/notas/docFuente/5565233",
+      "effective_date": "2019-06-28",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "lritf-conservacion-10-anos",
+      "status": "fail",
+      "severity": "medium",
+      "domain": "lritf",
+      "title": "Conservación de comprobantes de operaciones por al menos 10 años",
+      "requirement": "Conservar los comprobantes originales de las operaciones por un plazo mínimo de diez años, en impreso o en medios electrónicos conforme a la NOM de digitalización.",
+      "message": "No se encontró ningún documento clasificado como: politica_retencion_documental, manual_archivo. La obligación queda sin soporte documental.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Fije en la política de archivo un plazo mínimo de diez años para los comprobantes de las operaciones.",
+      "source_name": "LRITF art. 48",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2018-03-09",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "pld-dcg-art58-fuente",
+      "status": "fail",
+      "severity": "medium",
+      "domain": "pld",
+      "title": "Anclar los controles a las DCG del art. 58",
+      "requirement": "El manual debe alinearse a las Disposiciones de carácter general del artículo 58 de la LRITF, publicadas el 10 de septiembre de 2018, y a sus modificaciones.",
+      "message": "Se revisó manual_pld_ft.md. Faltan elementos: Artículo 58; Disposiciones de carácter general.",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Manual PLD/FT — borrador interno Versión 0.2. Fecha de…",
+      "document": "manual_pld_ft.md",
+      "fix_suggestion": "Cite en el manual las DCG del art. 58 de la LRITF (SIDOF 5537449, 10 de septiembre de 2018) y las modificaciones que les apliquen.",
+      "source_name": "DCG art. 58 LRITF (10-sep-2018)",
+      "source_url": "https://sidof.segob.gob.mx/notas/5537449",
+      "effective_date": "2018-09-10",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "privacy-arco-plazos",
+      "status": "fail",
+      "severity": "medium",
+      "domain": "privacy",
+      "title": "Procedimiento ARCO — plazos de respuesta",
+      "requirement": "El responsable debe comunicar la determinación en máximo 20 días desde la solicitud y, si procede, hacerla efectiva en los 15 días siguientes, ampliables una vez por igual periodo.",
+      "message": "Se revisó aviso_de_privacidad.md. No coincide el plazo máximo de 20 días. No coincide el plazo de 15 días para hacer efectivo el derecho.",
+      "evidence": "DOCUMENTO FICTICIO DE DEMOSTRACIÓN — Nube Pago, S.A. de C.V., IFPE imaginaria. No corresponde a ninguna entidad autorizada. # Aviso de privacidad Responsable del tratamiento: Nube …",
+      "document": "aviso_de_privacidad.md",
+      "fix_suggestion": "Escriba los plazos del art. 31: respuesta en un máximo de 20 días y, de ser procedente, hacerla efectiva dentro de los 15 días siguientes.",
+      "source_name": "LFPDPPP art. 31",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf",
+      "effective_date": "2025-03-21",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "privacy-departamento-datos",
+      "status": "pass",
+      "severity": "medium",
+      "domain": "privacy",
+      "title": "Designación de persona o departamento de datos personales",
+      "requirement": "Todo responsable debe designar una persona o departamento que tramite las solicitudes ARCO.",
+      "message": "Los documentos revisados cubren el criterio: aviso_de_privacidad.md.",
+      "evidence": null,
+      "document": "aviso_de_privacidad.md",
+      "fix_suggestion": "Nombre el departamento o la persona que atiende ARCO y publique un correo de contacto en el aviso.",
+      "source_name": "LFPDPPP art. 29",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf",
+      "effective_date": "2025-03-21",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "sat-carta-porte",
+      "status": "not_applicable",
+      "severity": "medium",
+      "domain": "sat",
+      "title": "Complemento Carta Porte si hay transporte de mercancías",
+      "requirement": "Solo si la fintech, o un tercero cubierto por su CFDI, mueve mercancías en territorio nacional, debe emitirse el complemento Carta Porte.",
+      "message": "No aplica con el perfil actual: no se declaró `transports_goods`. Actívelo en la CLI o en la interfaz si el modelo de negocio entra en el supuesto.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Si transporta mercancías, documente el complemento Carta Porte. Si no transporta, deje constancia de que el supuesto no aplica y no active esta bandera.",
+      "source_name": "SAT Complemento Carta Porte",
+      "source_url": "https://wwwmat.sat.gob.mx/consultas/68823/complemento-carta-porte-",
+      "effective_date": "2021-12-01",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "sat-cff-32b-informacion",
+      "status": "fail",
+      "severity": "medium",
+      "domain": "sat",
+      "title": "CFF art. 32-B — información de entidades financieras",
+      "requirement": "Si la entidad queda en los supuestos del art. 32-B del CFF, debe poder atender requerimientos del SAT sobre cuentas y operaciones e identificar cuentahabientes.",
+      "message": "No se encontró ningún documento clasificado como: procedimiento_requerimientos_autoridad, manual_fiscal. La obligación queda sin soporte documental.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Documente quién atiende un requerimiento del SAT y qué datos de identificación se pueden entregar. Confirme contra el CFF vigente si la entidad está en el supuesto del art. 32-B.",
+      "source_name": "CFF art. 32-B (cruzar con el CFF vigente en Diputados); la ficha de investigación citó la LRITF solo como ancla",
+      "source_url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+      "effective_date": "2014-01-01",
+      "last_verified": "2026-11-05",
+      "unverified": true,
+      "unverified_detail": "El encuadre exacto de cada ITF en el art. 32-B del CFF no se cerró contra el texto vigente del CFF. La URL de esta ficha es la que traía la semilla de investigación (compilación de la LRITF) y debe cruzarse con el PDF del CFF.",
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "sat-complemento-pagos-rep",
+      "status": "not_applicable",
+      "severity": "medium",
+      "domain": "sat",
+      "title": "Complemento de recepción de pagos",
+      "requirement": "Si se reciben pagos en parcialidades o diferidos, debe documentarse la emisión del complemento de recepción de pagos conforme a las reglas vigentes.",
+      "message": "No aplica con el perfil actual: no se declaró `has_partial_or_deferred_payments`. Actívelo en la CLI o en la interfaz si el modelo de negocio entra en el supuesto.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Si hay pagos parciales o diferidos, documente quién emite el complemento de recepción de pagos y en qué momento. Confirme el plazo en la regla vigente de la RMF 2026.",
+      "source_name": "SAT RMF 2026 (hub), complemento de pagos",
+      "source_url": "https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/normatividad_rmf_rgce2026.html",
+      "effective_date": "2022-01-01",
+      "last_verified": "2026-11-05",
+      "unverified": true,
+      "unverified_detail": "El plazo coloquialmente citado como quinto día del mes siguiente debe confirmarse en la regla vigente de la RMF 2026; no se copia un número de regla no leído.",
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "sat-iva-servicios-digitales",
+      "status": "not_applicable",
+      "severity": "medium",
+      "domain": "sat",
+      "title": "IVA de servicios digitales — comprobantes",
+      "requirement": "Quien preste servicios digitales en los supuestos de la LIVA debe documentar el traslado del IVA, el RFC del receptor y los datos del emisor en los comprobantes.",
+      "message": "No aplica con el perfil actual: no se declaró `provides_digital_services_liva`. Actívelo en la CLI o en la interfaz si el modelo de negocio entra en el supuesto.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Si presta servicios digitales gravados, documente el IVA y los datos del comprobante según la guía del SAT. Si no, no active la bandera.",
+      "source_name": "SAT Plataformas Tecnológicas / Servicios Digitales — comprobantes",
+      "source_url": "https://www.sat.gob.mx/minisitio/PlataformasTecnologicas/PlataformasTecnologicas_ServiciosDigitales/pt_sd_comprobantes.html",
+      "effective_date": "2020-06-01",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    },
+    {
+      "rule_id": "cnbv-normatividad-index",
+      "status": "fail",
+      "severity": "info",
+      "domain": "cnbv",
+      "title": "Mantener el mapeo a la Normatividad Fintech de la CNBV",
+      "requirement": "El programa de cumplimiento debe referenciar el índice oficial de normatividad ITF de la CNBV.",
+      "message": "No se encontró ningún documento clasificado como: matriz_cumplimiento, manual_cumplimiento. La obligación queda sin soporte documental.",
+      "evidence": null,
+      "document": null,
+      "fix_suggestion": "Agregue a la matriz de cumplimiento la liga al índice de Normatividad Fintech de la CNBV y la fecha en que se revisó.",
+      "source_name": "CNBV Normatividad Fintech",
+      "source_url": "https://www.cnbv.gob.mx/SECTORES-SUPERVISADOS/Fintech/Paginas/NORMATIVIDAD-FINTECH.aspx",
+      "effective_date": "2018-09-10",
+      "last_verified": "2026-11-05",
+      "unverified": false,
+      "unverified_detail": null,
+      "notes": null,
+      "origin": [
+        "deterministic"
+      ]
+    }
+  ],
+  "rejected_llm_findings": [],
+  "omitted_rules": [
+    {
+      "id": "meta-disclaimer-no-legal-advice",
+      "reason": "Regla interna de la herramienta; no se audita al cliente."
+    },
+    {
+      "id": "meta-what-changed-2026",
+      "reason": "Regla interna de la herramienta; no se audita al cliente."
+    },
+    {
+      "id": "sat-lif2026-ifc-retencion-isr-iva",
+      "reason": "No aplica a IFPE; la regla está dirigida a IFC."
+    }
+  ]
+}

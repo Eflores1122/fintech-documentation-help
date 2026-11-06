@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fintech-documentation-help"
+version = "0.1.0"
+description = "Auditor open-source de documentación regulatoria para fintechs mexicanas (ITF: IFPE, IFC y figuras afines). No es asesoría legal ni fiscal."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "fintech-documentation-help contributors"}]
+keywords = ["fintech", "compliance", "mexico", "cnbv", "condusef", "sat", "pld"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+    "fastapi>=0.115",
+    "httpx>=0.27",
+    "pydantic>=2.6",
+    "pypdf>=5.0",
+    "python-docx>=1.1",
+    "python-multipart>=0.0.9",
+    "pyyaml>=6.0",
+    "uvicorn>=0.32",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-cov>=6.0",
+    "ruff>=0.8",
+]
+
+[project.scripts]
+fdh = "fdh.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Eflores1122/fintech-documentation-help"
+Documentation = "https://github.com/Eflores1122/fintech-documentation-help#readme"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+fdh = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q --cov=fdh --cov-report=term-missing --cov-fail-under=80"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["SIM117", "E501"]
+"src/fdh/web.py" = ["B008", "E501"]
+"src/fdh/report/render.py" = ["E501"]
+
+[tool.coverage.run]
+branch = true
+source = ["fdh"]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+]
