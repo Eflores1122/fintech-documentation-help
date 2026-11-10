@@ -1,0 +1,117 @@
+# Parámetros con vigencia. No son asesoría legal ni fiscal.
+# Si una fecha no tiene fila, la auditoría lo dice y no inventa el monto.
+disclaimer: Parámetros de apoyo. No constituyen asesoría legal ni fiscal.
+parameters:
+  - id: capital_minimo_udi_operacion_unica
+    title: Capital mínimo de una ITF con un solo tipo de operación en moneda nacional
+    unit: UDI
+    source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5537450
+    source_name: DCG aplicables a las ITF, arts. 6 y 8 (nota DOF 5537450)
+    verified: true
+    used_by:
+      - regulatorio-capital-minimo-udi
+    values:
+      - effective_from: "2018-09-10"
+        value: 500000
+        note: "Art. 6. El art. 8 exige que esté suscrito y pagado al último día hábil del año, con la UDI del 31 de diciembre anterior. El valor en pesos de la UDI no está en esta tabla."
+
+  - id: capital_minimo_udi_supuestos_amplios
+    title: Capital mínimo cuando la ITF está en un supuesto del art. 7
+    unit: UDI
+    source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5537450
+    source_name: DCG aplicables a las ITF, art. 7 (nota DOF 5537450)
+    verified: true
+    used_by:
+      - regulatorio-capital-minimo-udi
+    values:
+      - effective_from: "2018-09-10"
+        value: 700000
+        note: "Dos o más tipos de operación, activos virtuales, moneda extranjera u otros supuestos del propio art. 7."
+
+  - id: ifpe_efectivo_recepcion_mensual
+    title: Tope de recepción de efectivo por cliente al mes, sujeto a autorización
+    unit: UDI
+    source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5537450
+    source_name: DCG aplicables a las ITF, art. 9 (nota DOF 5537450)
+    verified: true
+    used_by:
+      - regulatorio-efectivo-ifpe
+    values:
+      - effective_from: "2018-09-10"
+        value: 10000
+
+  - id: ifpe_efectivo_entrega_diaria
+    title: Tope de entrega de efectivo por cliente al día, sujeto a autorización
+    unit: UDI
+    source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5537450
+    source_name: DCG aplicables a las ITF, art. 9 (nota DOF 5537450)
+    verified: true
+    used_by:
+      - regulatorio-efectivo-ifpe
+    values:
+      - effective_from: "2018-09-10"
+        value: 1500
+
+  - id: lif_isr_retencion_intereses_residentes
+    title: Tasa de retención de ISR sobre intereses que la ficha de IFC atribuye a la LIF 2026
+    unit: tasa
+    source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LIF_2026.pdf
+    source_name: LIF 2026 art. 25 fr. VIII (número citado por la ficha; no releído en esta pasada)
+    verified: false
+    unverified_detail: "La ficha sat-lif2026 cita 20% para residentes. No se releyó el PDF. No hay fila para un ejercicio distinto de 2026: no se inventa la tasa."
+    used_by:
+      - sat-lif2026-ifc-retencion-isr-iva
+    values:
+      - effective_from: "2026-01-01"
+        effective_to: "2026-12-31"
+        value: 0.20
+
+  - id: lif_isr_retencion_intereses_extranjeros
+    title: Tasa de retención de ISR sobre intereses a residentes en el extranjero, según la ficha LIF 2026
+    unit: tasa
+    source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LIF_2026.pdf
+    source_name: LIF 2026 art. 25 fr. VIII (no releído en esta pasada)
+    verified: false
+    unverified_detail: "La ficha cita 35%. No se releyó el PDF. Sin fila fuera de 2026 no se inventa la tasa."
+    used_by:
+      - sat-lif2026-ifc-retencion-isr-iva
+    values:
+      - effective_from: "2026-01-01"
+        effective_to: "2026-12-31"
+        value: 0.35
+
+  - id: lif_iva_retencion_intereses
+    title: Tasa de IVA sobre intereses que la ficha de IFC atribuye a la LIF 2026
+    unit: tasa
+    source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LIF_2026.pdf
+    source_name: LIF 2026 art. 25 fr. VIII (no releído en esta pasada)
+    verified: false
+    unverified_detail: "La ficha cita 16%. No se releyó el PDF. Sin fila fuera de 2026 no se inventa la tasa."
+    used_by:
+      - sat-lif2026-ifc-retencion-isr-iva
+    values:
+      - effective_from: "2026-01-01"
+        effective_to: "2026-12-31"
+        value: 0.16
+
+  - id: uma_diaria
+    title: Valor diario de la UMA
+    unit: MXN
+    source_url: https://www.inegi.org.mx/temas/uma/
+    source_name: INEGI, Unidad de Medida y Actualización
+    verified: false
+    unverified_detail: "No se transcribió el valor diario. La tabla no tiene filas a propósito: cualquier fecha avisa que falta el parámetro en lugar de usar un monto recordado."
+    used_by:
+      - regulatorio-capital-minimo-udi
+    values: []
+
+  - id: pld_umbral_operacion_relevante_uma
+    title: Umbral en UMA de una operación relevante para ITF
+    unit: UMA
+    source_url: https://sidof.segob.gob.mx/notas/5537449
+    source_name: DCG del art. 58 de la LRITF (umbral no aislado)
+    verified: false
+    unverified_detail: "No se leyó el número de UMA del reporte de operaciones relevantes. No hay fila."
+    used_by:
+      - pld-reportes-roi-ror-rop
+    values: []

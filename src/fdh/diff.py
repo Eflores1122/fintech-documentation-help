@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -26,9 +27,22 @@ MATERIAL_FIELDS = (
     "unverified",
     "unverified_detail",
     "supersedes",
+    "superseded_by",
+    "effective_from",
+    "effective_to",
+    "parameter_ids",
     "applies_if",
     "notes",
     "diff_note",
+    "area",
+    "min_strictness",
+    "binding",
+    "owner_role",
+    "remediation_days",
+    "evidence_expected",
+    "procedure",
+    "frameworks",
+    "verified",
     "matcher",
 )
 
@@ -46,9 +60,22 @@ FIELD_LABELS = {
     "unverified": "Bandera UNVERIFIED",
     "unverified_detail": "Detalle UNVERIFIED",
     "supersedes": "Sustituye a",
+    "superseded_by": "Sustituida por",
+    "effective_from": "Vigencia desde",
+    "effective_to": "Vigencia hasta",
+    "parameter_ids": "Parámetros",
     "applies_if": "Condición de aplicación",
     "notes": "Notas",
     "diff_note": "Nota de cambio",
+    "area": "Área",
+    "min_strictness": "Estrictez mínima",
+    "binding": "Vinculante en México",
+    "owner_role": "Responsable sugerido",
+    "remediation_days": "Plazo sugerido (días)",
+    "evidence_expected": "Evidencia esperada",
+    "procedure": "Procedimiento",
+    "frameworks": "Marcos de referencia",
+    "verified": "Verificada",
     "matcher": "Criterio determinístico",
 }
 
@@ -61,8 +88,36 @@ def _canon(rule: Rule) -> dict[str, Any]:
 
 
 def diff_catalogs(year_a: int, year_b: int, rules_dir: Path | None = None) -> dict[str, Any]:
-    before = {rule.id: rule for rule in load_catalog(year_a, rules_dir)}
-    after = {rule.id: rule for rule in load_catalog(year_b, rules_dir)}
+    return diff_rule_maps(
+        {rule.id: rule for rule in load_catalog(year_a, rules_dir)},
+        {rule.id: rule for rule in load_catalog(year_b, rules_dir)},
+        year_a,
+        year_b,
+    )
+
+
+def diff_as_of(start: date, end: date, rules_dir: Path | None = None) -> dict[str, Any]:
+    from fdh.temporal import rules_as_of
+
+    before, _notes_a = rules_as_of(start, rules_dir)
+    after, _notes_b = rules_as_of(end, rules_dir)
+    payload = diff_rule_maps(
+        {rule.id: rule for rule in before},
+        {rule.id: rule for rule in after},
+        start.isoformat(),
+        end.isoformat(),
+    )
+    payload["from_date"] = start.isoformat()
+    payload["to_date"] = end.isoformat()
+    return payload
+
+
+def diff_rule_maps(
+    before: dict[str, Rule],
+    after: dict[str, Rule],
+    year_a: int | str,
+    year_b: int | str,
+) -> dict[str, Any]:
     added_ids = sorted(set(after) - set(before))
     removed_ids = sorted(set(before) - set(after))
     modified: list[dict[str, Any]] = []

@@ -15,6 +15,15 @@ ruff format --check src tests scripts
 pytest
 ```
 
+## Sin programar
+
+1. Copie un bloque de `rules/2026/<área>/v2.yaml` (o de un YAML vecino).
+2. Cambie `id`, `title`, `requirement`, `source_url`, `source_name`, `effective_date` y `last_verified`.
+3. Si no leyó el artículo, ponga `unverified: true` y `unverified_detail`. También puede escribir `verified: false`.
+4. Corra `fdh rules validate`. Si el YAML no carga, el mensaje dice la línea. No hace falta tocar Python.
+
+`fdh rules new-year 2027` clona el año anterior y deja `CHECKLIST.md`.
+
 ## Actualización anual (diciembre–enero) y reformas
 
 La Resolución Miscelánea Fiscal y la Ley de Ingresos se renuevan por ejercicio. Otras piezas (LFPDPPP, LFPIORPI, disposiciones de CNBV, Banxico o CONDUSEF) entran cuando se publican. El catálogo sigue ese calendario: una carpeta por año, no un archivo que se reescribe y pierde la historia.

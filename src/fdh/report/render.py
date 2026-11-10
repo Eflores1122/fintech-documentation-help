@@ -16,6 +16,16 @@ DOMAIN_LABELS = {
     "condusef": "CONDUSEF",
     "sat": "SAT / fiscal",
     "meta": "Meta",
+    "legal": "Legal y corporativo",
+    "regulatorio": "Regulatorio CNBV/Banxico",
+    "financiero": "Financiero y contable",
+    "fiscal": "Fiscal",
+    "ciberseguridad": "Ciberseguridad",
+    "privacidad": "Privacidad",
+    "riesgos": "Riesgos",
+    "operacion": "Operación y TI",
+    "laboral": "Laboral",
+    "metodologia": "Modo estricto",
 }
 
 STATUS_LABELS = {
@@ -43,6 +53,10 @@ def render_markdown(report: AuditReport) -> str:
         f"- Entidad: `{report.entity_type}` · catálogo {report.catalog_year}",
         f"- LLM: {'sí' if report.llm_used else 'no'}"
         + (f" — {report.llm_note}" if report.llm_note else ""),
+        f"- Estrictez: `{report.strictness}`",
+        f"- Dictamen documental: **{report.opinion.get('label', '')}**. {report.opinion.get('narrative', '')}",
+        "",
+        str(report.opinion.get("disclaimer", "")),
         "",
         "## Puntaje",
         "",
@@ -55,6 +69,11 @@ def render_markdown(report: AuditReport) -> str:
         label = DOMAIN_LABELS.get(domain, domain)
         shown = "n/a" if value is None else f"{value:.1f}"
         lines.append(f"| {label} | {shown} |")
+    if report.scores.by_area:
+        lines.extend(["", "### Por área", "", "| Área | Puntaje |", "|---|---:|"])
+        for area, value in report.scores.by_area.items():
+            shown = "n/a" if value is None else f"{value:.1f}"
+            lines.append(f"| {area} | {shown} |")
     lines.extend(["", "## Resumen", ""])
     summary = report.summary
     lines.append(
@@ -100,6 +119,36 @@ def render_markdown(report: AuditReport) -> str:
         for item in report.omitted_rules:
             lines.append(f"- `{item['id']}`: {item['reason']}")
         lines.append("")
+    if report.remediation:
+        lines.extend(
+            [
+                "## Plan de remediación",
+                "",
+                "| Regla | Severidad | Responsable | Plazo | Estado |",
+                "|---|---|---|---|---|",
+            ]
+        )
+        for row in report.remediation[:40]:
+            lines.append(
+                f"| `{row['rule_id']}` | {row['severity']} | {row['owner']} | "
+                f"{row['deadline']} | {row['status']} |"
+            )
+        if len(report.remediation) > 40:
+            lines.append("")
+            lines.append(
+                f"Se muestran 40 de {len(report.remediation)}. El JSON trae el plan completo."
+            )
+        lines.append("")
+    if report.comparison:
+        changed = [row for row in report.comparison if row.get("changed")]
+        lines.extend(
+            [
+                "## Seguimiento",
+                "",
+                f"Cambios respecto de la auditoría anterior: {len(changed)}.",
+                "",
+            ]
+        )
     lines.append("---")
     lines.append("")
     lines.append(report.disclaimer)
@@ -129,6 +178,16 @@ def _finding_md(finding: Finding) -> list[str]:
         rows.append(f"- Documento: `{finding.document}`")
     if finding.evidence:
         rows.append(f"- Evidencia: “{finding.evidence}”")
+    if finding.condition and finding.status == "fail":
+        rows.append(f"- Condición: {finding.condition}")
+        rows.append(f"- Criterio: {finding.criterion}")
+        rows.append(f"- Causa: {finding.cause}")
+        rows.append(f"- Efecto: {finding.effect}")
+        rows.append(f"- Recomendación: {finding.recommendation}")
+        if finding.evidence_required:
+            rows.append("- Evidencia requerida: " + "; ".join(finding.evidence_required))
+        rows.append(f"- Responsable sugerido: {finding.suggested_owner}")
+        rows.append(f"- Plazo sugerido: {finding.suggested_deadline}")
     rows.append(f"- Corrección sugerida: {finding.fix_suggestion}")
     rows.append(
         f"- Fuente: [{finding.source_name}]({finding.source_url}) · "
@@ -272,6 +331,10 @@ def _finding_html(finding: Finding) -> str:
 
 
 def write_reports(report: AuditReport, out_dir: Path, formats: list[str]) -> list[Path]:
+    from fdh.calendar_data import render_ics
+    from fdh.diagrams import write_diagrams
+    from fdh.report.exports import render_csv, write_pdf, write_xlsx
+
     out_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
     selected = {item.strip().lower() for item in formats if item.strip()}
@@ -287,4 +350,22 @@ def write_reports(report: AuditReport, out_dir: Path, formats: list[str]) -> lis
         path = out_dir / "report.json"
         path.write_text(render_json(report), encoding="utf-8")
         written.append(path)
+    if "csv" in selected:
+        path = out_dir / "hallazgos.csv"
+        path.write_text(render_csv(report), encoding="utf-8")
+        written.append(path)
+    if "xlsx" in selected:
+        path = out_dir / "hallazgos.xlsx"
+        write_xlsx(report, path)
+        written.append(path)
+    if "pdf" in selected:
+        path = out_dir / "report.pdf"
+        write_pdf(report, path)
+        written.append(path)
+    if "ics" in selected:
+        path = out_dir / "obligaciones.ics"
+        path.write_text(render_ics(report.entity_type, report.catalog_year), encoding="utf-8")
+        written.append(path)
+    if "diagrams" in selected or "html" in selected:
+        written.extend(write_diagrams(out_dir / "diagramas"))
     return written

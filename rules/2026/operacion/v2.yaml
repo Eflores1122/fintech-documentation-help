@@ -1,0 +1,172 @@
+catalog_year: 2026
+last_verified: '2026-11-06'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- id: operacion-cambios
+  domain: operacion
+  area: operacion
+  title: Gestión de cambios
+  requirement: Los cambios a producción deben quedar en un procedimiento con aprobación.
+    No se aisló el artículo.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Gestión de cambios» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (DCG ITF (gestión de cambios; artículo
+    no aislado)). No deje placeholders.
+  entity_types: &id001
+  - IFPE
+  - IFC
+  documents:
+  - procedimiento_cambios
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF (gestión de cambios; artículo no aislado)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de operaciones
+  remediation_days: 45
+  evidence_expected:
+  - Documento procedimiento_cambios aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Gestión de cambios».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el cambio
+      any:
+      - gestión de cambios
+      - gestion de cambios
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: operacion-inventario-activos
+  domain: operacion
+  area: operacion
+  title: Inventario de activos de información
+  requirement: Debe existir un inventario de activos con dueño. No se aisló el artículo.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Inventario de activos de información» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (DCG ITF art. 63 (inventario;
+    no aislado como obligación literal)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - inventario_activos
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF art. 63 (inventario; no aislado como obligación literal)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de operaciones
+  remediation_days: 45
+  evidence_expected:
+  - Documento inventario_activos aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Inventario de activos de información».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el inventario
+      any:
+      - inventario de activos
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: operacion-sla
+  domain: operacion
+  area: operacion
+  title: SLA con proveedores críticos
+  requirement: Los contratos con proveedores críticos deben tener niveles de servicio.
+    El artículo de terceros no lista los SLA.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «SLA con proveedores críticos» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (DCG ITF, terceros (SLA no aislado)).
+    No deje placeholders.
+  entity_types: *id001
+  documents:
+  - contratos_sla
+  - politica_terceros
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF, terceros (SLA no aislado)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de operaciones
+  remediation_days: 30
+  evidence_expected:
+  - Documento contratos_sla aprobado y vigente.
+  - Documento politica_terceros aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «SLA con proveedores críticos».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el nivel de servicio
+      any:
+      - nivel de servicio
+      - SLA
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: operacion-quejas-operativas
+  domain: operacion
+  area: operacion
+  title: Registro operativo de quejas
+  requirement: Además de la UNE, la operación debe registrar quejas y tiempos. El
+    plazo legal no se releyó.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Registro operativo de quejas» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (Disposiciones CONDUSEF (registro
+    operativo; plazo no releído)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - procedimiento_quejas_operativas
+  - procedimiento_quejas
+  source_url: https://sidof.segob.gob.mx/notas/docFuente/5565233
+  source_name: Disposiciones CONDUSEF (registro operativo; plazo no releído)
+  effective_date: '2019-07-09'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de operaciones
+  remediation_days: 45
+  evidence_expected:
+  - Documento procedimiento_quejas_operativas aprobado y vigente.
+  - Documento procedimiento_quejas aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Registro operativo de quejas».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el registro de quejas
+      any:
+      - registro de quejas
+      - folio de queja
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.

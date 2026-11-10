@@ -1,0 +1,307 @@
+catalog_year: 2026
+last_verified: '2026-11-06'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- id: riesgos-matriz
+  domain: riesgos
+  area: riesgos
+  title: Matriz de riesgos
+  requirement: Debe existir una matriz con riesgo, causa, control, responsable y riesgo
+    residual. El formato no está copiado de un anexo.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Matriz de riesgos» con fecha de aprobación, versión vigente
+    y la evidencia que pide la fuente (LRITF art. 48 (formato de matriz no leído)).
+    No deje placeholders.
+  entity_types: &id001
+  - IFPE
+  - IFC
+  documents:
+  - matriz_riesgos
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: LRITF art. 48 (formato de matriz no leído)
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de riesgos
+  remediation_days: 30
+  evidence_expected:
+  - Documento matriz_riesgos aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Matriz de riesgos».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la matriz
+      any:
+      - matriz de riesgos
+    - type: contains_any
+      label: el responsable del riesgo
+      any:
+      - responsable
+      - riesgo residual
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: riesgos-liquidez-ifpe
+  domain: riesgos
+  area: riesgos
+  title: Riesgo de liquidez de la IFPE
+  requirement: La IFPE debe documentar cómo atiende la liquidez de los fondos de pago
+    electrónico. El numeral de Banxico no se aisló.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Riesgo de liquidez de la IFPE» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (Circular 12/2018 (liquidez;
+    numeral no leído)). No deje placeholders.
+  entity_types:
+  - IFPE
+  documents:
+  - manual_riesgo_liquidez
+  source_url: https://www.banxico.org.mx/marco-normativo/normativa-emitida-por-el-banco-de-mexico/circular-12-2018/operaciones-fondos-pago-banco.html
+  source_name: Circular 12/2018 (liquidez; numeral no leído)
+  effective_date: '2018-09-10'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de riesgos
+  remediation_days: 30
+  evidence_expected:
+  - Documento manual_riesgo_liquidez aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Riesgo de liquidez de la IFPE».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la liquidez
+      any:
+      - liquidez
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: riesgos-credito-ifc
+  domain: riesgos
+  area: riesgos
+  title: Riesgo de crédito de la IFC
+  requirement: La IFC debe documentar el riesgo de crédito de los solicitantes. La
+    metodología no se leyó en el anexo.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Riesgo de crédito de la IFC» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (Criterios y DCG de IFC (metodología
+    de crédito no leída)). No deje placeholders.
+  entity_types:
+  - IFC
+  documents:
+  - manual_riesgo_credito
+  source_url: https://dof.gob.mx/2025/SHCP/SHCP_090925.pdf
+  source_name: Criterios y DCG de IFC (metodología de crédito no leída)
+  effective_date: '2018-09-10'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de riesgos
+  remediation_days: 45
+  evidence_expected:
+  - Documento manual_riesgo_credito aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Riesgo de crédito de la IFC».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el riesgo de crédito
+      any:
+      - riesgo de crédito
+      - riesgo de credito
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: riesgos-legal
+  domain: riesgos
+  area: riesgos
+  title: Riesgo legal
+  requirement: El manual de riesgos debe incluir el riesgo legal y el responsable
+    de su seguimiento.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Riesgo legal» con fecha de aprobación, versión vigente
+    y la evidencia que pide la fuente (LRITF (riesgo legal; artículo no aislado)).
+    No deje placeholders.
+  entity_types: *id001
+  documents:
+  - manual_riesgo_legal
+  - matriz_riesgos
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: LRITF (riesgo legal; artículo no aislado)
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de riesgos
+  remediation_days: 45
+  evidence_expected:
+  - Documento manual_riesgo_legal aprobado y vigente.
+  - Documento matriz_riesgos aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Riesgo legal».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el riesgo legal
+      any:
+      - riesgo legal
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: riesgos-tecnologico
+  domain: riesgos
+  area: riesgos
+  title: Riesgo tecnológico
+  requirement: La matriz debe incluir riesgo tecnológico o de ciberseguridad con un
+    control.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Riesgo tecnológico» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (DCG ITF arts. 63 y siguientes (riesgo
+    tecnológico como rubro de matriz no aislado)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - matriz_riesgos
+  source_url: https://dof.gob.mx/nota_detalle_popup.php?codigo=5555030
+  source_name: DCG ITF arts. 63 y siguientes (riesgo tecnológico como rubro de matriz
+    no aislado)
+  effective_date: '2019-03-14'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de riesgos
+  remediation_days: 30
+  evidence_expected:
+  - Documento matriz_riesgos aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Riesgo tecnológico».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el riesgo tecnológico
+      any:
+      - riesgo tecnológico
+      - riesgo tecnologico
+      - ciberseguridad
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: riesgos-auditoria-interna
+  domain: riesgos
+  area: riesgos
+  title: Auditoría interna
+  requirement: Debe existir una función de auditoría interna, propia o encargada,
+    con un plan anual. El artículo no se aisló. Es distinta de la auditoría anual
+    de PLD.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Auditoría interna» con fecha de aprobación, versión vigente
+    y la evidencia que pide la fuente (LRITF (auditoría interna; artículo no aislado)).
+    No deje placeholders.
+  entity_types: *id001
+  documents:
+  - manual_auditoria_interna
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+  source_name: LRITF (auditoría interna; artículo no aislado)
+  effective_date: '2018-03-09'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Dirección de riesgos
+  remediation_days: 30
+  evidence_expected:
+  - Documento manual_auditoria_interna aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Auditoría interna».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la auditoría interna
+      any:
+      - auditoría interna
+      - auditoria interna
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: riesgos-tres-lineas
+  domain: riesgos
+  area: riesgos
+  title: Tres líneas de defensa (referencia COSO / IIA)
+  requirement: El modelo de tres líneas es una referencia de control interno. No es
+    una obligación textual de la LRITF que se haya leído.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Tres líneas de defensa (referencia COSO / IIA)» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (COSO, control
+    interno (referencia; no es norma mexicana)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - marco_tres_lineas
+  - manual_control_interno
+  source_url: https://www.coso.org/guidance-on-ic
+  source_name: COSO, control interno (referencia; no es norma mexicana)
+  effective_date: '2013-05-14'
+  last_verified: '2026-11-06'
+  severity: info
+  unverified: false
+  min_strictness: standard
+  binding: false
+  owner_role: Dirección de riesgos
+  remediation_days: 90
+  evidence_expected:
+  - Documento marco_tres_lineas aprobado y vigente.
+  - Documento manual_control_interno aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Tres líneas de defensa (referencia
+    COSO / IIA)».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: false
+    checks:
+    - type: contains_any
+      label: las tres líneas
+      any:
+      - tres líneas
+      - tres lineas
+  notes: No es obligatorio en México con ese nombre.
+  frameworks:
+  - COSO
+  - IIA tres líneas

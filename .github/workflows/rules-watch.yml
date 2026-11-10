@@ -1,0 +1,35 @@
+name: Vigilancia regulatoria
+
+on:
+  schedule:
+    - cron: "0 15 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -e .
+      - name: Comparar fuentes oficiales
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          fdh rules watch
+          code=$?
+          if [ "$code" -eq 3 ]; then
+            gh issue create \
+              --title "Revisar fuentes oficiales: cambió un hash" \
+              --body-file rules/watch-report.md
+          elif [ "$code" -ne 0 ]; then
+            exit "$code"
+          fi

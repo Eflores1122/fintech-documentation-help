@@ -4,9 +4,11 @@
 
 La auditoría determinística corre en local. No necesita clave ni red.
 
-El revisor opcional (`fdh audit --llm` o la casilla de la interfaz) **envía el texto de los documentos** al endpoint compatible con OpenAI configurado en `FDH_LLM_BASE_URL` (por omisión `https://api.openai.com/v1`), usando `FDH_LLM_API_KEY`.
+El revisor opcional (`fdh audit --llm` o la casilla de la interfaz) habla el protocolo de chat de OpenAI. Por defecto el endpoint tiene que ser local (`127.0.0.1`, `localhost`, el servicio `ollama`). Un URL remoto se rechaza salvo `FDH_LLM_ALLOW_REMOTE=1`.
 
-No active esa opción con avisos de privacidad reales, contratos, expedientes KYC, listados de clientes, manuales internos ni ningún otro documento confidencial. Esos archivos no deben salir hacia un proveedor externo. Sin la clave, o sin la bandera `--llm`, ningún texto se envía.
+Para un modelo en la misma máquina: `FDH_LLM_PROVIDER=ollama` (o `llamacpp`, `lmstudio`, `vllm`, `local`). No hace falta una clave. Modelos sugeridos: `qwen2.5:7b`, `llama3.1:8b`, `mistral:7b`.
+
+No active un proveedor remoto con avisos de privacidad reales, contratos, expedientes KYC, listados de clientes, manuales internos ni ningún otro documento confidencial. Sin `--llm` y sin proveedor local, ningún texto se envía.
 
 La interfaz web (`fdh serve`) escucha en `127.0.0.1` por omisión y deja la casilla del modelo apagada. Sigue siendo un proceso local: no lo exponga a internet con documentos de clientes.
 

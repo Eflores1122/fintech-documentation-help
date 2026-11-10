@@ -1,0 +1,18 @@
+{
+  "sat-rmf-2026": {
+    "url": "https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/normatividad_rmf_rgce2026.html",
+    "sha256": "d5d63557f907c2373491b21ebc81dedc37f697adc2aa4def240e78e9d54f85bc"
+  },
+  "banxico-circular-12-2018": {
+    "url": "https://www.banxico.org.mx/marco-normativo/normativa-emitida-por-el-banco-de-mexico/circular-12-2018/operaciones-fondos-pago-banco.html",
+    "sha256": "89723579fca349b3d2f78832686462cd317ef878a12f399f047363c894d43f36"
+  },
+  "lritf-diputados": {
+    "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf",
+    "sha256": "d6f645e6a7d3c2eeb46905d4d24ecd8e078907057dc034cda715abf019ce8491"
+  },
+  "dof-criterios-2025": {
+    "url": "https://dof.gob.mx/2025/SHCP/SHCP_090925.pdf",
+    "sha256": "1c54318b43dab13c2dd60938f52880131783cbcf48697ad814e76f1f2d0932a6"
+  }
+}

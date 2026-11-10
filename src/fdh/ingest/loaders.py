@@ -10,7 +10,21 @@ from fdh.ingest.classify import classify_heuristic, classify_with_llm, vocabular
 from fdh.models import Document
 from fdh.textutil import normalize_text
 
-SUPPORTED = {".txt", ".md", ".markdown", ".pdf", ".docx", ".html", ".htm"}
+SUPPORTED = {
+    ".txt",
+    ".md",
+    ".markdown",
+    ".pdf",
+    ".docx",
+    ".html",
+    ".htm",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".tif",
+    ".tiff",
+}
+IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".tif", ".tiff"}
 MAX_BYTES = 20 * 1024 * 1024
 _TAG_SPACE = re.compile(r"\s+")
 
@@ -130,8 +144,14 @@ def _load_one(file: Path, root: Path | None, llm_complete, allowed: set[str]) ->
         )
     text = normalize_text(text)
     if not text:
-        warnings.append("El archivo no contiene texto extraíble.")
-    types = classify_heuristic(file.name, text)
+        if suffix in IMAGE_SUFFIXES:
+            warnings.append(
+                "OCR local no obtuvo texto. Hace falta Tesseract con el paquete spa. "
+                "La imagen no se envió a un servicio."
+            )
+        else:
+            warnings.append("El archivo no contiene texto extraíble.")
+    types = classify_heuristic(file.name, text, allowed)
     if llm_complete is not None and text:
         for label in classify_with_llm(file.name, text, llm_complete, allowed):
             if label not in types:
@@ -155,6 +175,11 @@ def _extract(file: Path, suffix: str) -> str:
         return _docx(file)
     if suffix == ".pdf":
         return _pdf(file)
+    if suffix in IMAGE_SUFFIXES:
+        from fdh.ingest.ocr import ocr_image
+
+        text, _warnings = ocr_image(file)
+        return text
     raise ValueError(f"Extensión no soportada: {suffix}")
 
 
@@ -186,4 +211,11 @@ def _pdf(file: Path) -> str:
 
     reader = PdfReader(str(file))
     pages = [(page.extract_text() or "") for page in reader.pages]
-    return "\n".join(pages)
+    text = "\n".join(pages).strip()
+    if len(text) >= 24:
+        return text
+    from fdh.ingest.ocr import ocr_pdf_images
+
+    ocr_text, warnings = ocr_pdf_images(file)
+    note = " ".join(warnings)
+    return "\n".join(part for part in (text, ocr_text, note) if part)

@@ -1,0 +1,216 @@
+catalog_year: 2025
+last_verified: '2026-11-06'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- id: condusef-quejas-expediente
+  domain: condusef
+  area: condusef
+  title: Expediente y plazos de quejas
+  requirement: La UNE debe tener un procedimiento de quejas. Los días exactos de respuesta
+    de las disposiciones de transparencia de ITF no se releyeron; no se inventa un
+    plazo.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Expediente y plazos de quejas» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (Disposiciones de transparencia
+    ITF (plazos de queja no releídos)). No deje placeholders.
+  entity_types: &id001
+  - IFPE
+  - IFC
+  documents:
+  - procedimiento_quejas
+  source_url: https://sidof.segob.gob.mx/notas/docFuente/5565233
+  source_name: Disposiciones de transparencia ITF (plazos de queja no releídos)
+  effective_date: '2019-07-09'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Titular de la UNE
+  remediation_days: 30
+  evidence_expected:
+  - Documento procedimiento_quejas aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Expediente y plazos de quejas».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la queja
+      any:
+      - queja
+      - UNE
+  unverified_detail: 'No se fijó un número de días: el texto de plazos no se releyó.'
+- id: condusef-buro-entidades
+  domain: condusef
+  area: condusef
+  title: Buró de entidades financieras y SIPRES
+  requirement: La entidad supervisada por CONDUSEF suele estar en el Buró de Entidades
+    Financieras y en SIPRES. El artículo de la LPDUSF no se releyó.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Buró de entidades financieras y SIPRES» con fecha de
+    aprobación, versión vigente y la evidencia que pide la fuente (LPDUSF (Buró de
+    Entidades Financieras; artículo no releído)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - procedimiento_buro_entidades
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LPDUSF.pdf
+  source_name: LPDUSF (Buró de Entidades Financieras; artículo no releído)
+  effective_date: '2000-01-18'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Titular de la UNE
+  remediation_days: 45
+  evidence_expected:
+  - Documento procedimiento_buro_entidades aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Buró de entidades financieras y
+    SIPRES».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el buró o SIPRES
+      any:
+      - Buró de Entidades Financieras
+      - SIPRES
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: condusef-cat
+  domain: condusef
+  area: condusef
+  title: CAT en productos de crédito
+  requirement: Si se ofrece crédito o financiamiento con costo, la publicidad y el
+    contrato deben tratar el CAT. El artículo no se releyó y no se afirma una fórmula.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «CAT en productos de crédito» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (LPDUSF / disposiciones de CAT
+    (artículo no releído)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_cat_gat
+  - contrato_adhesion
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LPDUSF.pdf
+  source_name: LPDUSF / disposiciones de CAT (artículo no releído)
+  effective_date: '2000-01-18'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Titular de la UNE
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_cat_gat aprobado y vigente.
+  - Documento contrato_adhesion aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «CAT en productos de crédito».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el CAT
+      any:
+      - CAT
+      - costo anual total
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+  applies_if: offers_credit
+- id: condusef-gat
+  domain: condusef
+  area: condusef
+  title: GAT cuando hay rendimiento
+  requirement: Si se ofrece un rendimiento, la información al cliente debe tratar
+    el GAT. El artículo no se releyó.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «GAT cuando hay rendimiento» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (Disposiciones de GAT (artículo
+    no releído)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_cat_gat
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LPDUSF.pdf
+  source_name: Disposiciones de GAT (artículo no releído)
+  effective_date: '2000-01-18'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Titular de la UNE
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_cat_gat aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «GAT cuando hay rendimiento».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el GAT
+      any:
+      - GAT
+      - ganancia anual total
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+  applies_if: offers_yield
+- id: condusef-estados-cuenta
+  domain: condusef
+  area: condusef
+  title: Estados de cuenta o de operación
+  requirement: La investigación previa ubica contenidos mínimos de estados de cuenta
+    en las disposiciones de transparencia. Esos artículos no se releyeron.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Estados de cuenta o de operación» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (Disposiciones CONDUSEF ITF
+    (estados de cuenta; artículos no releídos)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_estados_cuenta
+  source_url: https://sidof.segob.gob.mx/notas/docFuente/5565233
+  source_name: Disposiciones CONDUSEF ITF (estados de cuenta; artículos no releídos)
+  effective_date: '2019-07-09'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Titular de la UNE
+  remediation_days: 30
+  evidence_expected:
+  - Documento politica_estados_cuenta aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Estados de cuenta o de operación».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el estado de cuenta
+      any:
+      - estado de cuenta
+      - estado de operación
+      - estado de operacion
+  unverified_detail: RESEARCH.md menciona arts. 33 a 43. No se releyeron.

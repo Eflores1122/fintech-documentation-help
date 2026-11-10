@@ -1,0 +1,210 @@
+catalog_year: 2025
+last_verified: '2026-11-06'
+disclaimer: Reglas de apoyo documental. No constituyen asesoría legal ni fiscal.
+rules:
+- id: fiscal-diot
+  domain: sat
+  area: fiscal
+  title: DIOT
+  requirement: Quien esté obligado debe documentar la Declaración Informativa de Operaciones
+    con Terceros. El número de regla de la RMF 2026 no se extrajo del PDF.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «DIOT» con fecha de aprobación, versión vigente y la evidencia
+    que pide la fuente (RMF 2026 (hub SAT); número de regla de la DIOT no leído).
+    No deje placeholders.
+  entity_types: &id001
+  - IFPE
+  - IFC
+  documents:
+  - politica_diot
+  source_url: https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/normatividad_rmf_rgce2026.html
+  source_name: RMF 2026 (hub SAT); número de regla de la DIOT no leído
+  effective_date: '2026-01-01'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Área fiscal
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_diot aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «DIOT».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la DIOT
+      any:
+      - DIOT
+  unverified_detail: No se leyó la regla de la RMF 2026 que detalla la DIOT.
+- id: fiscal-contabilidad-electronica
+  domain: sat
+  area: fiscal
+  title: Contabilidad electrónica
+  requirement: La política fiscal debe decir si envía contabilidad electrónica y el
+    catálogo de cuentas. El Anexo 24 de la RMF no se leyó completo.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Contabilidad electrónica» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (RMF (Anexo 24 no leído completo)).
+    No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_contabilidad_electronica
+  source_url: https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/normatividad_rmf_rgce2026.html
+  source_name: RMF (Anexo 24 no leído completo)
+  effective_date: '2026-01-01'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Área fiscal
+  remediation_days: 45
+  evidence_expected:
+  - Documento politica_contabilidad_electronica aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Contabilidad electrónica».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la contabilidad electrónica
+      any:
+      - contabilidad electrónica
+      - contabilidad electronica
+  unverified_detail: El número de regla y el Anexo 24 no se leyeron íntegros.
+- id: fiscal-opinion-cumplimiento
+  domain: sat
+  area: fiscal
+  title: Opinión de cumplimiento del SAT
+  requirement: El expediente fiscal debe incluir la opinión de cumplimiento o el procedimiento
+    para obtenerla. El artículo del CFF no se releyó.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Opinión de cumplimiento del SAT» con fecha de aprobación,
+    versión vigente y la evidencia que pide la fuente (CFF (opinión de cumplimiento;
+    artículo no releído)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - opinion_cumplimiento
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/CFF.pdf
+  source_name: CFF (opinión de cumplimiento; artículo no releído)
+  effective_date: '2026-01-01'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Área fiscal
+  remediation_days: 45
+  evidence_expected:
+  - Documento opinion_cumplimiento aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Opinión de cumplimiento del SAT».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: la opinión de cumplimiento
+      any:
+      - opinión de cumplimiento
+      - opinion de cumplimiento
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+- id: fiscal-beneficiario-controlador
+  domain: sat
+  area: fiscal
+  title: Beneficiario controlador en materia fiscal
+  requirement: El CFF obliga a identificar al beneficiario controlador. En la literatura
+    se asocia a los artículos 32-B Ter y siguientes; no se releyó el PDF para fijar
+    la fracción.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Beneficiario controlador en materia fiscal» con fecha
+    de aprobación, versión vigente y la evidencia que pide la fuente (CFF (beneficiario
+    controlador; fracción no releída)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - politica_beneficiario_controlador_fiscal
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/CFF.pdf
+  source_name: CFF (beneficiario controlador; fracción no releída)
+  effective_date: '2022-01-01'
+  last_verified: '2026-11-06'
+  severity: high
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Área fiscal
+  remediation_days: 30
+  evidence_expected:
+  - Documento politica_beneficiario_controlador_fiscal aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Beneficiario controlador en materia
+    fiscal».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: el beneficiario controlador
+      any:
+      - beneficiario controlador
+  unverified_detail: No se confirma en esta ficha si el texto vigente está en el 32-B
+    Ter, Quáter o Quinquies.
+- id: fiscal-precios-transferencia
+  domain: sat
+  area: fiscal
+  title: Precios de transferencia
+  requirement: Si hay partes relacionadas en el extranjero, el expediente debe documentar
+    el estudio de precios de transferencia. El artículo de la LISR no se releyó.
+  check_hint: Chequeo determinístico sobre el documento clasificado. No se completa
+    la laguna.
+  fix_suggestion: Actualice «Precios de transferencia» con fecha de aprobación, versión
+    vigente y la evidencia que pide la fuente (LISR (precios de transferencia; artículo
+    no releído)). No deje placeholders.
+  entity_types: *id001
+  documents:
+  - estudio_precios_transferencia
+  source_url: https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf
+  source_name: LISR (precios de transferencia; artículo no releído)
+  effective_date: '2014-01-01'
+  last_verified: '2026-11-06'
+  severity: medium
+  unverified: true
+  min_strictness: standard
+  binding: true
+  owner_role: Área fiscal
+  remediation_days: 45
+  evidence_expected:
+  - Documento estudio_precios_transferencia aprobado y vigente.
+  procedure:
+  - Confirmar que la entidad y el perfil activan «Precios de transferencia».
+  - Localizar el documento en el inventario y su fecha de aprobación.
+  - Contrastar el texto con la fuente citada, sin inferir artículos no leídos.
+  - Dejar condición, causa, efecto, recomendación, responsable y plazo.
+  matcher:
+    require_document: true
+    checks:
+    - type: contains_any
+      label: los precios de transferencia
+      any:
+      - precios de transferencia
+      - partes relacionadas
+  unverified_detail: No se leyó el artículo completo en la pasada del 2026-11-06;
+    no se afirma el número como verificado.
+  applies_if: has_related_parties_abroad
