@@ -10,12 +10,14 @@ from fdh import __version__
 from fdh.catalog import (
     CatalogError,
     available_years,
+    load_all_catalogs,
     load_catalog,
     locate_rules_dir,
     validate_catalogs,
 )
+from fdh.citations import render_citation_report
 from fdh.diff import diff_catalogs, render_diff_json, render_diff_markdown
-from fdh.disclaimer import DISCLAIMER_ES
+from fdh.disclaimer import DISCLAIMER_EN, DISCLAIMER_ES
 from fdh.engine.audit import run_audit
 from fdh.models import SEVERITY_RANK, canonical_entity
 from fdh.report.render import write_reports
@@ -128,6 +130,13 @@ def _parser() -> argparse.ArgumentParser:
     validate = rules_sub.add_parser("validate", help="Validar los YAML del catálogo")
     validate.add_argument("--rules-dir", type=Path, default=None)
     validate.set_defaults(handler=_cmd_validate)
+
+    citations = rules_sub.add_parser(
+        "citations",
+        help="Listar reglas sin fuente oficial o sin fecha. No inventa URLs.",
+    )
+    citations.add_argument("--rules-dir", type=Path, default=None)
+    citations.set_defaults(handler=_cmd_citations)
 
     new_year = rules_sub.add_parser(
         "new-year", help="Clonar un catálogo al año siguiente y abrir checklist"
@@ -254,6 +263,8 @@ def _cmd_audit(args: argparse.Namespace) -> int:
 
 def _print_summary(report, written: list[Path]) -> None:
     print(report.disclaimer)
+    if report.disclaimer_en:
+        print(report.disclaimer_en)
     print()
     overall = "n/a" if report.scores.overall is None else f"{report.scores.overall:.1f}"
     print(
@@ -321,6 +332,27 @@ def _cmd_list(args: argparse.Namespace) -> int:
     total_unverified = sum(1 for rule in rules if rule.unverified)
     print(f"  UNVERIFIED: {total_unverified}")
     return 0
+
+
+def _cmd_citations(args: argparse.Namespace) -> int:
+    from pydantic import ValidationError
+
+    from fdh.parameters import load_parameters
+
+    try:
+        catalogs = load_all_catalogs(args.rules_dir)
+        parameters = load_parameters(args.rules_dir)
+    except (CatalogError, ValidationError) as exc:
+        print(DISCLAIMER_EN)
+        print(DISCLAIMER_ES)
+        print()
+        print("MISSING SOURCE")
+        print(exc)
+        print("No se inventó una URL.")
+        return 1
+    text, missing = render_citation_report(catalogs, parameters)
+    sys.stdout.write(text)
+    return 1 if missing else 0
 
 
 def _cmd_validate(args: argparse.Namespace) -> int:
@@ -412,6 +444,7 @@ def _cmd_doctor(_args: argparse.Namespace) -> int:
     print("Proveedor local: FDH_LLM_PROVIDER=ollama y, si hace falta, FDH_LLM_MODEL.")
     print("Por defecto el texto no sale de la máquina. FDH_LLM_ALLOW_REMOTE=1 lo permite.")
     print(DISCLAIMER_ES)
+    print(DISCLAIMER_EN)
     return 0
 
 
@@ -419,6 +452,7 @@ def _cmd_serve(args: argparse.Namespace) -> int:
     import uvicorn
 
     print(DISCLAIMER_ES)
+    print(DISCLAIMER_EN)
     print(
         f"Interfaz local en http://{args.host}:{args.port} "
         "(no envía documentos a un LLM salvo que lo active)"

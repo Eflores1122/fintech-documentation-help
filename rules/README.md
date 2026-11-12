@@ -2,7 +2,7 @@
 
 Cada año regulatorio vive en su carpeta (`rules/2025`, `rules/2026`). Dentro, una carpeta por área (`legal`, `regulatorio`, `financiero`, `fiscal`, `pld`, `ciberseguridad`, `privacidad`, `condusef`, `riesgos`, `operacion`, `laboral`, `metodologia`, `meta`). El año de la carpeta tiene que coincidir con `catalog_year`. Los YAML sueltos en la raíz del año siguen siendo válidos.
 
-Campos que no pueden faltar: `id`, `source_url` (https, fuente oficial), `source_name`, `effective_date`, `last_verified`, `severity`, `fix_suggestion` y `matcher`.
+Campos que no pueden faltar: `id`, `source_url` (https, fuente oficial), `source_name`, `effective_date`, `last_verified`, `severity`, `fix_suggestion` y `matcher`. El host tiene que ser un sitio oficial (DOF, SIDOF, Diputados, SAT, CNBV, Banxico, CONDUSEF, UIF, gob.mx, INEGI) o un marco de referencia ya listado (ISO, NIST, PCI, AICPA, COSO, FATF). `fdh rules citations` rechaza el resto y no inventa la URL.
 
 `unverified: true` (equivalente a `verified: false`) significa que el detalle fino (número de regla de la RMF, encuadre exacto, plazo) no se leyó completo en el instrumento. Esa bandera se imprime en `fdh rules validate`, en `fdh rules list` y en el reporte. No la quite para “limpiar” la salida.
 

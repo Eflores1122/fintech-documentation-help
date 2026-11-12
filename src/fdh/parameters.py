@@ -6,9 +6,10 @@ from datetime import date
 from pathlib import Path
 
 import yaml
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from fdh.catalog import locate_rules_dir
+from fdh.citations import source_url_problem
 
 
 class ParameterValue(BaseModel):
@@ -32,6 +33,21 @@ class Parameter(BaseModel):
     unverified_detail: str | None = None
     used_by: list[str] = Field(default_factory=list)
     values: list[ParameterValue] = Field(default_factory=list)
+
+    @field_validator("source_url")
+    @classmethod
+    def https_url(cls, value: str) -> str:
+        problem = source_url_problem(value)
+        if problem:
+            raise ValueError(problem)
+        return value
+
+    @field_validator("source_name")
+    @classmethod
+    def source_named(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("source_name no puede estar vacío. No se inventa el nombre.")
+        return value.strip()
 
     def at(self, on: date) -> ParameterValue | None:
         hits = [item for item in self.values if item.covers(on)]

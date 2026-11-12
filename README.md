@@ -1,140 +1,151 @@
 # fintech-documentation-help
 
-Demo en el navegador, sin instalar y sin subir los archivos: [fintech-documentation-help en GitHub Pages](https://eflores1122.github.io/fintech-documentation-help/). Si el enlace aún no abre, el paso que falta está en [docs/demo.md](docs/demo.md).
+Open-source checklist that reviews Mexican fintech documentation against public SAT, CNBV, Banxico, CONDUSEF, and UIF sources, and shows the official URL and the date each rule was checked.
 
-> **AVISO: esta herramienta no es asesoría legal ni fiscal.** Es un checklist asistido que cita fuentes públicas y la fecha en que se verificaron. Las reglas marcadas **UNVERIFIED** (`verified: false`) todavía necesitan una lectura íntegra del instrumento oficial. Cualquier decisión de cumplimiento tiene que contrastarse con un abogado o contador autorizado y con el texto vigente en el Diario Oficial de la Federación y en los portales de SAT, CNBV, Banxico, CONDUSEF, UIF y la Cámara de Diputados. No sustituye una auditoría certificada ni un dictamen de estados financieros.
+> **This is not legal or tax advice.** It is an assisted checklist. Rules marked **UNVERIFIED** keep their public citation and still need a full reading of the official instrument. Compliance decisions belong with a qualified lawyer or accountant and with the current text in the Diario Oficial de la Federación and on the SAT, CNBV, Banxico, CONDUSEF, UIF, and Chamber of Deputies sites.
+>
+> **AVISO: Este reporte no es asesoría legal ni fiscal.** Es un checklist asistido que cita fuentes públicas con fecha de verificación. Las reglas marcadas UNVERIFIED requieren lectura íntegra del instrumento oficial antes de tratarlas como definitivas.
 
-Auditor open source para el cumplimiento documental de fintechs mexicanas: IFPE, IFC, SOFOM ENR, transmisores de dinero, asesores en inversiones y modelos novedosos. El modo por defecto es el auditor más exigente (`--strictness max`).
+In-browser demo, with no install and no upload to a server: [GitHub Pages](https://eflores1122.github.io/fintech-documentation-help/). If the link is not live yet, the remaining step is in [docs/demo.md](docs/demo.md).
 
-Los casos de muestra son **Nube Pago, S.A. de C.V.** (IFPE imaginaria) y **Ladrillo Común, S.A.P.I. de C.V.** (IFC imaginaria de crowdfunding inmobiliario). No existen, no están autorizadas y no representan a ninguna empresa.
-
-English version: [README.en.md](README.en.md).
+Spanish documentation: [README.es.md](README.es.md).
 
 [![CI](https://github.com/Eflores1122/fintech-documentation-help/actions/workflows/ci.yml/badge.svg)](https://github.com/Eflores1122/fintech-documentation-help/actions/workflows/ci.yml)
 
-## Para quién
+The sample companies are fictional: **Nube Pago, S.A. de C.V.** (an imaginary payment institution, IFPE) and **Ladrillo Común, S.A.P.I. de C.V.** (an imaginary real-estate crowdfunding institution, IFC). They are not authorized and they do not represent a real firm. The files under `samples/` and the reports under `examples/` are synthetic.
 
-Oficiales de cumplimiento, contraloría interna, abogados y equipos de riesgo que quieren un expediente revisable: qué documento falta, qué texto está viejo y qué evidencia no alcanza. El catálogo se versiona por año para poder repetir la revisión cuando cambian la RMF, la LIF o una disposición de la CNBV.
+## Problem
 
-## Áreas
+A fintech filing is a pile of manuals, policies, contracts, and scanned PDFs. The texts that matter change by year: the Resolución Miscelánea Fiscal, the Ley de Ingresos, CNBV dispositions, Banxico circulars, CONDUSEF transparency rules, and the anti-money-laundering provisions overseen with the UIF. Teams need a repeatable way to see which document is missing, which sentence is stale, and which citation was actually read.
 
-| Área | Id | Qué mira |
-|---|---|---|
-| Legal y corporativo | `legal` | Autorización, objeto, consejo, poderes, NOM-151, terceros |
-| Regulatorio CNBV/Banxico | `regulatorio`, `lritf`, `banxico`, `cnbv` | Capital en UDI, reportes R01, SITI, efectivo, APIs, circulares |
-| Financiero y contable | `financiero` | Criterios CNBV / NIF del ejercicio, estados, auditor externo |
-| Fiscal | `fiscal`, `sat` | RMF del año, CFDI 4.0, retenciones, DIOT, CFF |
-| PLD/FT | `pld` | Manual, KYC, beneficiario controlador, listas, reportes, oficial |
-| Ciberseguridad | `ciberseguridad` | CID, CISO en IFC, incidentes art. 67, continuidad medida |
-| Privacidad | `privacy`, `privacidad` | Art. 15 LFPDPPP 2025, autoridad vigente, ARCO |
-| CONDUSEF | `condusef` | RECA, consentimiento expreso, UNE, REUS, quejas |
-| Riesgos | `riesgos` | Matriz, liquidez, crédito, auditoría interna |
-| Operación y TI | `operacion` | Cambios, inventario, SLA, quejas operativas |
-| Laboral | `laboral` | REPSE si aplica, ética, denuncias, capacitación |
+## What it checks
 
-ISO 27001:2022, NIST CSF 2.0, PCI DSS 4.0 (solo si el perfil procesa tarjetas), SOC 2, COSO y las 40 recomendaciones del GAFI entran como **referencia**. El informe dice que no son obligatorios en México.
+Default mode is the strictest auditor (`--strictness max`). Entity types include IFPE, IFC, SOFOM ENR, money transmitters, investment advisers, and sandbox filings (`modelo novedoso`).
 
-## Inicio en tres comandos
+| Area | Rule domain ids |
+|---|---|
+| Legal and corporate | `legal` |
+| CNBV and Banxico | `regulatorio`, `lritf`, `banxico`, `cnbv` |
+| Financial reporting | `financiero` |
+| Tax | `fiscal`, `sat` |
+| Anti-money laundering | `pld` |
+| Cybersecurity | `ciberseguridad` |
+| Privacy | `privacy`, `privacidad` |
+| CONDUSEF | `condusef` |
+| Risk, operations, labor | `riesgos`, `operacion`, `laboral` |
 
-Hace falta Python 3.12.
+ISO/IEC 27001:2022, NIST CSF 2.0, PCI DSS 4.0 (only if the profile processes cards), SOC 2, COSO, and the FATF recommendations are reference mappings. The report says they are not Mexican law.
 
-```bash
-python3.12 -m venv .venv && source .venv/bin/activate && pip install -e ".[dev]"
-fdh audit samples/nube_pago/docs --year 2026 --entity IFPE --out fdh-report
-fdh serve
-```
-
-`fdh rules diff 2025 2026` compara snapshots. `fdh rules diff --from 2025-01-01 --to 2026-01-01` compara las reglas vigentes en dos fechas. `fdh audit ... --as-of 2031-03-15` reutiliza el último snapshot cuya vigencia cubre ese día y avisa, sin inventar el monto, si falta la UMA, el umbral de PLD o la tasa de la LIF. Si no pasa `--year` ni `--as-of`, la fecha es hoy.
-
-`fdh rules validate` y `fdh rules list --year 2026` revisan las fichas.
-
-Otras figuras: `--entity IFC`, `SOFOM_ENR`, `transmisor_dinero`, `asesor_inversion`, `modelo_novedoso`. Perfil: `--operates-virtual-assets`, `--participates-spei`, `--processes-cards`, `--offers-credit`, `--offers-yield`, `--specialized-services`, `--related-parties-abroad`, `--partial-payments`, `--transports-goods`, `--tech-platform`, `--digital-services`.
-
-`--strictness max` es el default. `standard` apaga las reglas de metodología (fecha de aprobación, placeholders, versión de trabajo). `--fail-on critical` sale con código 1 si hay un incumplimiento de esa severidad o peor.
-
-Formatos: `md,html,json,csv,xlsx,pdf,ics`. El HTML trae los diagramas en SVG y en Mermaid. El PDF es texto, sin motor pesado.
-
-## Muestras
-
-| Entidad ficticia | Comando | Global (estrictez max, sin IA) | Dictamen |
-|---|---|---:|---|
-| Nube Pago, IFPE | `fdh audit samples/nube_pago/docs --entity IFPE` | 8.8 | adverso |
-| Ladrillo Común, IFC | `fdh audit samples/ladrillo_comun/docs --entity IFC` | 22.2 | adverso |
-
-Los reportes están en [`examples/nube_pago/`](examples/nube_pago/report.md) y [`examples/ladrillo_comun/`](examples/ladrillo_comun/report.md). El diff anual está en [`examples/diff-2025-2026.md`](examples/diff-2025-2026.md).
-
-Nube Pago, por área: ciberseguridad 0, CONDUSEF 0, financiero 0, fiscal 0, laboral 33.3, legal 8.3, metodología 0, operación 22.2, PLD 8.8, privacidad 6.9, regulatorio 21.9, riesgos 0.
-
-Ladrillo Común, por área: ciberseguridad 0, CONDUSEF 9.7, financiero 0, fiscal 12.0, laboral 66.7, legal 29.6, metodología 72.7, operación 0, PLD 52.6, privacidad 13.8, regulatorio 0, riesgos 76.9.
-
-## Diagramas
-
-`fdh diagrams --out fdh-diagramas` escribe Mermaid y SVG (el SVG no necesita Mermaid CLI; si `mmdc` está en el PATH, el HTML lo dice). Sirven como plantilla para documentar la propia fintech:
+## Architecture
 
 ```mermaid
 flowchart TD
-  plan[Planeación por tipo de entidad]
-  inv[Inventario]
-  doc[Revisión documental]
-  hall[Hallazgos]
-  dic[Dictamen por área]
-  plan --> inv --> doc --> hall --> dic
+  files[PDF, DOCX, Markdown, TXT, HTML, scans]
+  ingest[Ingest and classify. OCR only if Tesseract is installed locally]
+  catalog[YAML catalog for one year, each rule with URL and dates]
+  match[Deterministic phrase and regex checks]
+  llm[Optional local model, off by default]
+  report[Findings with source URL, effective date, and last verified date]
+  files --> ingest --> match
+  catalog --> match
+  llm -.-> match
+  match --> report
 ```
 
-También: mapa de áreas, flujo PLD, incidentes, quejas CONDUSEF, gobierno, Gantt de recordatorios y flujo de datos personales. La interfaz los muestra en `/diagrams`.
+The model, when enabled, may only add a finding that names an existing rule id and quotes the file. It does not lower severity and it does not create a new obligation.
 
-## IA local
+## Tech stack
 
-Todo funciona sin modelo. Para uno en la misma máquina:
+Python 3.12. Pydantic v2 for the rule schema. PyYAML catalogs. FastAPI and Uvicorn for the local UI. pypdf, python-docx, and the standard library for text. Pillow and pytesseract for local OCR. ReportLab for a text PDF. httpx only when a local OpenAI-compatible model is switched on. Ruff, mypy, and pytest in CI.
+
+## Quickstart
+
+Python 3.12. Scanned images are read only when Tesseract and the Spanish language pack are installed. Without them, the audit still runs and the image is reported as unread. Nothing is sent to a cloud OCR service.
 
 ```bash
-# Ollama, LM Studio, llama.cpp o vLLM: endpoint compatible con OpenAI, en localhost
-export FDH_LLM_PROVIDER=ollama
-export FDH_LLM_MODEL=qwen2.5:7b
-fdh llm doctor
-fdh audit samples/nube_pago/docs --llm --adversarial
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+fdh audit samples/nube_pago/docs --year 2026 --entity IFPE --out fdh-report
+fdh rules citations
+fdh serve
 ```
 
-Modelos sugeridos: `qwen2.5:7b`, `qwen2.5:14b`, `llama3.1:8b`, `llama3.2:3b`, `mistral:7b`.
+`fdh serve` listens on `http://127.0.0.1:8000`.
 
-`fdh ask "¿qué elementos pide el aviso de privacidad?"` responde con las fichas del catálogo (búsqueda léxica). Embeddings solo si `FDH_LLM_EMBEDDINGS=1` y Ollama está en local. Un endpoint remoto exige `FDH_LLM_ALLOW_REMOTE=1`. Sin eso, el texto no sale de la máquina. Detalle en [SECURITY.md](SECURITY.md).
+`fdh rules diff 2025 2026` compares the two catalog snapshots. `fdh rules validate` checks the YAML. `fdh rules citations` exits with an error if any rule lacks an official https source, a source name, or a date. It does not fill that gap with a guessed URL.
 
-La IA agrega hallazgos con `source: mixed` y confianza. No inventa `rule_id` y no baja la severidad. Las reglas determinísticas siguen siendo la base.
+Other entities: `--entity IFC`, `SOFOM_ENR`, `transmisor_dinero`, `asesor_inversion`, `modelo_novedoso`. Profile flags include `--operates-virtual-assets`, `--participates-spei`, `--processes-cards`, `--offers-credit`, and `--offers-yield`.
 
-## Cada año
-
-```bash
-fdh rules new-year 2027
-fdh rules diff 2026 2027
-fdh rules validate
-```
-
-`new-year` clona la carpeta y abre `CHECKLIST.md`. Quien no programa copia un bloque YAML, pone la URL oficial y, si no leyó el artículo, `unverified: true`. La guía está en [CONTRIBUTING.md](CONTRIBUTING.md). El historial de catálogo está en [rules/CHANGELOG.md](rules/CHANGELOG.md).
-
-La acción `.github/workflows/rules-watch.yml` corre cada lunes, compara hashes de páginas del SAT, Banxico, Diputados y el DOF, y abre un issue si algo cambió. No redacta reglas sola. `fdh rules watch` hace lo mismo en local.
-
-## Interfaz
-
-`fdh serve` abre `http://127.0.0.1:8000`. Ahí se elige la figura, la estrictez, se suben documentos y se leen hallazgos, diagramas (`/diagrams`), plantillas (`/templates`) y el calendario (`/calendar.ics`).
-
-`fdh calendar --entity IFPE --year 2026 --out obligaciones.ics` exporta recordatorios. Donde la norma dice «dentro del mes inmediato siguiente», el evento es un recordatorio el día 10, no un día legal inventado.
-
-`fdh templates --out fdh-plantillas` escribe borradores de manual PLD, seguridad, continuidad, privacidad, quejas y gobierno. Cada archivo dice que un abogado debe revisarlo.
-
-## Docker
+Exports: `md,html,json,csv,xlsx,pdf,ics`.
 
 ```bash
 docker compose up --build
-# con Ollama, en otro perfil:
-docker compose --profile ollama up --build
 ```
 
-Dentro del compose, `FDH_LLM_BASE_URL` apunta a `http://ollama:11434/v1`. Hay que bajar el modelo en ese servicio (`ollama pull qwen2.5:7b`) y exportar `FDH_LLM_PROVIDER=ollama` si quiere el revisor.
+## Sample output
 
-## Metodología y fuentes
+Checked-in run, strictness `max`, no model. Full files: [examples/nube_pago/report.md](examples/nube_pago/report.md) and [examples/ladrillo_comun/report.md](examples/ladrillo_comun/report.md).
 
-[docs/metodologia.md](docs/metodologia.md) y [docs/fuentes.md](docs/fuentes.md). El contexto de la investigación previa sigue en [RESEARCH.md](RESEARCH.md).
+| Fictional entity | Command | Overall | Opinion |
+|---|---|---:|---|
+| Nube Pago, IFPE | `fdh audit samples/nube_pago/docs --entity IFPE` | 8.8 | adverse |
+| Ladrillo Común, IFC | `fdh audit samples/ladrillo_comun/docs --entity IFC` | 22.2 | adverse |
 
-## Aviso, otra vez
+Nube Pago by area: cybersecurity 0, CONDUSEF 0, financial 0, tax 0, labor 33.3, legal 8.3, methodology 0, operations 22.2, PLD 8.8, privacy 6.9, regulatory 21.9, risk 0. The run shows 99 fails, 17 of them critical, and 59 UNVERIFIED findings.
 
-Este software no es asesoría legal ni fiscal, no autoriza a operar y no reemplaza a la CNBV, Banxico, el SAT, la UIF ni CONDUSEF. Las fichas UNVERIFIED no se deben citar como texto cerrado.
+One critical finding from that synthetic file, kept UNVERIFIED because the article number was not read:
+
+```text
+### Incumplimiento · critical · UNVERIFIED · legal-oficio-autorizacion
+Oficio de autorización para operar como ITF
+Fuente: LRITF (autorización de ITF; artículo no releído)
+https://www.diputados.gob.mx/LeyesBiblio/pdf/LRITF.pdf
+vigencia 2018-03-09 · verificado 2026-11-06
+UNVERIFIED: No se leyó el artículo completo en la pasada del 2026-11-06.
+```
+
+The annual catalog diff is [examples/diff-2025-2026.md](examples/diff-2025-2026.md).
+
+## Tests
+
+GitHub Actions (`.github/workflows/ci.yml`) installs Tesseract, then runs Ruff, mypy, and pytest. Coverage of `fdh` fails under 90%.
+
+```bash
+ruff check src tests scripts
+ruff format --check src tests scripts
+mypy src/fdh
+pytest
+```
+
+## Project structure
+
+```text
+src/fdh/          CLI, catalog loader, matchers, reports, local web UI
+rules/2025/       catalog snapshot for 2025
+rules/2026/       catalog snapshot for 2026
+rules/parameters.yaml
+rules/schemas/    JSON Schema for editors. Runtime checks are Pydantic.
+samples/          synthetic Nube Pago and Ladrillo Común documents
+examples/         checked-in reports from those samples
+tests/            pytest
+site/             static demo
+docs/             methodology and the source pass
+.github/workflows/ci.yml
+```
+
+## Limitations
+
+- A lawyer or accountant, and the current official text, decide compliance. This repository does not authorize a firm to operate and does not replace CNBV, Banxico, SAT, UIF, or CONDUSEF.
+- Matchers look for phrases and patterns in the file. A paraphrase can pass or fail for the wrong reason.
+- `UNVERIFIED` keeps the official URL, the effective date, and the verification date. The unread article number, RMF rule number, or amount stays blank. `fdh rules citations` lists those rows and refuses a rule that has no official source.
+- Two product rows cite an official page as an anchor rather than as the norm that imposes the check: `meta-disclaimer-no-legal-advice` and `meta-what-changed-2026`. `sat-cff-32b-informacion` still points at the LRITF PDF because the CFF article was not read. Those URLs were not replaced.
+- Parameter rows with an empty value table (`uma_diaria`, the PLD relevant-transaction threshold, and the LIF withholding rates marked unverified) do not borrow a number from another year.
+- Samples and examples are synthetic. This repository does not claim a production deployment.
+- The optional model stays on the machine unless `FDH_LLM_ALLOW_REMOTE=1`. See [SECURITY.md](SECURITY.md).
+
+Methodology: [docs/metodologia.md](docs/metodologia.md). Source pass: [docs/fuentes.md](docs/fuentes.md). How to add a rule: [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+[MIT](LICENSE). Copyright (c) 2026 fintech-documentation-help contributors.

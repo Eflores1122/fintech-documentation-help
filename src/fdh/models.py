@@ -8,6 +8,8 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
+from fdh.citations import source_url_problem
+
 Severity = Literal["critical", "high", "medium", "low", "info"]
 Status = Literal["pass", "fail", "not_applicable", "unclear"]
 CheckType = Literal[
@@ -220,9 +222,17 @@ class Rule(BaseModel):
     @field_validator("source_url")
     @classmethod
     def https_url(cls, value: str) -> str:
-        if not value.startswith("https://"):
-            raise ValueError("source_url debe usar https y apuntar a una fuente oficial")
+        problem = source_url_problem(value)
+        if problem:
+            raise ValueError(problem)
         return value
+
+    @field_validator("source_name")
+    @classmethod
+    def source_named(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("source_name no puede estar vacío. No se inventa el nombre.")
+        return value.strip()
 
     @field_validator("entity_types")
     @classmethod
