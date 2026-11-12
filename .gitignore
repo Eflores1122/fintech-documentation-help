@@ -13,3 +13,5 @@ fdh-report/
 .mypy_cache/
 .DS_Store
 rules/watch-report.md
+.env
+.env.*

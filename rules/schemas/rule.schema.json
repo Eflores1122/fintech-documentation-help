@@ -38,7 +38,11 @@
       "minItems": 1,
       "items": {"type": "string"}
     },
-    "source_url": {"type": "string", "pattern": "^https://"},
+    "source_url": {
+      "type": "string",
+      "pattern": "^https://",
+      "description": "HTTPS en un sitio oficial (DOF, SIDOF, Diputados, SAT, CNBV, Banxico, CONDUSEF, UIF, gob.mx, INEGI) o en un marco de referencia listado (ISO, NIST, PCI, AICPA, COSO, FATF). Si no hay URL oficial, no se inventa."
+    },
     "source_name": {"type": "string"},
     "effective_date": {"type": "string", "format": "date"},
     "last_verified": {"type": "string", "format": "date"},

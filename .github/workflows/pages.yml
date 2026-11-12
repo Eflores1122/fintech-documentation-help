@@ -2,7 +2,7 @@ name: Pages
 
 on:
   push:
-    branches: [main, cursor/fintech-audit-v2-3049]
+    branches: [main]
   workflow_dispatch:
 
 permissions:

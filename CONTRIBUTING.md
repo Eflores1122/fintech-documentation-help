@@ -36,7 +36,7 @@ La Resolución Miscelánea Fiscal y la Ley de Ingresos se renuevan por ejercicio
    - si la regla nueva reemplaza a otra, use un id nuevo y `supersedes` con el id anterior; deje la regla vieja solo en el año en que estuvo vigente;
    - si el PDF, el anexo o la regla numerada no se leyeron completos, deje `unverified: true` y explique en `unverified_detail` qué falta. No borre la bandera para que el reporte se vea más limpio.
 4. No agregue números de artículo, tasas, plazos ni nombres de regla que no estén en la fuente que acaba de abrir. Si la semilla de investigación marcó un punto como no verificado, se queda así hasta que alguien lea el instrumento.
-5. La `source_url` tiene que ser `https://` y de un sitio oficial: Diario Oficial de la Federación, Cámara de Diputados, SAT, CNBV, Banxico, CONDUSEF o UIF. Un resumen de despacho no sustituye esa URL.
+5. La `source_url` tiene que ser `https://` y de un sitio oficial: Diario Oficial de la Federación, Cámara de Diputados, SAT, CNBV, Banxico, CONDUSEF, UIF, gob.mx o INEGI. Un resumen de despacho no sustituye esa URL. `fdh rules citations` falla si el host no está en esa lista. No rellene el hueco con una URL recordada.
 6. Corra:
 
 ```bash

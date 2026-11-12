@@ -22,6 +22,7 @@
 ## Verificación
 
 - [ ] `fdh rules validate`
+- [ ] `fdh rules citations` (si aparece una regla en MISSING SOURCE, no se inventa la URL)
 - [ ] `pytest`
 
 ## Aviso

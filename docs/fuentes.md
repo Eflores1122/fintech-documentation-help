@@ -2,6 +2,8 @@
 
 Fecha de la pasada de esta versión: **2026-11-06**. Cada regla del catálogo trae su `source_url`, `source_name`, `effective_date` y `last_verified`. Si el artículo o el número de regla no se leyó, la ficha tiene `unverified: true` (y `verified: false`) más `unverified_detail`. No se rellena el hueco.
 
+`fdh rules citations` imprime las reglas que no traen URL https de un sitio oficial, nombre de fuente o fecha, y sale con error. No propone otra URL. UNVERIFIED no es lo mismo: ahí la URL y las fechas sí están, y el artículo no leído sigue en blanco.
+
 ## Leídas en esta pasada (texto, no solo el índice)
 
 | Instrumento | Qué se usó | URL |
